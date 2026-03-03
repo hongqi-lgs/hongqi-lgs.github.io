@@ -119,11 +119,17 @@
     setLang(next);
   }
 
-  // 判断是否在文章详情页
+  // 判断是否在文章详情页或关于页面
   function isPostPage() {
-    // 排除特殊页面
     var path = window.location.pathname;
-    var specialPages = ['/tags/', '/categories/', '/archives/', '/about/', '/link/'];
+    
+    // 关于页面支持语言切换
+    if (path.indexOf('/about/') !== -1) {
+      return true;
+    }
+    
+    // 排除其他特殊页面
+    var specialPages = ['/tags/', '/categories/', '/archives/', '/link/'];
     for (var i = 0; i < specialPages.length; i++) {
       if (path.indexOf(specialPages[i]) !== -1 && path.replace(/.*\/ideas/, '').replace(specialPages[i], '').replace(/\//g, '') === '') {
         return false;
@@ -144,6 +150,24 @@
     // 去掉末尾斜杠便于处理
     var cleanPath = path.replace(/\/+$/, '');
 
+    // 特殊处理：关于页面
+    if (cleanPath.indexOf('/about') !== -1) {
+      if (targetLang === 'en') {
+        // 中文 → 英文
+        if (cleanPath.match(/\/about\/index-en$/)) {
+          return null; // 已经是英文版
+        }
+        return '/about/index-en.html';
+      } else {
+        // 英文 → 中文
+        if (cleanPath.match(/\/about\/index-en/)) {
+          return '/about/';
+        }
+        return null; // 已经是中文版
+      }
+    }
+
+    // 文章页面
     if (targetLang === 'en') {
       // 中文 → 英文：加 -en
       if (cleanPath.match(/-en$/)) {
