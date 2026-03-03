@@ -213,6 +213,12 @@ Open_Graph_meta:
   enable: true
   option:
 
+# 相关推荐
+related_post:
+  enable: true
+  limit: 6
+  date_type: created
+
 
 
 
