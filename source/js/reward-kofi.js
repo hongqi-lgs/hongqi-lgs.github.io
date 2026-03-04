@@ -65,24 +65,33 @@
     span.textContent = ' Ko-fi';
     kofiBtn.appendChild(span);
     
-    // 阻止 Ko-fi 按钮触发弹窗事件
-    kofiBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      // 确保弹窗关闭
-      if (rewardMain) {
-        rewardMain.style.display = 'none';
-      }
-    });
-    
-    kofiBtn.addEventListener('mouseenter', function(e) {
-      e.stopPropagation();
-      // 确保弹窗不显示
-      if (rewardMain) {
-        rewardMain.style.display = 'none';
-      }
-    });
-    
     buttonWrapper.appendChild(kofiBtn);
+    
+    // ========== 弹窗控制逻辑 ==========
+    var isPopupOpen = false;
+    
+    // 打赏按钮：点击切换弹窗显示/隐藏
+    rewardButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      isPopupOpen = !isPopupOpen;
+      rewardMain.style.display = isPopupOpen ? 'block' : 'none';
+      console.log('[Ko-fi] Reward popup toggled:', isPopupOpen);
+    });
+    
+    // 点击弹窗外部关闭弹窗
+    document.addEventListener('click', function(e) {
+      if (isPopupOpen && !postReward.contains(e.target)) {
+        isPopupOpen = false;
+        rewardMain.style.display = 'none';
+        console.log('[Ko-fi] Popup closed by outside click');
+      }
+    });
+    
+    // 确保弹窗内点击不关闭
+    rewardMain.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
     
     console.log('[Ko-fi] Button added successfully');
     console.log('[Ko-fi] Wrapper:', buttonWrapper);
