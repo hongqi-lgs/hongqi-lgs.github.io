@@ -35,12 +35,17 @@ async function fetchButtondownSubscribers() {
   
   const data = await response.json();
   
-  // 调试：打印 API 响应结构
-  console.log('📋 Buttondown API response:', JSON.stringify(data, null, 2));
+  // Buttondown API 返回格式: { results: [...], count: N }
+  const subscribers = data.results || [];
+  console.log(`✅ Found ${subscribers.length} subscribers from Buttondown (total: ${data.count || subscribers.length})`);
   
-  // Buttondown API 可能直接返回数组，也可能是 { results: [...] }
-  const subscribers = Array.isArray(data) ? data : (data.results || []);
-  console.log(`✅ Found ${subscribers.length} subscribers from Buttondown`);
+  if (subscribers.length > 0) {
+    console.log('📧 First subscriber sample:', {
+      email: subscribers[0].email_address,
+      creation_date: subscribers[0].creation_date,
+      type: subscribers[0].type
+    });
+  }
   
   return subscribers;
 }
@@ -76,9 +81,17 @@ function saveSubscribers(subscribers) {
 
 function mergeSubscribers(buttondownSubs, localSubs) {
   // 将 Buttondown 订阅者转换为标准格式
-  const buttondownEmails = new Set(buttondownSubs.map(s => s.email));
+  const buttondownEmails = new Set(buttondownSubs.map(s => s.email_address || s.email));
   
   const merged = buttondownSubs.map(s => {
+    // Buttondown API 使用 email_address 字段
+    const email = s.email_address || s.email;
+    
+    if (!email) {
+      console.warn('⚠️  Subscriber missing email:', s);
+      return null;
+    }
+    
     // 安全获取订阅日期
     let subscribedDate = new Date().toISOString().split('T')[0];
     if (s.creation_date) {
@@ -89,21 +102,22 @@ function mergeSubscribers(buttondownSubs, localSubs) {
       subscribedDate = s.subscribe_date.split('T')[0];
     }
     
-    // 安全获取名字
-    let name = s.email ? s.email.split('@')[0] : 'Unknown';
-    if (s.name) {
-      name = s.name;
-    } else if (s.metadata?.name) {
+    // 安全获取名字（从 metadata 或邮箱前缀）
+    let name = email.split('@')[0];
+    if (s.metadata && s.metadata.name) {
       name = s.metadata.name;
+    } else if (s.name) {
+      name = s.name;
     }
     
     return {
-      email: s.email,
+      email: email,
       name: name,
       subscribed_at: subscribedDate,
-      source: 'buttondown'
+      source: 'buttondown',
+      buttondown_id: s.id // 保存 ID 用于后续操作
     };
-  });
+  }).filter(s => s !== null); // 过滤掉无效条目
   
   // 保留本地手动添加的订阅者（不在 Buttondown 中的）
   const manualSubs = localSubs.filter(s => !buttondownEmails.has(s.email));
