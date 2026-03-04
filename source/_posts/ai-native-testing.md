@@ -295,8 +295,6 @@ AI会读取这些历史来理解"为什么这个测试如此设计"。
 
 **致谢**: 本文的实验基于OpenAI Codex、Claude Sonnet 4.5和我们团队三个月的持续探索。特别感谢那些因为AI生成的奇怪测试用例而崩溃的QA工程师们——你们的反馈让系统变得更好。
 
-**代码与规约模板**: 我们的测试规约模板和AI Skill已开源，访问 [github.com/your-org/ai-native-testing](https://github.com/your-org/ai-native-testing)
-
 ---
 
 *这是AI原生开发系列的第二篇。上一篇：[《AI Coding的绊脚石之一：程序的隐式契约问题》](/2026/03/02/ai-coding-implicit-contracts/)*

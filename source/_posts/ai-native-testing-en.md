@@ -296,8 +296,6 @@ Don't try to migrate your entire test suite at once. The most important aspect o
 
 **Acknowledgments**: This experiment is based on OpenAI Codex, Claude Sonnet 4.5, and three months of continuous exploration by our team. Special thanks to the QA engineers who crashed from AI-generated bizarre test cases—your feedback made the system better.
 
-**Code & Spec Templates**: Our test specification templates and AI skills are open-sourced at [github.com/your-org/ai-native-testing](https://github.com/your-org/ai-native-testing)
-
 ---
 
 *This is the second post in the AI-Native Development series. Previous: [AI Coding's Stumbling Block: The Implicit Contract Problem](/2026/03/02/ai-coding-implicit-contracts-en/)*
