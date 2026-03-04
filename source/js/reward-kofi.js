@@ -1,123 +1,161 @@
 /**
- * 在打赏按钮旁边添加 Ko-fi 按钮（并排显示，不在弹窗内）
+ * 重写打赏区域：单按钮 + Tab切换（Ko-fi / 微信 / 支付宝）
  */
 (function() {
   'use strict';
   
-  function addKofiButton() {
-    // 找到打赏容器（.post-reward 是整个打赏区域）
+  function rebuildRewardArea() {
     var postReward = document.querySelector('.post-reward');
     if (!postReward) {
-      console.log('[Ko-fi] .post-reward not found');
+      console.log('[Reward] .post-reward not found');
       return;
     }
     
-    // 检查是否已经添加过
-    if (document.querySelector('.reward-buttons-wrapper')) {
-      console.log('[Ko-fi] Button wrapper already exists');
+    // 检查是否已经重建过
+    if (document.querySelector('.reward-panel-rebuilt')) {
+      console.log('[Reward] Already rebuilt');
       return;
     }
     
-    // 找到原始的打赏按钮（.reward-button）
-    var rewardButton = postReward.querySelector('.reward-button');
-    if (!rewardButton) {
-      console.log('[Ko-fi] .reward-button not found');
-      return;
-    }
+    console.log('[Reward] Rebuilding reward area...');
     
-    // 找到弹窗容器（.reward-main）
-    var rewardMain = postReward.querySelector('.reward-main');
-    if (!rewardMain) {
-      console.log('[Ko-fi] .reward-main not found');
-      return;
-    }
+    // 清空原有内容
+    postReward.innerHTML = '';
+    postReward.className = 'post-reward reward-panel-rebuilt';
     
-    console.log('[Ko-fi] Adding button...');
+    // 创建触发按钮
+    var triggerBtn = document.createElement('div');
+    triggerBtn.className = 'reward-trigger-button';
+    triggerBtn.innerHTML = '<i class="fas fa-coffee"></i> 请我喝杯咖啡';
     
-    // 创建按钮容器（让两个按钮并排显示）
-    var buttonWrapper = document.createElement('div');
-    buttonWrapper.className = 'reward-buttons-wrapper';
+    // 创建弹窗面板
+    var panel = document.createElement('div');
+    panel.className = 'reward-panel';
+    panel.style.display = 'none';
     
-    // 将 buttonWrapper 插入到 .post-reward 的最前面（在 .reward-button 之前）
-    postReward.insertBefore(buttonWrapper, postReward.firstChild);
+    // 创建 Tab 导航
+    var tabNav = document.createElement('div');
+    tabNav.className = 'reward-tabs';
+    tabNav.innerHTML = `
+      <button class="reward-tab active" data-tab="kofi">
+        <i class="fas fa-coffee"></i> Ko-fi
+      </button>
+      <button class="reward-tab" data-tab="wechat">
+        <i class="fab fa-weixin"></i> 微信
+      </button>
+      <button class="reward-tab" data-tab="alipay">
+        <i class="fab fa-alipay"></i> 支付宝
+      </button>
+    `;
     
-    // 将原始按钮移到 wrapper 里
-    buttonWrapper.appendChild(rewardButton);
+    // 创建 Tab 内容区
+    var tabContent = document.createElement('div');
+    tabContent.className = 'reward-tab-content';
+    tabContent.innerHTML = `
+      <div class="reward-content active" data-content="kofi">
+        <p style="margin-bottom: 20px; color: #666;">Support me on Ko-fi</p>
+        <a href="https://ko-fi.com/xiaosen" target="_blank" rel="noopener noreferrer" class="kofi-button-large">
+          <i class="fas fa-coffee"></i>
+          <span>Buy me a coffee on Ko-fi</span>
+        </a>
+      </div>
+      <div class="reward-content" data-content="wechat">
+        <p style="margin-bottom: 15px; color: #07c160; font-weight: 600;">微信扫码打赏</p>
+        <img src="/images/wx.jpg" alt="微信" style="width: 200px; height: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);" />
+      </div>
+      <div class="reward-content" data-content="alipay">
+        <p style="margin-bottom: 15px; color: #1677ff; font-weight: 600;">支付宝扫码打赏</p>
+        <img src="/images/zfb.jpg" alt="支付宝" style="width: 200px; height: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);" />
+      </div>
+    `;
     
-    // 创建分隔符
-    var separator = document.createElement('span');
-    separator.className = 'reward-button-separator';
-    separator.textContent = 'or';
-    buttonWrapper.appendChild(separator);
+    panel.appendChild(tabNav);
+    panel.appendChild(tabContent);
+    postReward.appendChild(triggerBtn);
+    postReward.appendChild(panel);
     
-    // 创建 Ko-fi 按钮
-    var kofiBtn = document.createElement('a');
-    kofiBtn.className = 'kofi-inline-button';
-    kofiBtn.href = 'https://ko-fi.com/xiaosen';
-    kofiBtn.target = '_blank';
-    kofiBtn.rel = 'noopener noreferrer';
+    // ========== 交互逻辑 ==========
+    var isOpen = false;
     
-    var icon = document.createElement('i');
-    icon.className = 'fas fa-coffee';
-    kofiBtn.appendChild(icon);
-    
-    var span = document.createElement('span');
-    span.textContent = ' Ko-fi';
-    kofiBtn.appendChild(span);
-    
-    buttonWrapper.appendChild(kofiBtn);
-    
-    // ========== 弹窗控制逻辑 ==========
-    // 使用 CSS hover 控制弹窗显示（已在 custom.css 中定义）
-    // 这里只需要确保 Ko-fi 按钮不触发弹窗
-    
-    // 阻止 Ko-fi 按钮事件传播到父容器
-    kofiBtn.addEventListener('mouseenter', function(e) {
+    // 点击按钮切换面板
+    triggerBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      // 确保弹窗隐藏
-      rewardMain.style.display = 'none';
-      console.log('[Ko-fi] Ko-fi button hovered, popup hidden');
+      isOpen = !isOpen;
+      panel.style.display = isOpen ? 'block' : 'none';
+      console.log('[Reward] Panel toggled:', isOpen);
     });
     
-    kofiBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      console.log('[Ko-fi] Ko-fi button clicked, opening Ko-fi page');
+    // Tab 切换
+    var tabs = tabNav.querySelectorAll('.reward-tab');
+    var contents = tabContent.querySelectorAll('.reward-content');
+    
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var targetTab = this.getAttribute('data-tab');
+        
+        // 更新 Tab 激活状态
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+        
+        // 更新内容显示
+        contents.forEach(function(content) {
+          if (content.getAttribute('data-content') === targetTab) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+        
+        console.log('[Reward] Switched to tab:', targetTab);
+      });
     });
     
-    console.log('[Ko-fi] Button added successfully');
-    console.log('[Ko-fi] Wrapper:', buttonWrapper);
-    console.log('[Ko-fi] Parent:', buttonWrapper.parentNode);
+    // 点击外部关闭面板
+    document.addEventListener('click', function(e) {
+      if (isOpen && !postReward.contains(e.target)) {
+        isOpen = false;
+        panel.style.display = 'none';
+        console.log('[Reward] Panel closed by outside click');
+      }
+    });
+    
+    // 点击面板内部不关闭
+    panel.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    
+    console.log('[Reward] Rebuild complete');
   }
   
-  // 多次尝试执行（确保覆盖各种加载时机）
+  // 多次尝试执行
   var maxRetries = 10;
   var retryCount = 0;
   
-  function tryAddButton() {
-    addKofiButton();
-    // 如果失败且还有重试次数，继续重试
-    if (!document.querySelector('.reward-buttons-wrapper') && retryCount < maxRetries) {
+  function tryRebuild() {
+    rebuildRewardArea();
+    if (!document.querySelector('.reward-panel-rebuilt') && retryCount < maxRetries) {
       retryCount++;
-      console.log('[Ko-fi] Retry attempt', retryCount);
-      setTimeout(tryAddButton, 300);
+      console.log('[Reward] Retry attempt', retryCount);
+      setTimeout(tryRebuild, 300);
     }
   }
   
   // DOM 加载完成后执行
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryAddButton);
+    document.addEventListener('DOMContentLoaded', tryRebuild);
   } else {
-    tryAddButton();
+    tryRebuild();
   }
   
   // window.onload 兜底
   window.addEventListener('load', function() {
-    setTimeout(addKofiButton, 200);
+    setTimeout(rebuildRewardArea, 200);
   });
   
   // Pjax 兼容
   document.addEventListener('pjax:complete', function() {
-    retryCount = 0; // 重置重试计数
-    setTimeout(addKofiButton, 100);
+    retryCount = 0;
+    setTimeout(rebuildRewardArea, 100);
   });
 })();
