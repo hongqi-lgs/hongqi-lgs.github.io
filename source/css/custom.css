@@ -191,10 +191,21 @@
   z-index: 0;
 }
 
-/* 原始打赏按钮样式保持不变 */
+/* 原始打赏按钮样式：统一尺寸 */
 .post-reward .reward-button {
   margin: 0 !important;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.post-reward .reward-button i {
+  margin-right: 6px;
 }
 
 /* 分隔符样式 */
@@ -206,7 +217,7 @@
   user-select: none;
 }
 
-/* Ko-fi 内联按钮样式 */
+/* Ko-fi 内联按钮样式：与打赏按钮保持相同尺寸 */
 .kofi-inline-button {
   display: inline-flex;
   align-items: center;
@@ -234,6 +245,14 @@
 
 .kofi-inline-button i {
   margin-right: 6px;
+}
+
+/* 关键：悬浮 Ko-fi 按钮时不触发弹窗 */
+.kofi-inline-button:hover ~ .reward-main,
+.reward-buttons-wrapper:has(.kofi-inline-button:hover) ~ .reward-main {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 /* 小屏幕优化 */

@@ -65,6 +65,23 @@
     span.textContent = ' Ko-fi';
     kofiBtn.appendChild(span);
     
+    // 阻止 Ko-fi 按钮触发弹窗事件
+    kofiBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // 确保弹窗关闭
+      if (rewardMain) {
+        rewardMain.style.display = 'none';
+      }
+    });
+    
+    kofiBtn.addEventListener('mouseenter', function(e) {
+      e.stopPropagation();
+      // 确保弹窗不显示
+      if (rewardMain) {
+        rewardMain.style.display = 'none';
+      }
+    });
+    
     buttonWrapper.appendChild(kofiBtn);
     
     console.log('[Ko-fi] Button added successfully');
