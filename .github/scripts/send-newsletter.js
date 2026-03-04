@@ -8,8 +8,8 @@ const fs = require('fs');
 const path = require('path');
 
 // 配置
-const RSS_URL = 'https://hongqi-lgs.github.io/ideas/atom.xml';
-const BLOG_URL = 'https://hongqi-lgs.github.io/ideas';
+const RSS_URL = 'https://xiaoxiaduoyan.com/atom.xml';
+const BLOG_URL = 'https://xiaoxiaduoyan.com';
 // 使用 Resend 提供的免费测试域名（或者配置自己的域名）
 const FROM_EMAIL = 'onboarding@resend.dev'; // Resend 免费测试域名
 const RESEND_API_KEY = process.env.RESEND_API_KEY;

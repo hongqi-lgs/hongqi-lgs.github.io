@@ -12,8 +12,8 @@ const Parser = require('rss-parser');
 const fs = require('fs');
 const path = require('path');
 
-const RSS_URL = 'https://hongqi-lgs.github.io/ideas/atom.xml';
-const BLOG_URL = 'https://hongqi-lgs.github.io/ideas';
+const RSS_URL = 'https://xiaoxiaduoyan.com/atom.xml';
+const BLOG_URL = 'https://xiaoxiaduoyan.com';
 
 // 生成周报内容
 async function generateWeekly() {
