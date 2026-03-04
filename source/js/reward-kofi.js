@@ -63,19 +63,19 @@
     tabContent.className = 'reward-tab-content';
     tabContent.innerHTML = `
       <div class="reward-content active" data-content="kofi">
-        <p style="margin-bottom: 20px; color: #666;">Support me on Ko-fi</p>
+        <p style="margin-bottom: 16px; color: #666; font-size: 14px;">Support me on Ko-fi</p>
         <a href="https://ko-fi.com/xiaosen" target="_blank" rel="noopener noreferrer" class="kofi-button-large">
           <i class="fas fa-coffee"></i>
-          <span>Buy me a coffee on Ko-fi</span>
+          <span>Buy me a coffee</span>
         </a>
       </div>
       <div class="reward-content" data-content="wechat">
-        <p style="margin-bottom: 15px; color: #07c160; font-weight: 600;">微信扫码打赏</p>
-        <img src="/images/wx.jpg" alt="微信" style="width: 200px; height: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);" />
+        <p style="margin-bottom: 12px; color: #07c160; font-weight: 600; font-size: 14px;">微信扫码打赏</p>
+        <img src="/images/wx.jpg" alt="微信" style="border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);" />
       </div>
       <div class="reward-content" data-content="alipay">
-        <p style="margin-bottom: 15px; color: #1677ff; font-weight: 600;">支付宝扫码打赏</p>
-        <img src="/images/zfb.jpg" alt="支付宝" style="width: 200px; height: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);" />
+        <p style="margin-bottom: 12px; color: #1677ff; font-weight: 600; font-size: 14px;">支付宝扫码打赏</p>
+        <img src="/images/zfb.jpg" alt="支付宝" style="border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);" />
       </div>
     `;
     
@@ -86,13 +86,51 @@
     
     // ========== 交互逻辑 ==========
     var isOpen = false;
+    var hoverTimer = null;
     
     // 点击按钮切换面板
     triggerBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       isOpen = !isOpen;
       panel.style.display = isOpen ? 'block' : 'none';
-      console.log('[Reward] Panel toggled:', isOpen);
+      console.log('[Reward] Panel toggled by click:', isOpen);
+    });
+    
+    // 悬浮按钮显示面板（延迟300ms）
+    triggerBtn.addEventListener('mouseenter', function(e) {
+      if (hoverTimer) clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(function() {
+        if (!isOpen) {
+          isOpen = true;
+          panel.style.display = 'block';
+          console.log('[Reward] Panel opened by hover');
+        }
+      }, 300);
+    });
+    
+    // 鼠标离开按钮时取消定时器
+    triggerBtn.addEventListener('mouseleave', function(e) {
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+    });
+    
+    // 鼠标进入面板时保持显示
+    panel.addEventListener('mouseenter', function(e) {
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+    });
+    
+    // 鼠标离开面板时关闭（延迟200ms）
+    panel.addEventListener('mouseleave', function(e) {
+      hoverTimer = setTimeout(function() {
+        isOpen = false;
+        panel.style.display = 'none';
+        console.log('[Reward] Panel closed by mouse leave');
+      }, 200);
     });
     
     // Tab 切换

@@ -176,7 +176,8 @@
 /* 打赏容器 */
 .post-reward.reward-panel-rebuilt {
   position: relative;
-  margin-top: 80px;
+  margin-top: 60px;
+  margin-bottom: 40px;
   width: 100%;
   text-align: center;
 }
@@ -186,43 +187,43 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 32px;
+  padding: 10px 28px;
   background: var(--btn-bg);
   color: var(--btn-color);
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   user-select: none;
 }
 
 .reward-trigger-button:hover {
   background: var(--btn-hover-color);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .reward-trigger-button i {
-  margin-right: 8px;
-  font-size: 18px;
+  margin-right: 6px;
+  font-size: 16px;
 }
 
 /* 打赏面板 */
 .reward-panel {
   position: absolute;
-  bottom: 60px;
+  bottom: 55px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 400px;
+  width: 85%;
+  max-width: 360px;
   background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  padding: 18px;
   z-index: 100;
-  animation: slideUp 0.3s ease;
+  animation: slideUp 0.25s ease;
 }
 
 @keyframes slideUp {
@@ -240,40 +241,40 @@
 .reward-panel::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -9px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 12px solid var(--card-bg);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--card-bg);
 }
 
 /* Tab 导航 */
 .reward-tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid var(--hr-border);
-  padding-bottom: 10px;
+  gap: 6px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--hr-border);
+  padding-bottom: 8px;
 }
 
 .reward-tab {
   flex: 1;
-  padding: 10px 16px;
+  padding: 8px 12px;
   background: transparent;
   border: none;
   color: var(--font-color);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  border-radius: 5px;
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .reward-tab:hover {
@@ -287,12 +288,12 @@
 }
 
 .reward-tab i {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Tab 内容区 */
 .reward-tab-content {
-  min-height: 250px;
+  min-height: 230px;
   position: relative;
 }
 
@@ -320,48 +321,63 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px 40px;
+  gap: 8px;
+  padding: 14px 32px;
   background: linear-gradient(135deg, #29abe0 0%, #00b9fe 100%);
   color: #fff !important;
   text-decoration: none !important;
-  border-radius: 10px;
-  font-size: 18px;
+  border-radius: 8px;
+  font-size: 16px;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(41, 171, 224, 0.4);
+  box-shadow: 0 3px 12px rgba(41, 171, 224, 0.35);
   transition: all 0.3s ease;
 }
 
 .kofi-button-large:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 24px rgba(41, 171, 224, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(41, 171, 224, 0.5);
   background: linear-gradient(135deg, #00b9fe 0%, #29abe0 100%);
   color: #fff !important;
 }
 
 .kofi-button-large i {
-  font-size: 22px;
+  font-size: 18px;
+}
+
+/* 二维码图片尺寸优化 */
+.reward-content img {
+  width: 180px !important;
+  height: 180px !important;
 }
 
 /* 响应式 */
 @media (max-width: 768px) {
   .reward-panel {
-    width: 95%;
-    max-width: 340px;
+    width: 92%;
+    max-width: 320px;
   }
   
   .reward-tabs {
-    flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
   
   .reward-tab {
-    padding: 12px;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  
+  .reward-tab i {
+    font-size: 13px;
   }
   
   .kofi-button-large {
-    padding: 14px 28px;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+  
+  .reward-content img {
+    width: 160px !important;
+    height: 160px !important;
   }
 }
 
