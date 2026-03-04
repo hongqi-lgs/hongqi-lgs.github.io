@@ -1,7 +1,13 @@
 [
   {
+    "name": "Unknown",
+    "subscribed_at": "2026-03-04",
+    "source": "buttondown"
+  },
+  {
     "email": "luguosheng1314@126.com",
     "name": "小森哥哥",
-    "subscribed_at": "2026-03-04"
+    "subscribed_at": "2026-03-04",
+    "source": "manual"
   }
 ]
