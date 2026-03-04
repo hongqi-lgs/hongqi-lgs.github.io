@@ -68,29 +68,20 @@
     buttonWrapper.appendChild(kofiBtn);
     
     // ========== 弹窗控制逻辑 ==========
-    var isPopupOpen = false;
+    // 使用 CSS hover 控制弹窗显示（已在 custom.css 中定义）
+    // 这里只需要确保 Ko-fi 按钮不触发弹窗
     
-    // 打赏按钮：点击切换弹窗显示/隐藏
-    rewardButton.addEventListener('click', function(e) {
-      e.preventDefault();
+    // 阻止 Ko-fi 按钮事件传播到父容器
+    kofiBtn.addEventListener('mouseenter', function(e) {
       e.stopPropagation();
-      isPopupOpen = !isPopupOpen;
-      rewardMain.style.display = isPopupOpen ? 'block' : 'none';
-      console.log('[Ko-fi] Reward popup toggled:', isPopupOpen);
+      // 确保弹窗隐藏
+      rewardMain.style.display = 'none';
+      console.log('[Ko-fi] Ko-fi button hovered, popup hidden');
     });
     
-    // 点击弹窗外部关闭弹窗
-    document.addEventListener('click', function(e) {
-      if (isPopupOpen && !postReward.contains(e.target)) {
-        isPopupOpen = false;
-        rewardMain.style.display = 'none';
-        console.log('[Ko-fi] Popup closed by outside click');
-      }
-    });
-    
-    // 确保弹窗内点击不关闭
-    rewardMain.addEventListener('click', function(e) {
+    kofiBtn.addEventListener('click', function(e) {
       e.stopPropagation();
+      console.log('[Ko-fi] Ko-fi button clicked, opening Ko-fi page');
     });
     
     console.log('[Ko-fi] Button added successfully');

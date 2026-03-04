@@ -173,11 +173,6 @@
 
 /* ===== 打赏区域优化 ===== */
 
-/* 关键：禁用 Butterfly 主题的 hover 触发弹窗机制 */
-.post-reward:hover > .reward-main {
-  display: none !important;
-}
-
 /* 按钮容器：让两个按钮并排（在弹窗外面） */
 .reward-buttons-wrapper {
   display: flex;
@@ -197,6 +192,7 @@
   left: 0 !important;
   width: 100% !important;
   z-index: 100 !important;
+  display: none !important;
 }
 
 /* 原始打赏按钮样式：统一尺寸 */
@@ -216,9 +212,17 @@
   margin-right: 6px;
 }
 
-/* 只有悬浮打赏按钮时才显示弹窗 */
-.post-reward .reward-button:hover ~ .reward-main {
+/* 悬浮打赏按钮时显示弹窗 */
+.reward-buttons-wrapper:hover .reward-button ~ .reward-main,
+.post-reward .reward-button:hover ~ .reward-main,
+.post-reward .reward-main:hover {
   display: block !important;
+}
+
+/* 悬浮 Ko-fi 按钮时不显示弹窗（优先级更高） */
+.reward-buttons-wrapper:has(.kofi-inline-button:hover) .reward-main,
+.kofi-inline-button:hover ~ .reward-main {
+  display: none !important;
 }
 
 /* 分隔符样式 */
@@ -258,11 +262,6 @@
 
 .kofi-inline-button i {
   margin-right: 6px;
-}
-
-/* 确保悬浮 Ko-fi 时不显示弹窗 */
-.kofi-inline-button:hover ~ .reward-main {
-  display: none !important;
 }
 
 /* 小屏幕优化 */
