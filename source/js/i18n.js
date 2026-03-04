@@ -484,12 +484,21 @@
   // MutationObserver：监听 DOM 变化，自动重新应用
   // 只监听侧边栏和菜单区域的变化
   var observerTimer = null;
+  var isApplying = false; // 防止递归触发
   var observer = new MutationObserver(function () {
+    // 如果正在应用语言，跳过
+    if (isApplying) return;
+    
     // 防抖：DOM 频繁变化时不要每次都执行
     if (observerTimer) clearTimeout(observerTimer);
     observerTimer = setTimeout(function () {
+      isApplying = true;
       bindLangSwitch();
       applyLang(getLang());
+      // 延迟恢复，确保本次修改完成
+      setTimeout(function () {
+        isApplying = false;
+      }, 100);
     }, 200);
   });
 
