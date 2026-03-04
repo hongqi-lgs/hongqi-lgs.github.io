@@ -5,9 +5,19 @@
   'use strict';
   
   function rebuildRewardArea() {
+    console.log('[Reward] Attempting to rebuild...');
+    console.log('[Reward] Current DOM state:', document.readyState);
+    
     var postReward = document.querySelector('.post-reward');
     if (!postReward) {
-      console.log('[Reward] .post-reward not found');
+      console.log('[Reward] .post-reward not found, searching in body...');
+      // 打印出所有可能的选择器
+      console.log('[Reward] Body classes:', document.body.className);
+      var allRewards = document.querySelectorAll('[class*="reward"]');
+      console.log('[Reward] Found elements with "reward":', allRewards.length);
+      allRewards.forEach(function(el) {
+        console.log('[Reward] Element:', el.className, el.tagName);
+      });
       return;
     }
     
@@ -17,7 +27,7 @@
       return;
     }
     
-    console.log('[Reward] Rebuilding reward area...');
+    console.log('[Reward] Found .post-reward, rebuilding...');
     
     // 清空原有内容
     postReward.innerHTML = '';
@@ -129,33 +139,52 @@
   }
   
   // 多次尝试执行
-  var maxRetries = 10;
+  var maxRetries = 20;
   var retryCount = 0;
+  var retryIntervals = [100, 300, 500, 800, 1000, 1500, 2000];
   
   function tryRebuild() {
     rebuildRewardArea();
     if (!document.querySelector('.reward-panel-rebuilt') && retryCount < maxRetries) {
+      var delay = retryIntervals[retryCount] || 500;
       retryCount++;
-      console.log('[Reward] Retry attempt', retryCount);
-      setTimeout(tryRebuild, 300);
+      console.log('[Reward] Retry attempt', retryCount, 'delay:', delay + 'ms');
+      setTimeout(tryRebuild, delay);
+    } else if (retryCount >= maxRetries) {
+      console.error('[Reward] Max retries reached. Reward area not found.');
+      console.log('[Reward] Final check - all elements:', document.body.innerHTML.substring(0, 500));
     }
   }
   
+  // 立即执行一次
+  console.log('[Reward] Script loaded, starting immediately...');
+  tryRebuild();
+  
   // DOM 加载完成后执行
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryRebuild);
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('[Reward] DOMContentLoaded fired');
+      retryCount = 0;
+      tryRebuild();
+    });
   } else {
+    console.log('[Reward] DOM already loaded');
     tryRebuild();
   }
   
   // window.onload 兜底
   window.addEventListener('load', function() {
+    console.log('[Reward] window.onload fired');
+    retryCount = 0;
     setTimeout(rebuildRewardArea, 200);
   });
   
   // Pjax 兼容
   document.addEventListener('pjax:complete', function() {
+    console.log('[Reward] pjax:complete fired');
     retryCount = 0;
     setTimeout(rebuildRewardArea, 100);
   });
+  
+  console.log('[Reward] All event listeners registered');
 })();
