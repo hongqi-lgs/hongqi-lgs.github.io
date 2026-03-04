@@ -68,9 +68,9 @@ lazyload:
 
 # 访问量统计 - 不蒜子
 busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
+  site_uv: false
+  site_pv: false
+  page_pv: false
 
 # 数学公式
 mathjax:
