@@ -390,6 +390,110 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
+/* ===== 邮件订阅卡片 ===== */
+
+.card-subscribe {
+  margin-bottom: 20px;
+}
+
+.card-subscribe .item-headline {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--hr-border);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.card-subscribe .item-headline i {
+  margin-right: 8px;
+  color: #ff6b6b;
+}
+
+.subscribe-content {
+  padding: 20px;
+}
+
+.subscribe-desc {
+  margin-bottom: 16px;
+  color: var(--font-color);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.buttondown-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subscribe-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--hr-border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--font-color);
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.subscribe-input:focus {
+  outline: none;
+  border-color: #49B1F5;
+  box-shadow: 0 0 0 3px rgba(73, 177, 245, 0.1);
+}
+
+.subscribe-button {
+  width: 100%;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.subscribe-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.subscribe-button i {
+  font-size: 13px;
+}
+
+.subscribe-note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #999;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.subscribe-note i {
+  font-size: 11px;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .subscribe-input {
+  background: var(--text-bg-hover);
+}
+
+[data-theme="dark"] .subscribe-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
 
 
 

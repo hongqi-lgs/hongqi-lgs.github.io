@@ -28,6 +28,21 @@ type: "about"
 | **GitHub** | [hongqi-lgs](https://github.com/hongqi-lgs) |
 | **邮箱** | [550175214@qq.com](mailto:550175214@qq.com) |
 
+## 📧 邮件订阅
+
+想第一时间收到新文章？订阅我的博客吧！
+
+<form action="https://buttondown.email/api/emails/embed-subscribe/luguosheng1314" method="post" target="_blank" style="max-width: 400px; margin: 20px auto;">
+  <input type="email" name="email" placeholder="your@email.com" required style="width: 100%; padding: 12px; border: 2px solid #667eea; border-radius: 6px; font-size: 15px; margin-bottom: 10px; box-sizing: border-box;" />
+  <button type="submit" style="width: 100%; padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+    <i class="fas fa-paper-plane"></i> 订阅更新
+  </button>
+</form>
+
+<p style="text-align: center; color: #999; font-size: 13px; margin-top: 10px;">
+  <i class="fas fa-shield-alt"></i> 隐私保护，随时可取消订阅
+</p>
+
 ## ☕ 打赏
 
 如果我的内容对你有帮助，欢迎请我喝杯咖啡～

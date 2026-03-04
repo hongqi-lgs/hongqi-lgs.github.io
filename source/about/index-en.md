@@ -29,6 +29,21 @@ This blog is my digital garden, where I document:
 | **GitHub** | [hongqi-lgs](https://github.com/hongqi-lgs) |
 | **Email** | [550175214@qq.com](mailto:550175214@qq.com) |
 
+## 📧 Subscribe
+
+Want to be the first to know about new posts? Subscribe to my newsletter!
+
+<form action="https://buttondown.email/api/emails/embed-subscribe/luguosheng1314" method="post" target="_blank" style="max-width: 400px; margin: 20px auto;">
+  <input type="email" name="email" placeholder="your@email.com" required style="width: 100%; padding: 12px; border: 2px solid #667eea; border-radius: 6px; font-size: 15px; margin-bottom: 10px; box-sizing: border-box;" />
+  <button type="submit" style="width: 100%; padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+    <i class="fas fa-paper-plane"></i> Subscribe
+  </button>
+</form>
+
+<p style="text-align: center; color: #999; font-size: 13px; margin-top: 10px;">
+  <i class="fas fa-shield-alt"></i> Privacy protected, unsubscribe anytime
+</p>
+
 ## ☕ Support
 
 If you find my content helpful, feel free to buy me a coffee!
