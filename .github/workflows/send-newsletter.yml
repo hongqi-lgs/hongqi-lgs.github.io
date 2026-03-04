@@ -35,6 +35,13 @@ jobs:
       run: |
         npm install rss-parser node-fetch
     
+    - name: Sync subscribers from Buttondown
+      env:
+        BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+      run: |
+        echo "🔄 Syncing subscribers..."
+        node .github/scripts/sync-buttondown.js
+    
     - name: Generate newsletter content
       run: |
         node .github/scripts/generate-newsletter.js ${{ github.event.inputs.mode }}

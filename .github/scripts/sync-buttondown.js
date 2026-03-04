@@ -56,8 +56,22 @@ function saveSubscribers(subscribers) {
   const dir = path.dirname(SUBSCRIBERS_FILE);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
+    console.log(`📁 Created directory: ${dir}`);
   }
+  
+  // 确保至少有一个订阅者（你自己）
+  if (subscribers.length === 0) {
+    console.log('⚠️  No subscribers from Buttondown, adding default subscriber');
+    subscribers = [{
+      email: 'luguosheng1314@126.com',
+      name: '小森哥哥',
+      subscribed_at: new Date().toISOString().split('T')[0],
+      source: 'manual'
+    }];
+  }
+  
   fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2));
+  console.log(`💾 Saved ${subscribers.length} subscribers to ${SUBSCRIBERS_FILE}`);
 }
 
 function mergeSubscribers(buttondownSubs, localSubs) {
