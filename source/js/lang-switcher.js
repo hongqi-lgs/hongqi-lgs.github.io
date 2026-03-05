@@ -1,4 +1,4 @@
-// 语言切换器 - 带页面跳转
+// 语言切换器 - 带404 fallback
 (function() {
   function getLang() {
     var lang = localStorage.getItem('ideas-lang');
@@ -11,13 +11,9 @@
 
   function isPostPage() {
     var path = window.location.pathname;
-    // 关于页面
     if (path.indexOf('/about/') !== -1) return true;
-    // 排除特殊页面
     if (path.match(/\/(tags|categories|archives|page)\//)) return false;
-    // 首页
     if (path === '/' || path === '/index.html') return false;
-    // 有年月日的文章路径
     if (path.match(/\/\d{4}\/\d{2}\/\d{2}\//)) return true;
     return false;
   }
@@ -26,7 +22,6 @@
     var path = window.location.pathname;
     var cleanPath = path.replace(/\/+$/, '').replace(/\.html$/, '');
     
-    // 关于页面
     if (cleanPath.indexOf('/about') !== -1) {
       if (targetLang === 'ja') {
         return cleanPath.match(/index-ja/) ? null : '/about/index-ja.html';
@@ -37,39 +32,70 @@
       }
     }
 
-    // 文章页面
     var currentIsJa = cleanPath.match(/-ja$/);
     var currentIsEn = cleanPath.match(/-en$/);
     var basePath = cleanPath.replace(/-(en|ja)$/, '');
 
     if (targetLang === 'ja') {
       if (currentIsJa) return null;
-      // 检查日文版本是否存在（先尝试跳转，如果404则回退到英文）
-      return basePath + '-ja/';
+      return {primary: basePath + '-ja/', fallback: basePath + '-en/'};
     } else if (targetLang === 'en') {
       if (currentIsEn) return null;
-      return basePath + '-en/';
+      return {primary: basePath + '-en/', fallback: null};
     } else {
-      // 中文
-      return (currentIsJa || currentIsEn) ? basePath + '/' : null;
+      return (currentIsJa || currentIsEn) ? {primary: basePath + '/', fallback: null} : null;
     }
+  }
+
+  function checkUrlExists(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', url, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        callback(xhr.status === 200);
+      }
+    };
+    xhr.onerror = function() { callback(false); };
+    xhr.send();
   }
 
   function switchLang(lang) {
     console.log('[Lang Switcher] Switching to:', lang);
     localStorage.setItem('ideas-lang', lang);
     
-    // 如果在文章页，尝试跳转到对应语言版本
     if (isPostPage()) {
-      var targetPath = getTranslatedPath(lang);
-      if (targetPath) {
-        console.log('[Lang Switcher] Jumping to:', targetPath);
-        window.location.href = targetPath;
+      var pathResult = getTranslatedPath(lang);
+      if (pathResult) {
+        var targetPath = pathResult.primary || pathResult;
+        var fallbackPath = pathResult.fallback;
+        
+        console.log('[Lang Switcher] Trying:', targetPath);
+        
+        // 检查目标路径是否存在
+        checkUrlExists(targetPath, function(exists) {
+          if (exists) {
+            console.log('[Lang Switcher] Found! Jumping to:', targetPath);
+            window.location.href = targetPath;
+          } else if (fallbackPath) {
+            console.log('[Lang Switcher] Not found. Trying fallback:', fallbackPath);
+            checkUrlExists(fallbackPath, function(fallbackExists) {
+              if (fallbackExists) {
+                console.log('[Lang Switcher] Fallback found! Jumping to:', fallbackPath);
+                window.location.href = fallbackPath;
+              } else {
+                console.log('[Lang Switcher] No version available. Reloading.');
+                window.location.reload();
+              }
+            });
+          } else {
+            console.log('[Lang Switcher] No translation available. Reloading.');
+            window.location.reload();
+          }
+        });
         return;
       }
     }
     
-    // 否则刷新页面（i18n.js会处理UI翻译）
     console.log('[Lang Switcher] Reloading page');
     window.location.reload();
   }
