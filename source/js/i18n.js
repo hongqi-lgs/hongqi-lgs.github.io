@@ -138,21 +138,20 @@
     applyLang(lang);
   }
 
-  function toggleLang() {
-    var current = getLang();
-    var next = current === 'zh-CN' ? 'en' : (current === 'en' ? 'ja' : 'zh-CN');
+  function switchLang(targetLang) {
+    if (targetLang === getLang()) return;
 
     // 文章详情页：跳转到对应语言版本
     if (isPostPage()) {
-      var targetPath = getTranslatedPostPath(next);
+      var targetPath = getTranslatedPostPath(targetLang);
       if (targetPath) {
-        localStorage.setItem(STORAGE_KEY, next);
+        localStorage.setItem(STORAGE_KEY, targetLang);
         window.location.href = targetPath;
         return;
       }
     }
 
-    setLang(next);
+    setLang(targetLang);
   }
 
   // 判断是否在文章详情页或关于页面
@@ -454,25 +453,48 @@
     });
   }
 
-  // 绑定语言切换按钮事件
+  // 绑定语言切换下拉框
   function bindLangSwitch() {
     document.querySelectorAll('.menus_item a, #sidebar-menus .menus_item a').forEach(function (a) {
-      // 已经绑定过的跳过
       if (a.getAttribute('data-i18n-bound')) return;
 
       var text = a.textContent.trim();
-      var href = a.getAttribute('href') || '';
-      if (text.includes('English') || text.includes('中文') || a.querySelector('.fa-language')) {
+      if (text.includes('English') || text.includes('中文') || text.includes('日本語') || a.querySelector('.fa-language')) {
         a.setAttribute('data-i18n-role', 'lang-switch');
         a.setAttribute('data-i18n-bound', '1');
-        a.addEventListener('click', function (e) {
+        
+        // 替换为下拉选择框
+        var select = document.createElement('select');
+        select.className = 'lang-selector';
+        select.style.cssText = 'padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; font-size: 14px;';
+        
+        var currentLang = getLang();
+        var options = [
+          {value: 'zh-CN', label: '🇨🇳 中文', icon: '🇨🇳'},
+          {value: 'en', label: '🇺🇸 English', icon: '🇺🇸'},
+          {value: 'ja', label: '🇯🇵 日本語', icon: '🇯🇵'}
+        ];
+        
+        options.forEach(function(opt) {
+          var option = document.createElement('option');
+          option.value = opt.value;
+          option.textContent = opt.label;
+          if (opt.value === currentLang) option.selected = true;
+          select.appendChild(option);
+        });
+        
+        select.addEventListener('change', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          toggleLang();
-          // 关闭移动端侧边栏（如果打开了）
+          switchLang(this.value);
           var mask = document.getElementById('menu-mask');
           if (mask) mask.click();
         });
+        
+        // 替换原链接
+        var parent = a.parentNode;
+        parent.insertBefore(select, a);
+        a.style.display = 'none';
       }
     });
   }
@@ -747,7 +769,7 @@
   window.i18n = {
     getLang: getLang,
     setLang: setLang,
-    toggleLang: toggleLang,
+    switchLang: switchLang,
     apply: function () { applyLang(getLang()); }
   };
 })();
