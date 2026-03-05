@@ -180,12 +180,17 @@ async function main() {
     console.log(`⚠️  Filtered out ${subscribers.length - validSubscribers.length} invalid emails`);
   }
 
-  // 测试模式：只发送给第一个订阅者（应该是你自己）
+  // 测试模式：只发送给验证过的邮箱（Resend 限制）
   const testMode = process.env.TEST_MODE === 'true';
-  const recipients = testMode ? validSubscribers.slice(0, 1) : validSubscribers;
+  const VERIFIED_EMAIL = 'luguosheng1314@126.com'; // Resend 验证邮箱
   
+  let recipients;
   if (testMode) {
-    console.log('🧪 TEST MODE: Only sending to first subscriber');
+    // 测试模式：只发送到验证邮箱
+    recipients = [{ email: VERIFIED_EMAIL, subscribed_at: new Date().toISOString() }];
+    console.log(`🧪 TEST MODE: Only sending to verified email: ${VERIFIED_EMAIL}`);
+  } else {
+    recipients = validSubscribers;
   }
 
   // 读取生成的 Newsletter 内容
