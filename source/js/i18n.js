@@ -28,7 +28,7 @@
       '分类_stat': '分类',
       '签名': '未来已来，不问前程，顺势而为。',
       '公告内容': '欢迎来到我的博客！记录想法、技术与生活。',
-      'copyright_by': 'By 红齐',
+      'copyright_by': 'By 森哥',
       '发表于': '发表于',
       'lang_switch': '🌐 English',
       '目录': '目录',
@@ -39,7 +39,7 @@
       'post_author': '文章作者: ',
       'post_link': '文章链接: ',
       'copyright_notice': '版权声明: ',
-      'copyright_content': '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hongqi-lgs.github.io/ideas" target="_blank">红齐 Ideas</a>！',
+      'copyright_content': '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hongqi-lgs.github.io/ideas" target="_blank">森哥 Ideas</a>！',
       'prev_post': '上一篇',
       'next_post': '下一篇',
       'related_posts': '相关推荐',
@@ -62,7 +62,7 @@
       '分类_stat': 'Categories',
       '签名': 'The future is here. No looking back. Go with the flow.',
       '公告内容': 'Welcome to my blog! Recording ideas, tech & life.',
-      'copyright_by': 'By Hongqi',
+      'copyright_by': 'By bob',
       '发表于': 'Posted on',
       'lang_switch': '🌐 中文',
       '目录': 'TOC',
@@ -73,7 +73,7 @@
       'post_author': 'Author: ',
       'post_link': 'Post Link: ',
       'copyright_notice': 'Copyright: ',
-      'copyright_content': 'All articles on this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless otherwise stated. Please credit <a href="https://hongqi-lgs.github.io/ideas" target="_blank">Hongqi Ideas</a>!',
+      'copyright_content': 'All articles on this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless otherwise stated. Please credit <a href="https://hongqi-lgs.github.io/ideas" target="_blank">bob Ideas</a>!',
       'prev_post': 'Previous',
       'next_post': 'Next',
       'related_posts': 'Related Posts',
@@ -194,16 +194,16 @@
     var currentTitle = document.title;
     // 处理不同页面类型的 title
     if (currentTitle.includes('归档') || currentTitle.includes('Archives')) {
-      document.title = lang === 'en' ? 'Archives - Hongqi Ideas' : '归档 - 红齐 Ideas';
+      document.title = lang === 'en' ? 'Archives - bob Ideas' : '归档 - 森哥 Ideas';
     } else if (currentTitle.includes('标签') || currentTitle.includes('Tags')) {
-      document.title = lang === 'en' ? 'Tags - Hongqi Ideas' : '标签 - 红齐 Ideas';
+      document.title = lang === 'en' ? 'Tags - bob Ideas' : '标签 - 森哥 Ideas';
     } else if (currentTitle.includes('分类') || currentTitle.includes('Categories')) {
-      document.title = lang === 'en' ? 'Categories - Hongqi Ideas' : '分类 - 红齐 Ideas';
+      document.title = lang === 'en' ? 'Categories - bob Ideas' : '分类 - 森哥 Ideas';
     } else if (currentTitle.includes('关于') || currentTitle.includes('About')) {
-      document.title = lang === 'en' ? 'About - Hongqi Ideas' : '关于 - 红齐 Ideas';
-    } else if (currentTitle === '红齐 Ideas' || currentTitle === 'Hongqi Ideas') {
+      document.title = lang === 'en' ? 'About - bob Ideas' : '关于 - 森哥 Ideas';
+    } else if (currentTitle === '森哥 Ideas' || currentTitle === 'bob Ideas' || currentTitle === '红齐 Ideas' || currentTitle === 'Hongqi Ideas') {
       // 首页
-      document.title = lang === 'en' ? 'Hongqi Ideas' : '红齐 Ideas';
+      document.title = lang === 'en' ? 'bob Ideas' : '森哥 Ideas';
     }
     // 文章详情页的 title 由 post-map 中的数据替换（如果需要）
 
@@ -252,21 +252,21 @@
       }
     });
 
-    // --- 作者名称（红齐 → Hongqi） ---
+    // --- 作者名称（森哥 → bob） ---
     document.querySelectorAll('.author-info-name').forEach(function (el) {
       if (lang === 'en') {
-        el.textContent = 'Hongqi';
+        el.textContent = 'bob';
       } else {
-        el.textContent = '红齐';
+        el.textContent = '森哥';
       }
     });
 
-    // --- 网站标题（红齐 Ideas） ---
+    // --- 网站标题（森哥 Ideas） ---
     document.querySelectorAll('.site-name, .nav-site-title .site-name').forEach(function (el) {
       if (lang === 'en') {
-        el.textContent = 'Hongqi Ideas';
+        el.textContent = 'bob Ideas';
       } else {
-        el.textContent = '红齐 Ideas';
+        el.textContent = '森哥 Ideas';
       }
     });
 
@@ -354,9 +354,9 @@
     var copyrightInfo = document.querySelector('.post-copyright__notice .post-copyright-info');
     if (copyrightInfo) {
       if (lang === 'en') {
-        copyrightInfo.innerHTML = 'All articles on this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless otherwise stated. Please credit <a href="https://hongqi-lgs.github.io/ideas" target="_blank">Hongqi Ideas</a>!';
+        copyrightInfo.innerHTML = 'All articles on this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless otherwise stated. Please credit <a href="https://hongqi-lgs.github.io/ideas" target="_blank">bob Ideas</a>!';
       } else {
-        copyrightInfo.innerHTML = '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hongqi-lgs.github.io/ideas" target="_blank">红齐 Ideas</a>！';
+        copyrightInfo.innerHTML = '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hongqi-lgs.github.io/ideas" target="_blank">森哥 Ideas</a>！';
       }
     }
 
