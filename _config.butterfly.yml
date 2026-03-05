@@ -209,6 +209,7 @@ inject:
   bottom:
     - <script src="/js/i18n.js"></script>
     - <script src="/js/reward-kofi.js"></script>
+    - <script src="/js/lang-switcher.js"></script>
     - <script src="/js/buttondown.js"></script>
     - <script>!function(){function e(){var e=localStorage.getItem("ideas-lang");return e&&["zh-CN","en","ja"].includes(e)?e:(navigator.language||"").toLowerCase().startsWith("zh")?"zh-CN":(navigator.language||"").toLowerCase().startsWith("ja")?"ja":"en"}function t(t){localStorage.setItem("ideas-lang",t),window.location.reload()}function n(){var n=document.querySelectorAll("#nav .menus_items a, #sidebar-menus a");n.forEach(function(n){if(!n.getAttribute("data-lang-bound")&&(n.textContent.includes("语言")||n.href.includes("javascript:void"))){n.setAttribute("data-lang-bound","1");var a=document.createElement("div");a.className="lang-dropdown";var l=document.createElement("select");l.className="lang-selector";var c=e();[{value:"zh-CN",label:"🇨🇳 中文"},{value:"en",label:"🇺🇸 EN"},{value:"ja",label:"🇯🇵 日本語"}].forEach(function(e){var t=document.createElement("option");t.value=e.value,t.textContent=e.label,e.value===c&&(t.selected=!0),l.appendChild(t)}),l.addEventListener("change",function(){t(this.value)}),a.appendChild(l),n.parentNode.replaceChild(a,n)}})}document.addEventListener("DOMContentLoaded",function(){setTimeout(n,500),setTimeout(n,1e3)}),window.addEventListener("load",n)}();</script>
     - <script src="/js/buttondown.js"></script>
