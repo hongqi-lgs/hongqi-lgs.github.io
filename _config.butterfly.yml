@@ -111,7 +111,7 @@ aside:
       link: https://github.com/hongqi-lgs
   card_announcement:
     enable: true
-    content: 欢迎来到红齐 Ideas！未来已来，不问前程，顺势而为。
+    content: 欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。
   card_recent_post:
     enable: true
     limit: 5

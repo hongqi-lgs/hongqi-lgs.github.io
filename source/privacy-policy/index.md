@@ -9,7 +9,7 @@ comments: false
 
 最后更新：2026年2月28日
 
-欢迎访问 **红齐 Ideas**（以下简称"本站"）。本站尊重并保护所有访问者的个人隐私。本隐私政策说明了本站如何收集、使用和保护您的信息。
+欢迎访问 **森哥 Ideas**（以下简称"本站"）。本站尊重并保护所有访问者的个人隐私。本隐私政策说明了本站如何收集、使用和保护您的信息。
 
 ### 信息收集
 
@@ -76,7 +76,7 @@ comments: false
 
 Last Updated: February 28, 2026
 
-Welcome to **Hongqi Ideas** (hereinafter referred to as "this site"). This site respects and protects the privacy of all visitors. This Privacy Policy explains how this site collects, uses, and protects your information.
+Welcome to **bob Ideas** (hereinafter referred to as "this site"). This site respects and protects the privacy of all visitors. This Privacy Policy explains how this site collects, uses, and protects your information.
 
 ### Information Collection
 
