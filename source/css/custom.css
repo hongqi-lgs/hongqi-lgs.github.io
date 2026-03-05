@@ -501,3 +501,25 @@
 
 
 
+
+/* 语言选择器样式 */
+.lang-selector {
+  padding: 5px 10px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  background: #fff !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  margin-left: 5px !important;
+  vertical-align: middle !important;
+}
+
+.lang-selector:hover {
+  border-color: #667eea !important;
+}
+
+/* 确保菜单项中的选择器正常显示 */
+#nav .menus_item .lang-selector,
+#sidebar-menus .menus_item .lang-selector {
+  display: inline-block !important;
+}
