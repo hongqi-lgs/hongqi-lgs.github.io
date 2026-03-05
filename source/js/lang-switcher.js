@@ -1,4 +1,4 @@
-// 语言切换器 - 完整整合版
+// 语言切换器 - 强制菜单翻译版
 (function() {
   var STORAGE_KEY = 'ideas-lang';
   var currentLang = null;
@@ -116,6 +116,33 @@
     console.log('[Lang] Posts visible:', visible, '/ language:', lang);
   }
 
+  // 手动翻译菜单（备用方案）
+  function translateMenu() {
+    var lang = getLang();
+    var menuMap = {
+      'zh-CN': {首页:'首页',归档:'归档',标签:'标签',分类:'分类',关于:'关于'},
+      'en': {首页:'Home',归档:'Archives',标签:'Tags',分类:'Categories',关于:'About'},
+      'ja': {首页:'ホーム',归档:'アーカイブ',标签:'タグ',分类:'カテゴリー',关于:'について'}
+    };
+    
+    var trans = menuMap[lang];
+    if (!trans) return;
+    
+    document.querySelectorAll('.menus_item a span').forEach(function(span) {
+      var text = span.textContent.trim();
+      // 反向查找key
+      Object.keys(menuMap).forEach(function(l) {
+        Object.keys(menuMap[l]).forEach(function(key) {
+          if (menuMap[l][key] === text && trans[key]) {
+            span.textContent = ' ' + trans[key];
+          }
+        });
+      });
+    });
+    
+    console.log('[Lang] Menu translated to:', lang);
+  }
+
   function createSelector() {
     var links = document.querySelectorAll('a[href*="javascript:void"], a .fa-language');
     var processed = false;
@@ -151,9 +178,12 @@
   }
 
   function applyI18n() {
-    if (window.i18n && typeof window.i18n.apply === 'function') {
+    if (window.i18n && typeof window.i18n.setLang === 'function') {
+      console.log('[Lang] Calling i18n.setLang()');
+      window.i18n.setLang(getLang());
+    } else if (window.i18n && typeof window.i18n.apply === 'function') {
       console.log('[Lang] Calling i18n.apply()');
-      setTimeout(function() { window.i18n.apply(); }, 100);
+      window.i18n.apply();
     }
   }
 
@@ -169,7 +199,14 @@
       setTimeout(filterPosts, 500);
     }
     
-    applyI18n();
+    // 翻译菜单 - 多次尝试
+    setTimeout(translateMenu, 50);
+    setTimeout(translateMenu, 200);
+    setTimeout(translateMenu, 500);
+    
+    // 触发 i18n.js
+    setTimeout(applyI18n, 100);
+    setTimeout(applyI18n, 300);
   }
 
   if (document.readyState === 'loading') {
@@ -179,4 +216,5 @@
   }
   setTimeout(init, 300);
   setTimeout(init, 800);
+  setTimeout(init, 1500);
 })();
