@@ -147,11 +147,44 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-  setTimeout(init, 500);
-  setTimeout(init, 1000);
 })();
+
+  // 首页文章过滤
+  function filterHomePosts() {
+    var currentLang = getLang();
+    console.log('[Lang Switcher] Filtering posts for:', currentLang);
+    
+    var posts = document.querySelectorAll('.recent-post-item');
+    var count = 0;
+    
+    posts.forEach(function(post) {
+      var categoryLink = post.querySelector('.article-meta__categories');
+      if (!categoryLink) return;
+      
+      var href = categoryLink.getAttribute('href') || '';
+      var isEnglish = href.indexOf('/English') !== -1;
+      var isJapanese = href.indexOf('/Japanese') !== -1;
+      
+      var shouldShow = false;
+      if (currentLang === 'zh-CN') {
+        shouldShow = !isEnglish && !isJapanese;
+      } else if (currentLang === 'en') {
+        shouldShow = isEnglish;
+      } else if (currentLang === 'ja') {
+        shouldShow = isJapanese || isEnglish; // 日语：显示日文+英文
+      }
+      
+      post.style.display = shouldShow ? '' : 'none';
+      if (shouldShow) count++;
+    });
+    
+    console.log('[Lang Switcher] Showing', count, 'posts');
+  }
+
+  // 页面加载完成后过滤
+  function initFilter() {
+    if (window.location.pathname === '/' || window.location.pathname.match(/^\/page\/\d+\//)) {
+      filterHomePosts();
+    }
+  }
+
