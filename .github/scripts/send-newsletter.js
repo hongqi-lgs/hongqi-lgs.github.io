@@ -219,14 +219,70 @@ async function main() {
   // 生成邮件内容
   const subject = newsletter.subject;
   
-  // 将 Markdown 内容转换为简单 HTML
-  const contentHTML = newsletter.content
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/^(.+)$/gm, '<p>$1</p>');
+  // 生成文章列表 HTML（支持双语）
+  let articlesHTML = '';
+  if (newsletter.articles && newsletter.articles.length > 0) {
+    articlesHTML = newsletter.articles.map((article, index) => {
+      if (article.isBilingual) {
+        // 双语文章
+        return `
+          <div class="article-item" style="margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #eee;">
+            <h2 style="font-size: 24px; color: #333; margin-bottom: 8px; line-height: 1.4;">
+              ${article.title_en}
+            </h2>
+            <h3 style="font-size: 18px; color: #999; font-weight: normal; margin-top: 0; margin-bottom: 12px; line-height: 1.4;">
+              ${article.title_zh}
+            </h3>
+            <div class="article-meta" style="color: #999; font-size: 14px; margin-bottom: 16px;">
+              📅 ${new Date(article.pubDate).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+            <div class="excerpt-en" style="font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 12px;">
+              ${article.excerpt_en}
+            </div>
+            <div class="excerpt-zh" style="font-size: 14px; line-height: 1.7; color: #999; margin-bottom: 20px;">
+              ${article.excerpt_zh}
+            </div>
+            <div class="button-group" style="margin-top: 20px;">
+              <a href="${article.link_zh}" class="read-button" style="display: inline-block; padding: 10px 24px; margin-right: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">阅读全文</a>
+              <a href="${article.link_en}" class="read-button" style="display: inline-block; padding: 10px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Read More</a>
+            </div>
+          </div>
+        `;
+      } else {
+        // 单语文章（中文或英文）
+        const title = article.title_zh || article.title_en;
+        const excerpt = article.excerpt_zh || article.excerpt_en;
+        const link = article.link_zh || article.link_en;
+        const buttonText = article.title_zh ? '阅读全文' : 'Read More';
+        
+        return `
+          <div class="article-item" style="margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #eee;">
+            <h2 style="font-size: 24px; color: #333; margin-bottom: 12px; line-height: 1.4;">
+              ${title}
+            </h2>
+            <div class="article-meta" style="color: #999; font-size: 14px; margin-bottom: 16px;">
+              📅 ${new Date(article.pubDate).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+            <div class="excerpt" style="font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 20px;">
+              ${excerpt}
+            </div>
+            <div class="button-group" style="margin-top: 20px;">
+              <a href="${link}" class="read-button" style="display: inline-block; padding: 10px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">${buttonText}</a>
+            </div>
+          </div>
+        `;
+      }
+    }).join('\n');
+  } else {
+    // 降级：使用 Markdown 内容
+    articlesHTML = newsletter.content
+      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(.+)$/gm, '<p>$1</p>');
+  }
   
   const html = `
 <!DOCTYPE html>
@@ -251,7 +307,7 @@ async function main() {
     <p style="color: #666; margin: 10px 0 0 0;">技术·产品·思考</p>
   </div>
   <div class="content">
-    ${contentHTML}
+    ${articlesHTML}
   </div>
   <div class="footer">
     <p>💬 回复这封邮件与我交流</p>
@@ -265,7 +321,45 @@ async function main() {
 </html>
   `.trim();
   
-  const text = newsletter.content + '\n\n---\n⚠️ 本邮件由系统自动发送，请勿直接回复。\n⚠️ This email is sent automatically. Please do not reply directly.';
+  // 生成纯文本版本
+  let textContent = '';
+  if (newsletter.articles && newsletter.articles.length > 0) {
+    textContent = newsletter.articles.map((article, index) => {
+      if (article.isBilingual) {
+        return `
+${article.title_en}
+${article.title_zh}
+
+📅 ${new Date(article.pubDate).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+
+${article.excerpt_en}
+
+${article.excerpt_zh}
+
+阅读全文（中文）: ${article.link_zh}
+Read More (English): ${article.link_en}
+        `.trim();
+      } else {
+        const title = article.title_zh || article.title_en;
+        const excerpt = article.excerpt_zh || article.excerpt_en;
+        const link = article.link_zh || article.link_en;
+        
+        return `
+${title}
+
+📅 ${new Date(article.pubDate).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+
+${excerpt}
+
+阅读全文: ${link}
+        `.trim();
+      }
+    }).join('\n\n---\n\n');
+  } else {
+    textContent = newsletter.content;
+  }
+  
+  const text = textContent + '\n\n---\n⚠️ 本邮件由系统自动发送，请勿直接回复。\n⚠️ This email is sent automatically. Please do not reply directly.';
 
   // 发送邮件
   console.log(`\n📤 Sending emails to ${recipients.length} recipients...`);
