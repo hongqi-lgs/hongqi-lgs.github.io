@@ -503,9 +503,6 @@
       }
     }
 
-    // --- 文章详情页：替换上下篇和相关推荐的链接 ---
-    translatePostLinks(lang);
-
     // --- 首页文章列表语言过滤 ---
     filterPostsByLang(lang);
   }
@@ -594,9 +591,6 @@
     if (archiveTotal > 0) {
       console.log('[i18n] 归档/标签/分类显示:', archiveVisible, '/', archiveTotal);
     }
-
-    // 归档页面文章列表（使用 post-map 替换标题）
-    translateArchiveLinks(lang);
 
     // 侧边栏最新文章
     var asideItems = document.querySelectorAll('.card-recent-post .aside-list-item');
