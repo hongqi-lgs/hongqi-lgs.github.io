@@ -5,6 +5,35 @@
 (function() {
   'use strict';
   
+  // 获取当前语言
+  function getCurrentLang() {
+    return (window.i18n && window.i18n.getLang && window.i18n.getLang()) || 
+           localStorage.getItem('ideas-lang') || 
+           'zh-CN';
+  }
+  
+  // 翻译文本
+  var translations = {
+    'zh-CN': {
+      title: '邮件订阅',
+      desc: '订阅我的博客，获取最新文章推送',
+      button: '订阅',
+      note: '隐私保护，随时可取消订阅'
+    },
+    'en': {
+      title: 'Email Subscribe',
+      desc: 'Subscribe to get latest posts',
+      button: 'Subscribe',
+      note: 'Privacy protected, unsubscribe anytime'
+    },
+    'ja': {
+      title: 'メール購読',
+      desc: 'ブログを購読して最新記事を受け取る',
+      button: '購読',
+      note: 'プライバシー保護、いつでも解除可能'
+    }
+  };
+  
   // 在侧边栏添加订阅卡片
   function addSubscribeCard() {
     var asideContent = document.getElementById('aside-content');
@@ -21,25 +50,28 @@
     
     console.log('[Buttondown] Adding subscribe card...');
     
+    var lang = getCurrentLang();
+    var t = translations[lang] || translations['zh-CN'];
+    
     // 创建订阅卡片
     var card = document.createElement('div');
     card.className = 'card-widget card-subscribe';
     card.innerHTML = `
       <div class="item-headline">
         <i class="fas fa-envelope"></i>
-        <span>邮件订阅</span>
+        <span data-i18n-key="subscribe-title">${t.title}</span>
       </div>
       <div class="subscribe-content">
-        <p class="subscribe-desc">订阅我的博客，获取最新文章推送</p>
+        <p class="subscribe-desc" data-i18n-key="subscribe-desc">${t.desc}</p>
         <form action="https://buttondown.email/api/emails/embed-subscribe/luguosheng1314" method="post" target="_blank" class="buttondown-form">
           <input type="email" name="email" placeholder="your@email.com" required class="subscribe-input" />
           <button type="submit" class="subscribe-button">
-            <i class="fas fa-paper-plane"></i> 订阅
+            <i class="fas fa-paper-plane"></i> <span data-i18n-key="subscribe-button">${t.button}</span>
           </button>
         </form>
         <p class="subscribe-note">
           <i class="fas fa-shield-alt"></i> 
-          隐私保护，随时可取消订阅
+          <span data-i18n-key="subscribe-note">${t.note}</span>
         </p>
       </div>
     `;
@@ -53,6 +85,29 @@
     }
     
     console.log('[Buttondown] Subscribe card added');
+  }
+  
+  // 更新订阅卡片文本
+  function updateSubscribeCardLang() {
+    var card = document.querySelector('.card-subscribe');
+    if (!card) return;
+    
+    var lang = getCurrentLang();
+    var t = translations[lang] || translations['zh-CN'];
+    
+    var titleSpan = card.querySelector('[data-i18n-key="subscribe-title"]');
+    if (titleSpan) titleSpan.textContent = t.title;
+    
+    var descP = card.querySelector('[data-i18n-key="subscribe-desc"]');
+    if (descP) descP.textContent = t.desc;
+    
+    var buttonSpan = card.querySelector('[data-i18n-key="subscribe-button"]');
+    if (buttonSpan) buttonSpan.textContent = t.button;
+    
+    var noteSpan = card.querySelector('[data-i18n-key="subscribe-note"]');
+    if (noteSpan) noteSpan.textContent = t.note;
+    
+    console.log('[Buttondown] Language updated to', lang);
   }
   
   // 多次尝试执行
@@ -83,6 +138,12 @@
   document.addEventListener('pjax:complete', function() {
     retryCount = 0;
     setTimeout(addSubscribeCard, 100);
+  });
+  
+  // 监听语言切换事件
+  window.addEventListener('langchange', function(e) {
+    console.log('[Buttondown] Language changed to', e.detail.lang);
+    updateSubscribeCardLang();
   });
   
   console.log('[Buttondown] Script loaded');

@@ -279,6 +279,10 @@
       '目录': { 'zh-CN': '目录', 'en': 'TOC', 'ja': '目次' },
       'TOC': { 'zh-CN': '目录', 'en': 'TOC', 'ja': '目次' },
       '目次': { 'zh-CN': '目录', 'en': 'TOC', 'ja': '目次' },
+      
+      '邮件订阅': { 'zh-CN': '邮件订阅', 'en': 'Email Subscribe', 'ja': 'メール購読' },
+      'Email Subscribe': { 'zh-CN': '邮件订阅', 'en': 'Email Subscribe', 'ja': 'メール購読' },
+      'メール購読': { 'zh-CN': '邮件订阅', 'en': 'Email Subscribe', 'ja': 'メール購読' },
     };
     
     var headlineSpans = document.querySelectorAll('.item-headline span');
@@ -300,6 +304,7 @@
       '分类': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
       'Categories': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
       'カテゴリー': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
+      'カテゴリ': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },  // 短音版本
       
       '标签': { 'zh-CN': '标签', 'en': 'Tags', 'ja': 'タグ' },
       'Tags': { 'zh-CN': '标签', 'en': 'Tags', 'ja': 'タグ' },
