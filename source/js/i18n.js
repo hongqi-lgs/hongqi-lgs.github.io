@@ -235,6 +235,7 @@
       '分类': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
       'Categories': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
       'カテゴリー': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
+      'カテゴリ': { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },  // 短音版本
       
       '关于': { 'zh-CN': '关于', 'en': 'About', 'ja': 'について' },
       'About': { 'zh-CN': '关于', 'en': 'About', 'ja': 'について' },
@@ -246,13 +247,13 @@
     
     menuSpans.forEach(function (span) {
       var text = span.textContent.trim();
-      console.log('[i18n] 菜单项文本:', JSON.stringify(text));
+      console.log('[i18n] 菜单项文本:', JSON.stringify(text), '字符码:', Array.from(text).map(c => c.charCodeAt(0)));
       if (menuTranslations[text]) {
         var newText = menuTranslations[text][lang];
         console.log('[i18n] 翻译:', text, '->', newText);
         span.textContent = ' ' + newText;
       } else {
-        console.log('[i18n] 未找到翻译:', text);
+        console.log('[i18n] 未找到翻译:', text, '- 可用的keys:', Object.keys(menuTranslations).filter(k => k.includes('カ') || k.includes('分')));
       }
     });
 
