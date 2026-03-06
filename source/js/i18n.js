@@ -524,15 +524,28 @@
     // 首页文章卡片
     var postItems = document.querySelectorAll('.recent-post-item');
     var homeVisible = 0;
-    postItems.forEach(function (item) {
+    postItems.forEach(function (item, index) {
       var catLink = item.querySelector('.article-meta__categories');
       var isEnglish = false;
       var isJapanese = false;
+      var catHref = '';
+      var catText = '';
+      
       if (catLink) {
-        var catHref = catLink.getAttribute('href') || '';
-        var catText = catLink.textContent.trim();
+        catHref = catLink.getAttribute('href') || '';
+        catText = catLink.textContent.trim();
         isEnglish = catHref.indexOf('/English') !== -1 || catText === 'English';
         isJapanese = catHref.indexOf('/Japanese') !== -1 || catText === 'Japanese';
+      }
+      
+      // 调试日志
+      if (index < 3) {
+        console.log('[i18n] 文章' + index + ':', {
+          href: catHref,
+          text: catText,
+          isEnglish: isEnglish,
+          isJapanese: isJapanese
+        });
       }
       
       var show = false;
