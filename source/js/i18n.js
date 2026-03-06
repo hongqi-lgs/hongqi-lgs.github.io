@@ -510,9 +510,16 @@
     filterPostsByLang(lang);
   }
 
+  // 根据URL判断文章语言
+  function getPostLang(href) {
+    if (/-en\//.test(href) || /-en$/.test(href)) return 'en';
+    if (/-ja\//.test(href) || /-ja$/.test(href)) return 'ja';
+    return 'zh-CN';
+  }
+  
   // 根据语言过滤首页文章卡片、归档页面和侧边栏最新文章
   function filterPostsByLang(lang) {
-    console.log('[i18n] 过滤文章列表，语言:', lang);
+    console.log('[i18n] 过滤文章列表，当前语言:', lang);
     
     // 首页文章卡片
     var postItems = document.querySelectorAll('.recent-post-item');
@@ -520,40 +527,13 @@
     postItems.forEach(function (item) {
       var catLink = item.querySelector('.article-meta__categories');
       var isEnglish = false;
+      var isJapanese = false;
       if (catLink) {
-        isEnglish = catLink.getAttribute('href').indexOf('/English') !== -1 ||
-                    catLink.textContent.trim() === 'English';
+        var catHref = catLink.getAttribute('href') || '';
+        var catText = catLink.textContent.trim();
+        isEnglish = catHref.indexOf('/English') !== -1 || catText === 'English';
+        isJapanese = catHref.indexOf('/Japanese') !== -1 || catText === 'Japanese';
       }
-      var show = false;
-      if (lang === 'en') {
-        show = isEnglish;
-      } else if (lang === 'zh-CN') {
-        show = !isEnglish;
-      } else if (lang === 'ja') {
-        var isJapanese = catLink && (catLink.getAttribute('href').indexOf('/Japanese') !== -1 || catLink.textContent.trim() === 'Japanese');
-        show = isJapanese || isEnglish;
-      }
-      item.style.display = show ? '' : 'none';
-      if (show) homeVisible++;
-    });
-    if (postItems.length > 0) console.log('[i18n] 首页文章:', homeVisible, '/', postItems.length);
-    
-    // 归档页面文章列表
-    var archiveItems = document.querySelectorAll('.article-sort-item');
-    var archiveVisible = 0;
-    archiveItems.forEach(function (item) {
-      // 跳过年份标题
-      if (item.classList.contains('year')) return;
-      
-      var link = item.querySelector('.article-sort-item-title');
-      if (!link) return;
-      
-      var href = link.getAttribute('href') || '';
-      var title = link.textContent.trim();
-      
-      // 判断语言：根据URL后缀
-      var isEnglish = /-en\/?$/.test(href);
-      var isJapanese = /-ja\/?$/.test(href);
       
       var show = false;
       if (lang === 'en') {
@@ -561,13 +541,46 @@
       } else if (lang === 'zh-CN') {
         show = !isEnglish && !isJapanese;
       } else if (lang === 'ja') {
-        show = isJapanese || isEnglish;
+        show = isJapanese || isEnglish;  // 日语：优先日文，回退英文
+      }
+      
+      item.style.display = show ? '' : 'none';
+      if (show) homeVisible++;
+    });
+    if (postItems.length > 0) console.log('[i18n] 首页显示:', homeVisible, '/', postItems.length);
+    
+    // 归档/标签/分类页面文章列表
+    var archiveItems = document.querySelectorAll('.article-sort-item');
+    var archiveVisible = 0;
+    var archiveTotal = 0;
+    
+    archiveItems.forEach(function (item) {
+      // 跳过年份标题
+      if (item.classList.contains('year')) return;
+      
+      var link = item.querySelector('.article-sort-item-title');
+      if (!link) return;
+      
+      archiveTotal++;
+      var href = link.getAttribute('href') || '';
+      var postLang = getPostLang(href);
+      
+      var show = false;
+      if (lang === 'en') {
+        show = (postLang === 'en');
+      } else if (lang === 'zh-CN') {
+        show = (postLang === 'zh-CN');
+      } else if (lang === 'ja') {
+        show = (postLang === 'ja' || postLang === 'en');  // 日语：优先日文，回退英文
       }
       
       item.style.display = show ? '' : 'none';
       if (show) archiveVisible++;
     });
-    if (archiveItems.length > 0) console.log('[i18n] 归档文章:', archiveVisible, '/', archiveItems.length);
+    
+    if (archiveTotal > 0) {
+      console.log('[i18n] 归档/标签/分类显示:', archiveVisible, '/', archiveTotal);
+    }
 
     // 归档页面文章列表（使用 post-map 替换标题）
     translateArchiveLinks(lang);
