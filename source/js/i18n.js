@@ -242,10 +242,18 @@
       'について': { 'zh-CN': '关于', 'en': 'About', 'ja': 'について' },
     };
     
-    document.querySelectorAll('.menus_item a.site-page span, #sidebar-menus .menus_item a span').forEach(function (span) {
+    var menuSpans = document.querySelectorAll('.menus_item a.site-page span, #sidebar-menus .menus_item a span');
+    console.log('[i18n] 菜单翻译 - 找到', menuSpans.length, '个菜单项，当前语言:', lang);
+    
+    menuSpans.forEach(function (span) {
       var text = span.textContent.trim();
+      console.log('[i18n] 菜单项文本:', JSON.stringify(text));
       if (menuTranslations[text]) {
-        span.textContent = ' ' + menuTranslations[text][lang];
+        var newText = menuTranslations[text][lang];
+        console.log('[i18n] 翻译:', text, '->', newText);
+        span.textContent = ' ' + newText;
+      } else {
+        console.log('[i18n] 未找到翻译:', text);
       }
     });
 
