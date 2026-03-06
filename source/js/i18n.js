@@ -512,8 +512,11 @@
 
   // 根据语言过滤首页文章卡片、归档页面和侧边栏最新文章
   function filterPostsByLang(lang) {
+    console.log('[i18n] 过滤文章列表，语言:', lang);
+    
     // 首页文章卡片
     var postItems = document.querySelectorAll('.recent-post-item');
+    var homeVisible = 0;
     postItems.forEach(function (item) {
       var catLink = item.querySelector('.article-meta__categories');
       var isEnglish = false;
@@ -521,16 +524,50 @@
         isEnglish = catLink.getAttribute('href').indexOf('/English') !== -1 ||
                     catLink.textContent.trim() === 'English';
       }
+      var show = false;
       if (lang === 'en') {
-        item.style.display = isEnglish ? '' : 'none';
+        show = isEnglish;
       } else if (lang === 'zh-CN') {
-        item.style.display = isEnglish ? 'none' : '';
+        show = !isEnglish;
       } else if (lang === 'ja') {
-        // 日语：优先显示日文，没有则显示英文
         var isJapanese = catLink && (catLink.getAttribute('href').indexOf('/Japanese') !== -1 || catLink.textContent.trim() === 'Japanese');
-        item.style.display = (isJapanese || isEnglish) ? '' : 'none';
+        show = isJapanese || isEnglish;
       }
+      item.style.display = show ? '' : 'none';
+      if (show) homeVisible++;
     });
+    if (postItems.length > 0) console.log('[i18n] 首页文章:', homeVisible, '/', postItems.length);
+    
+    // 归档页面文章列表
+    var archiveItems = document.querySelectorAll('.article-sort-item');
+    var archiveVisible = 0;
+    archiveItems.forEach(function (item) {
+      // 跳过年份标题
+      if (item.classList.contains('year')) return;
+      
+      var link = item.querySelector('.article-sort-item-title');
+      if (!link) return;
+      
+      var href = link.getAttribute('href') || '';
+      var title = link.textContent.trim();
+      
+      // 判断语言：根据URL后缀
+      var isEnglish = /-en\/?$/.test(href);
+      var isJapanese = /-ja\/?$/.test(href);
+      
+      var show = false;
+      if (lang === 'en') {
+        show = isEnglish;
+      } else if (lang === 'zh-CN') {
+        show = !isEnglish && !isJapanese;
+      } else if (lang === 'ja') {
+        show = isJapanese || isEnglish;
+      }
+      
+      item.style.display = show ? '' : 'none';
+      if (show) archiveVisible++;
+    });
+    if (archiveItems.length > 0) console.log('[i18n] 归档文章:', archiveVisible, '/', archiveItems.length);
 
     // 归档页面文章列表（使用 post-map 替换标题）
     translateArchiveLinks(lang);
