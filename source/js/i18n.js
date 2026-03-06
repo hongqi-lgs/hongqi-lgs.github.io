@@ -557,7 +557,13 @@
       item.style.display = show ? '' : 'none';
       if (show) homeVisible++;
     });
-    if (postItems.length > 0) console.log('[i18n] 首页显示:', homeVisible, '/', postItems.length);
+    if (postItems.length > 0) {
+      console.log('[i18n] 首页显示:', homeVisible, '/', postItems.length);
+      // 如果过滤后文章太少，在控制台提示
+      if (homeVisible < 5 && postItems.length >= 10) {
+        console.log('[i18n] 提示：当前页过滤后文章较少(' + homeVisible + '篇)，建议翻页查看更多内容');
+      }
+    }
     
     // 归档/标签/分类页面文章列表
     var archiveItems = document.querySelectorAll('.article-sort-item');

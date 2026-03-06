@@ -1,7 +1,7 @@
 'use strict';
 
-// 首页显示所有文章（中文+英文），前端 i18n.js 根据语言动态过滤显示
-// 不再在生成时过滤，让前端 JS 控制可见性
+// 首页显示所有文章，前端 i18n.js 根据语言动态过滤显示
+// 分页问题：前端过滤会导致每页显示数量不一致，这是已知限制
 
 // 给每篇文章注入 data-post-lang 属性，方便前端识别
 hexo.extend.filter.register('after_post_render', function (data) {
@@ -53,4 +53,3 @@ hexo.extend.generator.register('index', function (locals) {
 
   return result;
 });
-
