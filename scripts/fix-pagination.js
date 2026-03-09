@@ -94,55 +94,7 @@ hexo.extend.filter.register('after_render:html', function(html, data) {
     html = html.replace(paginationRegex, newPagination);
   }
   
-  // 生成相关推荐（在 </nav> 后插入）
-  const currentTags = data.page.tags ? data.page.tags.toArray().map(t => t.name) : [];
-  
-  if (currentTags.length > 0) {
-    // 找到同语言且有共同标签的文章
-    const relatedPosts = sameLangPosts
-      .filter(post => post._id !== data.page._id) // 排除当前文章
-      .map(post => {
-        const postTags = post.tags ? post.tags.toArray().map(t => t.name) : [];
-        const commonTags = currentTags.filter(tag => postTags.includes(tag));
-        return {
-          post,
-          score: commonTags.length
-        };
-      })
-      .filter(item => item.score > 0) // 至少有一个共同标签
-      .sort((a, b) => b.score - a.score || (b.post.date || 0) - (a.post.date || 0)) // 按共同标签数排序，再按日期
-      .slice(0, 6); // 最多6个
-    
-    if (relatedPosts.length > 0) {
-      let relatedHTML = '<div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list">';
-      
-      relatedPosts.forEach(function(item) {
-        const post = item.post;
-        const excerpt = (post.excerpt || post.content || '').replace(/<[^>]+>/g, '').substring(0, 200);
-        const cover = post.cover || 'var(--default-bg-color)';
-        const coverType = post.cover_type;
-        const dateStr = post.date ? post.date.format('YYYY-MM-DD') : '';
-        
-        relatedHTML += `<a class="pagination-related" href="/${post.path}" title="${escapeHtml(post.title)}">`;
-        if (coverType === 'img') {
-          relatedHTML += `<img class="cover" src="${cover}" alt="cover">`;
-        } else {
-          relatedHTML += `<div class="cover" style="background: ${cover}"></div>`;
-        }
-        relatedHTML += `<div class="info text-center"><div class="info-1">`;
-        relatedHTML += `<div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> ${dateStr}</div>`;
-        relatedHTML += `<div class="info-item-2">${escapeHtml(post.title)}</div></div>`;
-        relatedHTML += `<div class="info-2"><div class="info-item-1">${escapeHtml(excerpt)}</div></div>`;
-        relatedHTML += `</div></a>`;
-      });
-      
-      relatedHTML += '</div></div>';
-      
-      // 在 pagination-post 的 </nav> 后插入相关推荐
-      const navEndRegex = /(<nav class="pagination-post"[^>]*>[\s\S]*?<\/nav>)/;
-      html = html.replace(navEndRegex, '$1' + relatedHTML);
-    }
-  }
+  // 相关推荐由 lang-filter.js 的 related_posts helper 生成，这里不再重复生成
   
   return html;
 });
