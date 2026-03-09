@@ -12,14 +12,18 @@ function detectPostLang(post) {
   // 检查 front-matter 中的 lang 字段
   if (post.lang) return post.lang;
   
-  // 检查分类中是否有 English
+  // 检查分类
   if (post.categories) {
     const cats = post.categories.toArray();
     if (cats.some(c => c.name === 'English')) return 'en';
+    if (cats.some(c => c.name === 'Japanese')) return 'ja';
   }
   
-  // 检查 slug 是否以 -en 结尾
-  if (post.slug && post.slug.endsWith('-en')) return 'en';
+  // 检查 slug 后缀
+  if (post.slug) {
+    if (post.slug.endsWith('-en')) return 'en';
+    if (post.slug.endsWith('-ja')) return 'ja';
+  }
   
   return 'zh-CN';
 }

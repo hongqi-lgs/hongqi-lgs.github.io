@@ -12,8 +12,12 @@ function detectPostLang(post) {
   if (post.categories) {
     const cats = post.categories.toArray();
     if (cats.some(c => c.name === 'English')) return 'en';
+    if (cats.some(c => c.name === 'Japanese')) return 'ja';
   }
-  if (post.slug && post.slug.endsWith('-en')) return 'en';
+  if (post.slug) {
+    if (post.slug.endsWith('-en')) return 'en';
+    if (post.slug.endsWith('-ja')) return 'ja';
+  }
   return 'zh-CN';
 }
 
