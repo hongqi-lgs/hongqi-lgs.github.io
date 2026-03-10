@@ -1,0 +1,17 @@
+if page.total !== 1
+  -
+    var options = {
+      prev_text: '<i class="fas fa-chevron-left fa-fw"></i>',
+      next_text: '<i class="fas fa-chevron-right fa-fw"></i>',
+      mid_size: 1,
+      escape: false
+    }
+
+  if globalPageType === 'post'
+    != post_pagination(page)
+  else
+    nav#pagination
+      .pagination
+        if globalPageType === 'home'
+          - options.format = 'page/%d/#content-inner'
+        !=paginator(options)
