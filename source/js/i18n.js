@@ -636,29 +636,51 @@
     applyLang(e.detail.lang);
   });
 
-  // 页面加载时应用，并在DOM完全加载后再次过滤
+  // 页面加载时应用翻译，用 MutationObserver 等待文章列表出现后再过滤
   (function autoInit() {
     var currentLang = getLang();
     console.log('[i18n] Auto-init, lang:', currentLang);
     applyLang(currentLang);
-    
-    // 延迟再次过滤，确保动态内容已加载
-    setTimeout(function() {
-      console.log('[i18n] 延迟过滤（200ms后）');
-      filterPostsByLang(currentLang);
-    }, 200);
-    
-    setTimeout(function() {
-      console.log('[i18n] 延迟过滤（500ms后）');
-      filterPostsByLang(currentLang);
-    }, 500);
+
+    // 用 MutationObserver 监听 #recent-posts 或 .article-sort 出现
+    var observed = false;
+    function tryFilter() {
+      var posts = document.querySelectorAll('.recent-post-item');
+      var archive = document.querySelectorAll('.article-sort-item');
+      if (posts.length > 0 || archive.length > 0) {
+        console.log('[i18n] 文章列表已就绪，执行过滤');
+        filterPostsByLang(getLang());
+        return true;
+      }
+      return false;
+    }
+
+    // 先尝试一次（静态渲染时直接命中）
+    if (!tryFilter()) {
+      // 未命中则用 MutationObserver 等待 DOM 变化
+      var observer = new MutationObserver(function() {
+        if (observed) return;
+        if (tryFilter()) {
+          observed = true;
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // 兜底：3秒后强制执行一次
+      setTimeout(function() {
+        if (!observed) {
+          console.log('[i18n] 兜底过滤（3s）');
+          filterPostsByLang(getLang());
+          observer.disconnect();
+        }
+      }, 3000);
+    }
   })();
-  
-  // 监听DOMContentLoaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('[i18n] DOMContentLoaded触发');
-      filterPostsByLang(getLang());
-    });
-  }
+
+  // 监听 PJAX 完成事件（Butterfly 主题用 pjax:complete）
+  document.addEventListener('pjax:complete', function() {
+    console.log('[i18n] pjax:complete，重新应用');
+    applyLang(getLang());
+  });
 })();
