@@ -531,8 +531,9 @@
       if (catLink) {
         catHref = catLink.getAttribute('href') || '';
         catText = catLink.textContent.trim();
-        isEnglish = catHref.indexOf('/English') !== -1 || catText === 'English';
-        isJapanese = catHref.indexOf('/Japanese') !== -1 || catText === 'Japanese';
+        // 只依赖 URL 判断，不依赖文本（因为文本会被翻译）
+        isEnglish = catHref.indexOf('/English') !== -1;
+        isJapanese = catHref.indexOf('/Japanese') !== -1;
       }
       
       // 调试日志
