@@ -1,125 +1,75 @@
 /**
  * i18n.js — 森哥 Ideas 多语言支持
- * 职责：UI翻译 + 文章过滤
- * 语言检测：localStorage > 浏览器语言 > en
+ * 过滤逻辑：CSS [data-lang] 属性驱动，本文件只负责 UI 翻译
  */
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'ideas-lang';
 
-  // ─── 翻译字典 ───────────────────────────────────────────────
   var T = {
     menu: {
-      '首页':    { 'zh-CN': '首页',    'en': 'Home',       'ja': 'ホーム' },
-      '归档':    { 'zh-CN': '归档',    'en': 'Archives',   'ja': 'アーカイブ' },
-      '标签':    { 'zh-CN': '标签',    'en': 'Tags',       'ja': 'タグ' },
-      '分类':    { 'zh-CN': '分类',    'en': 'Categories', 'ja': 'カテゴリー' },
-      '关于':    { 'zh-CN': '关于',    'en': 'About',      'ja': 'について' },
-      'Home':         { 'zh-CN': '首页',    'en': 'Home',       'ja': 'ホーム' },
-      'Archives':     { 'zh-CN': '归档',    'en': 'Archives',   'ja': 'アーカイブ' },
-      'Tags':         { 'zh-CN': '标签',    'en': 'Tags',       'ja': 'タグ' },
-      'Categories':   { 'zh-CN': '分类',    'en': 'Categories', 'ja': 'カテゴリー' },
-      'About':        { 'zh-CN': '关于',    'en': 'About',      'ja': 'について' },
-      'ホーム':       { 'zh-CN': '首页',    'en': 'Home',       'ja': 'ホーム' },
-      'アーカイブ':   { 'zh-CN': '归档',    'en': 'Archives',   'ja': 'アーカイブ' },
-      'タグ':         { 'zh-CN': '标签',    'en': 'Tags',       'ja': 'タグ' },
-      'カテゴリー':   { 'zh-CN': '分类',    'en': 'Categories', 'ja': 'カテゴリー' },
-      'カテゴリ':     { 'zh-CN': '分类',    'en': 'Categories', 'ja': 'カテゴリー' },
-      'について':     { 'zh-CN': '关于',    'en': 'About',      'ja': 'について' },
+      '首页':'ホーム','归档':'アーカイブ','标签':'タグ','分类':'カテゴリー','关于':'について',
+      'Home':'ホーム','Archives':'アーカイブ','Tags':'タグ','Categories':'カテゴリー','About':'について',
+      // zh-CN targets
+      'ホーム':'首页','アーカイブ':'归档','タグ':'标签','カテゴリー':'分类','カテゴリ':'分类','について':'关于',
     },
     sidebar: {
-      '公告':         { 'zh-CN': '公告',    'en': 'Announcement', 'ja': 'お知らせ' },
-      '最新文章':     { 'zh-CN': '最新文章','en': 'Recent Posts', 'ja': '最新記事' },
-      '网站信息':     { 'zh-CN': '网站信息','en': 'Site Info',    'ja': 'サイト情報' },
-      '目录':         { 'zh-CN': '目录',    'en': 'TOC',          'ja': '目次' },
-      '邮件订阅':     { 'zh-CN': '邮件订阅','en': 'Email Subscribe','ja': 'メール購読' },
-      '分类':         { 'zh-CN': '分类',    'en': 'Categories',   'ja': 'カテゴリー' },
-      '标签':         { 'zh-CN': '标签',    'en': 'Tags',         'ja': 'タグ' },
-      '归档':         { 'zh-CN': '归档',    'en': 'Archives',     'ja': 'アーカイブ' },
-      'Announcement': { 'zh-CN': '公告',    'en': 'Announcement', 'ja': 'お知らせ' },
-      'Recent Posts': { 'zh-CN': '最新文章','en': 'Recent Posts', 'ja': '最新記事' },
-      'Site Info':    { 'zh-CN': '网站信息','en': 'Site Info',    'ja': 'サイト情報' },
-      'TOC':          { 'zh-CN': '目录',    'en': 'TOC',          'ja': '目次' },
-      'Email Subscribe': { 'zh-CN': '邮件订阅','en': 'Email Subscribe','ja': 'メール購読' },
-      'Categories':   { 'zh-CN': '分类',    'en': 'Categories',   'ja': 'カテゴリー' },
-      'Tags':         { 'zh-CN': '标签',    'en': 'Tags',         'ja': 'タグ' },
-      'Archives':     { 'zh-CN': '归档',    'en': 'Archives',     'ja': 'アーカイブ' },
-      'お知らせ':     { 'zh-CN': '公告',    'en': 'Announcement', 'ja': 'お知らせ' },
-      '最新記事':     { 'zh-CN': '最新文章','en': 'Recent Posts', 'ja': '最新記事' },
-      'サイト情報':   { 'zh-CN': '网站信息','en': 'Site Info',    'ja': 'サイト情報' },
-      '目次':         { 'zh-CN': '目录',    'en': 'TOC',          'ja': '目次' },
-      'メール購読':   { 'zh-CN': '邮件订阅','en': 'Email Subscribe','ja': 'メール購読' },
-      'カテゴリー':   { 'zh-CN': '分类',    'en': 'Categories',   'ja': 'カテゴリー' },
-      'カテゴリ':     { 'zh-CN': '分类',    'en': 'Categories',   'ja': 'カテゴリー' },
-      'タグ':         { 'zh-CN': '标签',    'en': 'Tags',         'ja': 'タグ' },
-      'アーカイブ':   { 'zh-CN': '归档',    'en': 'Archives',     'ja': 'アーカイブ' },
+      '公告':'お知らせ','最新文章':'最新記事','网站信息':'サイト情報','目录':'目次','邮件订阅':'メール購読',
+      '分类':'カテゴリー','标签':'タグ','归档':'アーカイブ',
+      'Announcement':'お知らせ','Recent Posts':'最新記事','Site Info':'サイト情報','TOC':'目次','Email Subscribe':'メール購読',
+      'Categories':'カテゴリー','Tags':'タグ','Archives':'アーカイブ',
+      'お知らせ':'公告','最新記事':'最新文章','サイト情報':'网站信息','目次':'目录','メール購読':'邮件订阅',
+      'カテゴリー':'分类','カテゴリ':'分类','タグ':'标签','アーカイブ':'归档',
     },
-    stats: {
-      '文章':     { 'zh-CN': '文章', 'en': 'Posts',      'ja': '記事' },
-      '标签':     { 'zh-CN': '标签', 'en': 'Tags',       'ja': 'タグ' },
-      '分类':     { 'zh-CN': '分类', 'en': 'Categories', 'ja': 'カテゴリー' },
-      'Posts':    { 'zh-CN': '文章', 'en': 'Posts',      'ja': '記事' },
-      'Articles': { 'zh-CN': '文章', 'en': 'Posts',      'ja': '記事' },
-      'Tags':     { 'zh-CN': '标签', 'en': 'Tags',       'ja': 'タグ' },
-      'Categories':{ 'zh-CN': '分类','en': 'Categories', 'ja': 'カテゴリー' },
-      '記事':     { 'zh-CN': '文章', 'en': 'Posts',      'ja': '記事' },
-      'タグ':     { 'zh-CN': '标签', 'en': 'Tags',       'ja': 'タグ' },
-      'カテゴリー':{ 'zh-CN': '分类','en': 'Categories', 'ja': 'カテゴリー' },
+    en: {
+      menu:    {'首页':'Home','归档':'Archives','标签':'Tags','分类':'Categories','关于':'About','ホーム':'Home','アーカイブ':'Archives','タグ':'Tags','カテゴリー':'Categories','カテゴリ':'Categories','について':'About'},
+      sidebar: {'公告':'Announcement','最新文章':'Recent Posts','网站信息':'Site Info','目录':'TOC','邮件订阅':'Email Subscribe','分类':'Categories','标签':'Tags','归档':'Archives','お知らせ':'Announcement','最新記事':'Recent Posts','サイト情報':'Site Info','目次':'TOC','メール購読':'Email Subscribe','カテゴリー':'Categories','カテゴリ':'Categories','タグ':'Tags','アーカイブ':'Archives'},
+      stats:   {'文章':'Posts','標签':'Tags','分类':'Categories','記事':'Posts','タグ':'Tags','カテゴリー':'Categories','Articles':'Posts'},
+      meta:    {'发表于':'Posted on','投稿日':'Posted on'},
+      pagination: {'上一篇':'Previous','下一篇':'Next','前の記事':'Previous','次の記事':'Next'},
+      related: {'相关推荐':'Related Posts','関連記事':'Related Posts'},
+      sign:    'The future is here. No looking back. Go with the flow.',
+      announce:'Welcome to my blog! Recording ideas, tech & life.',
+      reward:  'Found it helpful? Buy me a coffee ☕',
+      wechat:  'WeChat', alipay: 'Alipay',
+      author:  'Author: ', link: 'Post Link: ', copyright: 'Copyright: ',
+      copyrightContent: 'All articles on this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless otherwise stated. Please credit <a href="https://hongqi-lgs.github.io/ideas" target="_blank">bob Ideas</a>!',
     },
-    meta: {
-      '发表于':   { 'zh-CN': '发表于', 'en': 'Posted on', 'ja': '投稿日' },
-      'Posted on':{ 'zh-CN': '发表于', 'en': 'Posted on', 'ja': '投稿日' },
-      '投稿日':   { 'zh-CN': '发表于', 'en': 'Posted on', 'ja': '投稿日' },
+    ja: {
+      menu:    {'首页':'ホーム','归档':'アーカイブ','标签':'タグ','分类':'カテゴリー','关于':'について','Home':'ホーム','Archives':'アーカイブ','Tags':'タグ','Categories':'カテゴリー','About':'について'},
+      sidebar: {'公告':'お知らせ','最新文章':'最新記事','网站信息':'サイト情報','目录':'目次','邮件订阅':'メール購読','分类':'カテゴリー','标签':'タグ','归档':'アーカイブ','Announcement':'お知らせ','Recent Posts':'最新記事','Site Info':'サイト情報','TOC':'目次','Email Subscribe':'メール購読','Categories':'カテゴリー','Tags':'タグ','Archives':'アーカイブ'},
+      stats:   {'文章':'記事','标签':'タグ','分类':'カテゴリー','Posts':'記事','Articles':'記事','Tags':'タグ','Categories':'カテゴリー'},
+      meta:    {'发表于':'投稿日','Posted on':'投稿日'},
+      pagination: {'上一篇':'前の記事','下一篇':'次の記事','Previous':'前の記事','Next':'次の記事'},
+      related: {'相关推荐':'関連記事','Related Posts':'関連記事'},
+      sign:    '未来は来た、前を見ず、流れに従う。',
+      announce:'ブログへようこそ！アイデア、技術、生活を記録します。',
+      reward:  '役に立ちましたか？コーヒーをおごってください ☕',
+      wechat:  'WeChat', alipay: 'Alipay',
+      author:  '著者: ', link: '記事リンク: ', copyright: '著作権: ',
+      copyrightContent: 'このブログのすべての記事は、特に明記されていない限り、<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>ライセンスの下で提供されます。出典を明記してください <a href="https://hongqi-lgs.github.io/ideas" target="_blank">森哥 Ideas</a>！',
     },
-    pagination: {
-      '上一篇':   { 'zh-CN': '上一篇', 'en': 'Previous', 'ja': '前の記事' },
-      '下一篇':   { 'zh-CN': '下一篇', 'en': 'Next',     'ja': '次の記事' },
-      'Previous': { 'zh-CN': '上一篇', 'en': 'Previous', 'ja': '前の記事' },
-      'Next':     { 'zh-CN': '下一篇', 'en': 'Next',     'ja': '次の記事' },
-      '前の記事': { 'zh-CN': '上一篇', 'en': 'Previous', 'ja': '前の記事' },
-      '次の記事': { 'zh-CN': '下一篇', 'en': 'Next',     'ja': '次の記事' },
-    },
-    related: {
-      '相关推荐':    { 'zh-CN': '相关推荐', 'en': 'Related Posts', 'ja': '関連記事' },
-      'Related Posts':{ 'zh-CN': '相关推荐', 'en': 'Related Posts', 'ja': '関連記事' },
-      '関連記事':   { 'zh-CN': '相关推荐', 'en': 'Related Posts', 'ja': '関連記事' },
-    },
-    sign: {
-      'zh-CN': '未来已来，不问前程，顺势而为。',
-      'en': 'The future is here. No looking back. Go with the flow.',
-      'ja': '未来は来た、前を見ず、流れに従う。',
-    },
-    announce: {
-      'zh-CN': '欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。',
-      'en': 'Welcome to my blog! Recording ideas, tech & life.',
-      'ja': 'ブログへようこそ！アイデア、技術、生活を記録します。',
-    },
-    reward: {
-      'zh-CN': '觉得有帮助？请我喝杯咖啡 ☕',
-      'en': 'Found it helpful? Buy me a coffee ☕',
-      'ja': '役に立ちましたか？コーヒーをおごってください ☕',
-    },
-    wechat:  { 'zh-CN': '微信',  'en': 'WeChat', 'ja': 'WeChat' },
-    alipay:  { 'zh-CN': '支付宝','en': 'Alipay', 'ja': 'Alipay' },
-    copyright: {
-      by: { 'zh-CN': 'By 森哥', 'en': 'By bob', 'ja': 'By 森哥' },
-      content: {
-        'zh-CN': '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hongqi-lgs.github.io/ideas" target="_blank">森哥 Ideas</a>！',
-        'en': 'All articles on this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless otherwise stated. Please credit <a href="https://hongqi-lgs.github.io/ideas" target="_blank">bob Ideas</a>!',
-        'ja': 'このブログのすべての記事は、特に明記されていない限り、<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>ライセンスの下で提供されます。出典を明記してください <a href="https://hongqi-lgs.github.io/ideas" target="_blank">森哥 Ideas</a>！',
-      },
-      author: { 'zh-CN': '文章作者: ', 'en': 'Author: ',    'ja': '著者: ' },
-      link:   { 'zh-CN': '文章链接: ', 'en': 'Post Link: ', 'ja': '記事リンク: ' },
-      notice: { 'zh-CN': '版权声明: ', 'en': 'Copyright: ', 'ja': '著作権: ' },
+    'zh-CN': {
+      menu:    {'Home':'首页','Archives':'归档','Tags':'标签','Categories':'分类','About':'关于','ホーム':'首页','アーカイブ':'归档','タグ':'标签','カテゴリー':'分类','カテゴリ':'分类','について':'关于'},
+      sidebar: {'Announcement':'公告','Recent Posts':'最新文章','Site Info':'网站信息','TOC':'目录','Email Subscribe':'邮件订阅','Categories':'分类','Tags':'标签','Archives':'归档','お知らせ':'公告','最新記事':'最新文章','サイト情報':'网站信息','目次':'目录','メール購読':'邮件订阅','カテゴリー':'分类','カテゴリ':'分类','タグ':'标签','アーカイブ':'归档'},
+      stats:   {'Posts':'文章','Articles':'文章','Tags':'标签','Categories':'分类','記事':'文章','タグ':'标签','カテゴリー':'分类'},
+      meta:    {'Posted on':'发表于','投稿日':'发表于'},
+      pagination: {'Previous':'上一篇','Next':'下一篇','前の記事':'上一篇','次の記事':'下一篇'},
+      related: {'Related Posts':'相关推荐','関連記事':'相关推荐'},
+      sign:    '未来已来，不问前程，顺势而为。',
+      announce:'欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。',
+      reward:  '觉得有帮助？请我喝杯咖啡 ☕',
+      wechat:  '微信', alipay: '支付宝',
+      author:  '文章作者: ', link: '文章链接: ', copyright: '版权声明: ',
+      copyrightContent: '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hongqi-lgs.github.io/ideas" target="_blank">森哥 Ideas</a>！',
     },
   };
 
-  // ─── 语言检测 ────────────────────────────────────────────────
   function getLang() {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && ['zh-CN', 'en', 'ja'].indexOf(stored) !== -1) return stored;
-    var bl = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    var s = localStorage.getItem(STORAGE_KEY);
+    if (s && T[s]) return s;
+    var bl = (navigator.language || '').toLowerCase();
     if (bl.startsWith('zh')) return 'zh-CN';
     if (bl.startsWith('ja')) return 'ja';
     return 'en';
@@ -127,173 +77,94 @@
 
   function setLang(lang) {
     localStorage.setItem(STORAGE_KEY, lang);
+    apply(lang);
   }
 
-  // ─── URL 判断文章语言 ─────────────────────────────────────────
-  function postLangFromHref(href) {
-    if (!href) return 'zh-CN';
-    if (/-en[\/\?#]/.test(href) || /-en$/.test(href)) return 'en';
-    if (/-ja[\/\?#]/.test(href) || /-ja$/.test(href)) return 'ja';
-    return 'zh-CN';
+  function tr(dict, text) {
+    return dict[text] || null;
   }
 
-  // ─── 翻译辅助 ────────────────────────────────────────────────
-  function tr(dict, text, lang) {
-    return (dict[text] && dict[text][lang]) || null;
-  }
+  function apply(lang) {
+    var t = T[lang];
+    if (!t) return;
 
-  function translateEl(dict, el, lang) {
-    var text = el.textContent.trim();
-    var result = tr(dict, text, lang);
-    if (result) el.textContent = result;
-  }
+    // CSS过滤：只需设置 html[data-lang] 属性，CSS自动隐藏对应语言
+    document.documentElement.setAttribute('data-lang', lang);
 
-  // ─── 应用 UI 翻译 ─────────────────────────────────────────────
-  function applyTranslations(lang) {
     // 菜单
     document.querySelectorAll('.menus_item a.site-page span, #sidebar-menus .menus_item a span').forEach(function(el) {
-      translateEl(T.menu, el, lang);
+      var v = tr(t.menu, el.textContent.trim());
+      if (v) el.textContent = ' ' + v;
     });
 
     // 侧边栏标题
     document.querySelectorAll('.item-headline span').forEach(function(el) {
-      translateEl(T.sidebar, el, lang);
+      var v = tr(t.sidebar, el.textContent.trim());
+      if (v) el.textContent = v;
     });
 
     // 站点统计
     document.querySelectorAll('.site-data a .headline').forEach(function(el) {
-      translateEl(T.stats, el, lang);
+      var v = tr(t.stats, el.textContent.trim());
+      if (v) el.textContent = v;
     });
 
     // 文章元信息
     document.querySelectorAll('.article-meta-label').forEach(function(el) {
-      translateEl(T.meta, el, lang);
+      var v = tr(t.meta, el.textContent.trim());
+      if (v) el.textContent = v;
     });
 
     // 上一篇/下一篇
     document.querySelectorAll('.pagination-post .info-item-1').forEach(function(el) {
-      translateEl(T.pagination, el, lang);
+      var v = tr(t.pagination, el.textContent.trim());
+      if (v) el.textContent = v;
     });
 
     // 相关推荐标题
     var relEl = document.querySelector('.relatedPosts .headline span');
-    if (relEl) translateEl(T.related, relEl, lang);
+    if (relEl) { var rv = tr(t.related, relEl.textContent.trim()); if (rv) relEl.textContent = rv; }
 
-    // 作者名/描述/签名
-    document.querySelectorAll('.author-info-name').forEach(function(el) {
-      el.textContent = lang === 'en' ? 'bob' : '森哥';
-    });
-    document.querySelectorAll('.site-name').forEach(function(el) {
-      el.textContent = lang === 'en' ? 'bob Ideas' : '森哥 Ideas';
-    });
+    // 作者/站名/签名/公告
+    document.querySelectorAll('.author-info-name').forEach(function(el) { el.textContent = lang === 'en' ? 'bob' : '森哥'; });
+    document.querySelectorAll('.site-name').forEach(function(el) { el.textContent = lang === 'en' ? 'bob Ideas' : '森哥 Ideas'; });
     var desc = document.querySelector('.author-info-description');
-    if (desc) desc.textContent = T.sign[lang];
-
-    // 公告
+    if (desc) desc.textContent = t.sign;
     var ann = document.querySelector('.announcement_content');
-    if (ann) ann.textContent = T.announce[lang];
+    if (ann) ann.textContent = t.announce;
 
     // Footer
     var foot = document.querySelector('#footer .copyright');
-    if (foot) foot.innerHTML = '&copy;&nbsp;2026 ' + T.copyright.by[lang];
+    if (foot) foot.innerHTML = '&copy;&nbsp;2026 By ' + (lang === 'en' ? 'bob' : '森哥');
 
     // 打赏
-    var rewardBtn = document.querySelector('.reward-button');
-    if (rewardBtn) {
-      var icon = rewardBtn.querySelector('i');
-      rewardBtn.innerHTML = (icon ? icon.outerHTML : '') + T.reward[lang];
-    }
-    document.querySelectorAll('.post-qr-code-desc').forEach(function(el) {
-      var t = el.textContent.trim();
-      if (t === '微信' || t === 'WeChat') el.textContent = T.wechat[lang];
-      if (t === '支付宝' || t === 'Alipay') el.textContent = T.alipay[lang];
-    });
+    var rb = document.querySelector('.reward-button');
+    if (rb) { var ic = rb.querySelector('i'); rb.innerHTML = (ic ? ic.outerHTML : '') + t.reward; }
 
-    // 版权
+    // 版权区域
     document.querySelectorAll('.post-copyright-meta').forEach(function(el) {
-      var t = el.textContent.trim();
-      var icon = el.querySelector('i');
-      var iconHtml = icon ? icon.outerHTML : '';
-      if (t.includes('文章作者') || t.includes('Author') || t.includes('著者'))
-        el.innerHTML = iconHtml + T.copyright.author[lang];
-      else if (t.includes('文章链接') || t.includes('Post Link') || t.includes('記事リンク'))
-        el.innerHTML = iconHtml + T.copyright.link[lang];
-      else if (t.includes('版权') || t.includes('Copyright') || t.includes('著作権'))
-        el.innerHTML = iconHtml + T.copyright.notice[lang];
+      var text = el.textContent.trim();
+      var ic = el.querySelector('i');
+      var ih = ic ? ic.outerHTML : '';
+      if (text.includes('文章作者') || text.includes('Author') || text.includes('著者'))
+        el.innerHTML = ih + t.author;
+      else if (text.includes('文章链接') || text.includes('Post Link') || text.includes('記事'))
+        el.innerHTML = ih + t.link;
+      else if (text.includes('版权') || text.includes('Copyright') || text.includes('著作権'))
+        el.innerHTML = ih + t.copyright;
     });
-    var copyrightInfo = document.querySelector('.post-copyright__notice .post-copyright-info');
-    if (copyrightInfo) copyrightInfo.innerHTML = T.copyright.content[lang];
+    var ci = document.querySelector('.post-copyright__notice .post-copyright-info');
+    if (ci) ci.innerHTML = t.copyrightContent;
   }
 
-  // ─── 文章过滤 ─────────────────────────────────────────────────
-  function filterPosts(lang) {
-    // 首页卡片（用分类 URL 判断）
-    document.querySelectorAll('.recent-post-item').forEach(function(item) {
-      var catLink = item.querySelector('.article-meta__categories');
-      var catHref = catLink ? (catLink.getAttribute('href') || '') : '';
-      var isEn = catHref.indexOf('/English') !== -1;
-      var isJa = catHref.indexOf('/Japanese') !== -1;
-      var show = (lang === 'en' && isEn) ||
-                 (lang === 'ja' && isJa) ||
-                 (lang === 'zh-CN' && !isEn && !isJa);
-      item.style.display = show ? '' : 'none';
-    });
+  window.i18n = { getLang: getLang, setLang: setLang, apply: apply };
 
-    // 归档/标签/分类页面列表（用文章 URL 判断）
-    document.querySelectorAll('.article-sort-item').forEach(function(item) {
-      if (item.classList.contains('year')) return;
-      var link = item.querySelector('.article-sort-item-title');
-      if (!link) return;
-      var pl = postLangFromHref(link.getAttribute('href'));
-      item.style.display = (pl === lang) ? '' : 'none';
-    });
-
-    // 侧边栏最新文章
-    document.querySelectorAll('.card-recent-post .aside-list-item').forEach(function(item) {
-      var link = item.querySelector('a.title');
-      if (!link) return;
-      var pl = postLangFromHref(link.getAttribute('href'));
-      item.style.display = (pl === lang) ? '' : 'none';
-    });
-
-    // 相关推荐
-    document.querySelectorAll('.relatedPosts .relatedPost-item').forEach(function(item) {
-      var link = item.querySelector('a');
-      if (!link) return;
-      var pl = postLangFromHref(link.getAttribute('href'));
-      item.style.display = (pl === lang) ? '' : 'none';
-    });
-  }
-
-  // ─── 统一入口 ─────────────────────────────────────────────────
-  function apply() {
-    var lang = getLang();
-    applyTranslations(lang);
-    filterPosts(lang);
-  }
-
-  // ─── 暴露 API ─────────────────────────────────────────────────
-  window.i18n = {
-    getLang: getLang,
-    setLang: function(lang) {
-      setLang(lang);
-      apply();
-    },
-    apply: apply,
-  };
-
-  // ─── 初始化：等 DOM ready 后执行一次 ──────────────────────────
   function ready(fn) {
-    if (document.readyState !== 'loading') {
-      fn();
-    } else {
-      document.addEventListener('DOMContentLoaded', fn);
-    }
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  ready(apply);
-
-  // 监听 PJAX 完成（Butterfly 主题）
-  document.addEventListener('pjax:complete', apply);
+  ready(function() { apply(getLang()); });
+  document.addEventListener('pjax:complete', function() { apply(getLang()); });
 
 })();

@@ -523,3 +523,17 @@
 #sidebar-menus .menus_item .lang-selector {
   display: inline-block !important;
 }
+
+/* ── 多语言文章过滤（CSS驱动，不依赖JS display:none）── */
+
+/* 默认显示中文，隐藏英文和日文 */
+html[data-lang="zh-CN"] [data-lang="en"],
+html[data-lang="zh-CN"] [data-lang="ja"] { display: none !important; }
+
+/* 英文模式：只显示英文 */
+html[data-lang="en"] [data-lang="zh-CN"],
+html[data-lang="en"] [data-lang="ja"]    { display: none !important; }
+
+/* 日文模式：只显示日文 */
+html[data-lang="ja"] [data-lang="zh-CN"],
+html[data-lang="ja"] [data-lang="en"]    { display: none !important; }
