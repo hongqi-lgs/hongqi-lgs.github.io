@@ -1,214 +1,62 @@
-/**
- * 语言过滤 Helper
- * 为 Butterfly 主题的相关推荐和上下篇功能添加语言过滤
- * 文件名以 zzz 开头确保最后加载，覆盖主题的 related_posts helper
- */
+'use strict'
 
-'use strict';
-
-// 共享的语言检测函数
-function detectPostLang(post) {
-  if (!post) return 'zh-CN';
-  
-  // 检查 front-matter 中的 lang 字段
-  if (post.lang) return post.lang;
-  
-  // 检查分类
+// 判断文章语言（与 related_post.js 保持一致）
+function detectLang(post) {
+  if (!post) return 'zh-CN'
+  if (post.lang) return post.lang
+  const path = post.path || post.slug || ''
+  if (/-en\/?$/.test(path)) return 'en'
+  if (/-ja\/?$/.test(path)) return 'ja'
   if (post.categories) {
-    const cats = post.categories.toArray ? post.categories.toArray() : (Array.isArray(post.categories) ? post.categories : []);
-    if (cats && cats.length > 0) {
-      // 检查对象数组 (Hexo 对象)
-      if (cats.some(c => c && c.name === 'English')) return 'en';
-      if (cats.some(c => c && c.name === 'Japanese')) return 'ja';
-      // 检查字符串数组
-      if (cats.includes('English')) return 'en';
-      if (cats.includes('Japanese')) return 'ja';
-    }
+    const cats = post.categories.toArray ? post.categories.toArray() : []
+    if (cats.some(c => c.name === 'English')) return 'en'
+    if (cats.some(c => c.name === 'Japanese')) return 'ja'
   }
-  
-  // 检查 slug 后缀
-  if (post.slug) {
-    if (post.slug.endsWith('-en')) return 'en';
-    if (post.slug.endsWith('-ja')) return 'ja';
-  }
-  
-  return 'zh-CN';
+  return 'zh-CN'
 }
 
-// Helper: 获取文章语言
-hexo.extend.helper.register('get_post_lang', function (post) {
-  return detectPostLang(post);
-});
-
-// Helper: 获取同语言的文章列表
-hexo.extend.helper.register('get_posts_by_lang', function (posts, lang) {
-  return posts.filter(post => detectPostLang(post) === lang);
-});
-
-// 覆盖 Butterfly 主题的 related_posts helper，添加语言过滤
-hexo.extend.helper.register('related_posts', function (currentPost) {
-  const currentLang = detectPostLang(currentPost);
-  
-  const relatedPosts = new Map();
-  const tagsData = currentPost.tags;
-
-  if (!tagsData || !tagsData.length) return '';
-
-  // 按标签找相关文章，但只选择同语言的文章
-  tagsData.forEach(tag => {
-    const posts = tag.posts;
-    posts.forEach(post => {
-      if (currentPost.path === post.path) return;
-      
-      // 语言过滤：只添加同语言的文章
-      const postLang = detectPostLang(post);
-      if (postLang !== currentLang) return;
-
-      if (relatedPosts.has(post.path)) {
-        relatedPosts.get(post.path).weight += 1;
-      } else {
-        // 获取摘要
-        const getPostDesc = post.postDesc || (post.excerpt ? post.excerpt.replace(/<[^>]+>/g, '').substring(0, 200) : '');
-        relatedPosts.set(post.path, {
-          title: post.title,
-          path: post.path,
-          cover: post.cover,
-          cover_type: post.cover_type,
-          weight: 1,
-          updated: post.updated,
-          created: post.date,
-          postDesc: getPostDesc,
-          random: Math.random()
-        });
-      }
-    });
-  });
-
-  if (relatedPosts.size === 0) {
-    return '';
-  }
-
-  const hexoConfig = hexo.config;
-  const config = hexo.theme.config;
-
-  const limitNum = (config.related_post && config.related_post.limit) || 6;
-  const dateType = (config.related_post && config.related_post.date_type) || 'created';
-  const headlineLang = this._p('post.recommend');
-
-  const relatedPostsList = Array.from(relatedPosts.values()).sort((a, b) => {
-    if (b.weight !== a.weight) {
-      return b.weight - a.weight;
-    }
-    return b.random - a.random;
-  });
-
-  let result = '<div class="relatedPosts">';
-  result += `<div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>${headlineLang}</span></div>`;
-  result += '<div class="relatedPosts-list">';
-
-  for (let i = 0; i < Math.min(relatedPostsList.length, limitNum); i++) {
-    let { cover, title, path, cover_type, created, updated, postDesc } = relatedPostsList[i];
-    const { escape_html, url_for, date } = this;
-    cover = cover || 'var(--default-bg-color)';
-    title = escape_html(title);
-    const className = postDesc ? 'pagination-related' : 'pagination-related no-desc';
-    result += `<a class="${className}" href="${url_for(path)}" title="${title}">`;
-    if (cover_type === 'img') {
-      result += `<img class="cover" src="${url_for(cover)}" alt="cover">`;
-    } else {
-      result += `<div class="cover" style="background: ${cover}"></div>`;
-    }
-    if (dateType === 'created') {
-      result += `<div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> ${date(created, hexoConfig.date_format)}</div>`;
-    } else {
-      result += `<div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> ${date(updated, hexoConfig.date_format)}</div>`;
-    }
-    result += `<div class="info-item-2">${title}</div></div>`;
-
-    if (postDesc) {
-      result += `<div class="info-2"><div class="info-item-1">${postDesc}</div></div>`;
-    }
-    result += '</div></a>';
-  }
-
-  result += '</div></div>';
-  return result;
-});
-
-// 自定义 pagination helper 覆盖上下篇导航
+// 上下篇导航：只在同语言文章中切换
 hexo.extend.helper.register('post_pagination', function (page) {
-  if (!page || !page.prev && !page.next) return '';
-  
-  const currentLang = detectPostLang(page);
-  const posts = hexo.locals.get('posts');
-  const allPosts = posts.toArray();
-  
-  // 按语言分组并排序
-  const sameLangPosts = allPosts
-    .filter(post => detectPostLang(post) === currentLang)
-    .sort((a, b) => (b.date || 0) - (a.date || 0));
-  
-  // 找到当前文章的索引
-  const currentIndex = sameLangPosts.findIndex(post => post._id === page._id);
-  
-  if (currentIndex === -1) return '';
-  
-  const prevPost = currentIndex > 0 ? sameLangPosts[currentIndex - 1] : null;
-  const nextPost = currentIndex < sameLangPosts.length - 1 ? sameLangPosts[currentIndex + 1] : null;
-  
-  if (!prevPost && !nextPost) return '';
-  
-  const { url_for, _p } = this;
-  let result = '<nav class="pagination-post" id="pagination">';
-  
-  if (prevPost) {
-    const prevDesc = prevPost.excerpt ? prevPost.excerpt.replace(/<[^>]+>/g, '').substring(0, 200) : '';
-    const prevCover = prevPost.cover || 'var(--default-bg-color)';
-    const prevCoverType = prevPost.cover_type || '';
-    const className = prevDesc ? 'pagination-related' : 'pagination-related no-desc';
-    const fullWidthClass = nextPost ? '' : ' full-width';
-    
-    result += `<a class="${className}${fullWidthClass}" href="${url_for(prevPost.path)}" title="${prevPost.title}">`;
-    if (prevCoverType === 'img') {
-      result += `<img class="cover" src="${url_for(prevCover)}" alt="cover">`;
-    } else {
-      result += `<div class="cover" style="background: ${prevCover}"></div>`;
-    }
-    result += `<div class="info">`;
-    result += `<div class="info-1">`;
-    result += `<div class="info-item-1">${_p('pagination.prev')}</div>`;
-    result += `<div class="info-item-2">${prevPost.title}</div>`;
-    result += `</div>`;
-    if (prevDesc) {
-      result += `<div class="info-2"><div class="info-item-1">${prevDesc}</div></div>`;
-    }
-    result += `</div></a>`;
+  if (!page) return ''
+
+  const currentLang = detectLang(page)
+  const allPosts = hexo.locals.get('posts').toArray()
+    .filter(p => detectLang(p) === currentLang)
+    .sort((a, b) => b.date - a.date)
+
+  const idx = allPosts.findIndex(p => p.path === page.path)
+  if (idx === -1) return ''
+
+  // Butterfly 默认：post_pagination=1 时，prev=新文章，next=旧文章
+  const prevPost = idx > 0 ? allPosts[idx - 1] : null       // 更新的
+  const nextPost = idx < allPosts.length - 1 ? allPosts[idx + 1] : null  // 更旧的
+
+  if (!prevPost && !nextPost) return ''
+
+  const { url_for, _p } = this
+
+  function renderLink(post, key, fullWidth) {
+    if (!post) return ''
+    const desc = post.excerpt ? post.excerpt.replace(/<[^>]+>/g, '').substring(0, 200) : ''
+    const cover = post.cover || 'var(--default-bg-color)'
+    const cls = ['pagination-related', !desc ? 'no-desc' : '', fullWidth ? 'full-width' : ''].filter(Boolean).join(' ')
+    const align = key === 'next' ? 'text-right' : ''
+    let html = `<a class="${cls}" href="${url_for(post.path)}" title="${post.title}">`
+    html += post.cover_type === 'img'
+      ? `<img class="cover" src="${url_for(cover)}" alt="cover">`
+      : `<div class="cover" style="background: ${cover}"></div>`
+    html += `<div class="info ${align}"><div class="info-1">`
+    html += `<div class="info-item-1">${_p('pagination.' + key)}</div>`
+    html += `<div class="info-item-2">${post.title}</div>`
+    html += `</div>`
+    if (desc) html += `<div class="info-2"><div class="info-item-1">${desc}</div></div>`
+    html += `</div></a>`
+    return html
   }
-  
-  if (nextPost) {
-    const nextDesc = nextPost.excerpt ? nextPost.excerpt.replace(/<[^>]+>/g, '').substring(0, 200) : '';
-    const nextCover = nextPost.cover || 'var(--default-bg-color)';
-    const nextCoverType = nextPost.cover_type || '';
-    const className = nextDesc ? 'pagination-related' : 'pagination-related no-desc';
-    const fullWidthClass = prevPost ? '' : ' full-width';
-    
-    result += `<a class="${className}${fullWidthClass}" href="${url_for(nextPost.path)}" title="${nextPost.title}">`;
-    if (nextCoverType === 'img') {
-      result += `<img class="cover" src="${url_for(nextCover)}" alt="cover">`;
-    } else {
-      result += `<div class="cover" style="background: ${nextCover}"></div>`;
-    }
-    result += `<div class="info text-right">`;
-    result += `<div class="info-1">`;
-    result += `<div class="info-item-1">${_p('pagination.next')}</div>`;
-    result += `<div class="info-item-2">${nextPost.title}</div>`;
-    result += `</div>`;
-    if (nextDesc) {
-      result += `<div class="info-2"><div class="info-item-1">${nextDesc}</div></div>`;
-    }
-    result += `</div></a>`;
-  }
-  
-  result += '</nav>';
-  return result;
-});
+
+  let result = '<nav class="pagination-post" id="pagination">'
+  result += renderLink(prevPost, 'prev', !nextPost)
+  result += renderLink(nextPost, 'next', !prevPost)
+  result += '</nav>'
+  return result
+})
