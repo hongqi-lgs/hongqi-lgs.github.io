@@ -84,30 +84,6 @@
     }
   }
 
-  function filterPosts() {
-    var lang = getLang();
-    var posts = document.querySelectorAll('.recent-post-item');
-    var visible = 0;
-    
-    posts.forEach(function(post) {
-      var cat = post.querySelector('.article-meta__categories');
-      if (!cat) return;
-      
-      var href = cat.getAttribute('href') || '';
-      var isEn = href.indexOf('/English') > -1;
-      var isJa = href.indexOf('/Japanese') > -1;
-      
-      var show = (lang === 'zh-CN' && !isEn && !isJa) ||
-                 (lang === 'en' && isEn) ||
-                 (lang === 'ja' && isJa);
-      
-      post.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-    
-    console.log('[Lang] Posts:', visible);
-  }
-
   function createSelector() {
     console.log('[Lang] Creating selector...');
     var links = document.querySelectorAll('a');
@@ -180,10 +156,6 @@
     
     createSelector();
     interceptMenuLinks();  // 拦截菜单链接
-    
-    var isHome = window.location.pathname === '/' || 
-                 window.location.pathname.match(/^\/page\/\d+\//);
-    if (isHome) filterPosts();
     
     setLang(getLang());
   }
