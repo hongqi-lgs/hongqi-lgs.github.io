@@ -28,13 +28,14 @@ ideas/
 
 ## ✍️ 写文章规则
 
-### 1. 双语文章（必须同时生成中英文）
+### 1. 三语文章（必须同时生成中英日）
 
-每篇文章需要 **中文版 + 英文版** 两个文件，放在同一个 `source/_posts/` 目录下。
+每篇文章需要 **中文版 + 英文版 + 日文版** 三个文件，放在同一个 `source/_posts/` 目录下。
 
 **命名规则**：
 - 中文版：`文章名.md`（如 `why-blog.md`）
 - 英文版：`文章名-en.md`（如 `why-blog-en.md`）
+- 日文版：`文章名-ja.md`（如 `why-blog-ja.md`）
 
 ### 2. Front-matter 规范
 
@@ -72,6 +73,24 @@ lang: en
 ---
 ```
 
+**日文文章** front-matter 示例：
+
+```yaml
+---
+title: なぜブログを書くのか
+date: 2026-02-28 12:00:00
+tags:
+  - 考え
+  - 執筆
+  - Japanese
+categories:
+  - Japanese
+cover:
+description: 情報過多の時代に、なぜブログを書くのか？私の3つの理由。
+lang: ja
+---
+```
+
 ### ⚠️ 关键规则
 
 | 规则 | 说明 |
@@ -79,8 +98,11 @@ lang: en
 | 英文文章必须加 `categories: [English]` | 首页过滤脚本依赖此分类来排除英文文章 |
 | 英文文章必须加 `lang: en` | 标记文章语言 |
 | 英文文章 tags 中加 `English` | 方便按标签筛选 |
-| 中文文章 **不要** 加 `English` 分类 | 否则会被首页过滤掉 |
-| `date` 字段中英文保持一致 | 方便对应同一篇文章 |
+| 日文文章必须加 `categories: [Japanese]` | 首页过滤脚本依赖此分类来排除日文文章 |
+| 日文文章必须加 `lang: ja` | 标记文章语言 |
+| 日文文章 tags 中加 `Japanese` | 方便按标签筛选 |
+| 中文文章 **不要** 加 `English` 或 `Japanese` 分类 | 否则会被首页过滤掉 |
+| `date` 字段三语保持一致 | 方便对应同一篇文章 |
 
 ### 3. 写作风格要求
 
@@ -250,8 +272,10 @@ social:
 
 - [ ] 中文版文件：`source/_posts/文章名.md`
 - [ ] 英文版文件：`source/_posts/文章名-en.md`
+- [ ] 日文版文件：`source/_posts/文章名-ja.md`
 - [ ] 英文版 front-matter 包含 `categories: [English]` 和 `lang: en`
-- [ ] 中文版 front-matter **不包含** `English` 分类
+- [ ] 日文版 front-matter 包含 `categories: [Japanese]` 和 `lang: ja`
+- [ ] 中文版 front-matter **不包含** `English` 或 `Japanese` 分类
 - [ ] 写作风格：无 AI 味、深入浅出、有配图、观点准确且有前瞻性
 - [ ] 本地预览确认：`npx hexo server`
 - [ ] 构建：`npx hexo clean && npx hexo generate`
