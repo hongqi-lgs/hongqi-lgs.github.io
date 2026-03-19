@@ -9,7 +9,7 @@ tags:
 categories:
   - 技术
 cover:
-description: 在 AI 浪潮席卷全球的今天，Rust 凭借其独特的安全性和性能优势，能否成为 AI 开发的首选语言？本文从多个角度探讨 Rust 在 AI 时代的机遇与挑战。
+description: 大家都在用 Python 做 AI，但 Rust 正在悄悄渗透进每一个关键环节。它会是下一个 AI 时代的主角，还是永远的配角？
 ---
 
 ## 当 AI 遇上 Rust：一场命中注定的相遇？
