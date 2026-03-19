@@ -150,9 +150,18 @@ body {
   border-radius: 10px !important;
 }
 
-/* 导航栏 Logo 头像 */
+/* 导航栏 Logo 头像 — 始终显示，不随滚动消失 */
 #site-name::before {
   content: none;
+}
+
+#nav #blog-info,
+#nav #blog-info .site-icon {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: auto !important;
+  overflow: visible !important;
 }
 #nav .site-page:first-child img,
 /* 导航栏头像 - 圆框包裹（高优先级覆盖 Butterfly 默认样式） */
