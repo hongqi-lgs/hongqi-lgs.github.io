@@ -344,6 +344,7 @@ node convert-to-zenn.js
 - [ ] 中文版 front-matter **不包含** `English` 或 `Japanese` 分类
 - [ ] 写作风格：无 AI 味、深入浅出、有配图、观点准确且有前瞻性
 - [ ] Zenn版本：`articles/文章名.md`（转换front-matter，slug需12-50字符）
+- [ ] Zenn文章末尾加博客回链：`> この記事の原文はこちら → [hongqi-lgs.github.io](https://hongqi-lgs.github.io)`
 - [ ] 本地预览确认：`npx hexo server`
 - [ ] 构建：`npx hexo clean && npx hexo generate`
 - [ ] 部署 gh-pages 分支
