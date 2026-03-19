@@ -268,6 +268,72 @@ social:
 
 ---
 
+## 🗾 Zenn 联动工作流
+
+博客日文文章会同步到 [Zenn](https://zenn.dev)（日本最大技术博客平台），引入日本读者流量。
+
+### 目录结构
+
+```
+仓库根目录/
+├── source/_posts/     ← Hexo博客文章（中/英/日）
+├── articles/          ← Zenn同步目录（仅日文）
+└── convert-to-zenn.js ← 格式转换脚本
+```
+
+### Zenn文章格式
+
+Zenn的 front-matter 与 Hexo 不同，需要转换：
+
+```yaml
+---
+title: "文章标题"
+emoji: "🤖"        # 必填，选一个相关表情
+type: "tech"       # tech（技术）或 idea（观点）
+topics: ["AI", "Agent"]  # 最多5个，推荐英文
+published: true
+---
+
+> 原文description摘要
+
+文章正文...
+
+---
+
+> この記事の原文はこちら → [hongqi-lgs.github.io](https://hongqi-lgs.github.io)
+```
+
+### Slug 规则
+
+- 文件名（不含.md）即为slug
+- **必须12-50个字符**，只能用 `a-z0-9`、`-`、`_`
+- 例：`why-blog`（8字符）不合法 → 改为 `why-i-still-blog-in-ai-era`
+
+### 写新文章时的Zenn步骤
+
+1. 写完日文版 `source/_posts/文章名-ja.md`
+2. 在 `articles/` 创建对应的Zenn版本（转换front-matter格式）
+3. 文章末尾加上博客回链：
+   ```
+   > この記事の原文はこちら → [hongqi-lgs.github.io](https://hongqi-lgs.github.io)
+   ```
+4. `git push` 后 Zenn 自动抓取发布
+
+### 批量转换（已有文章）
+
+```bash
+node convert-to-zenn.js
+```
+
+### 注意事项
+
+- Zenn每次部署**限制约4篇**，26篇需要多次push才能全部发布
+- 每次push都会触发Zenn重新抓取
+- 触发空部署：`git commit --allow-empty -m "trigger zenn deploy" && git push`
+- Zenn是**主动拉取**，不需要手动上传
+
+---
+
 ## 📋 发布新文章 Checklist
 
 - [ ] 中文版文件：`source/_posts/文章名.md`
@@ -277,10 +343,11 @@ social:
 - [ ] 日文版 front-matter 包含 `categories: [Japanese]` 和 `lang: ja`
 - [ ] 中文版 front-matter **不包含** `English` 或 `Japanese` 分类
 - [ ] 写作风格：无 AI 味、深入浅出、有配图、观点准确且有前瞻性
+- [ ] Zenn版本：`articles/文章名.md`（转换front-matter，slug需12-50字符）
 - [ ] 本地预览确认：`npx hexo server`
 - [ ] 构建：`npx hexo clean && npx hexo generate`
 - [ ] 部署 gh-pages 分支
-- [ ] 推送 main 分支
+- [ ] 推送 main 分支（同时触发Zenn同步）
 
 
 
