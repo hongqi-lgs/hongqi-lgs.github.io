@@ -1,28 +1,45 @@
 /* ===== 全局优化 ===== */
 
-/* 导航栏渐变背景色 */
+/* 导航栏 — 米白纸质感 */
 #nav {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: #faf8f4 !important;
+  border-bottom: 1px solid #e8e4dc !important;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06) !important;
 }
 
 #nav.nav-fixed {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: rgba(250, 248, 244, 0.96) !important;
+  backdrop-filter: blur(8px) !important;
+  border-bottom: 1px solid #e8e4dc !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* 导航栏链接颜色 */
 #nav a,
 #nav .site-name,
 #nav .menus_items .menus_item a {
-  color: #fff !important;
+  color: #3a3128 !important;
 }
 
 #nav .menus_items .menus_item a:hover {
-  color: #ffd700 !important;
+  color: #8b6f47 !important;
 }
 
 /* 暗色模式导航栏 */
 [data-theme="dark"] #nav {
-  background: linear-gradient(135deg, #434975 0%, #4a3566 100%) !important;
+  background: #1e1c19 !important;
+  border-bottom: 1px solid #2e2b26 !important;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] #nav a,
+[data-theme="dark"] #nav .site-name,
+[data-theme="dark"] #nav .menus_items .menus_item a {
+  color: #d4cfc8 !important;
+}
+
+[data-theme="dark"] #nav .menus_items .menus_item a:hover {
+  color: #c4a882 !important;
 }
 
 /* 禁用 top_img 后的页面顶部间距 */
@@ -60,26 +77,29 @@
   padding: 4px 10px !important;
 }
 
-/* 页脚配色 — 与导航栏渐变呼应 */
+/* 页脚配色 — 米白纸质感呼应 */
 #footer {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  color: #fff !important;
+  background: #f0ece4 !important;
+  color: #6b5e4e !important;
+  border-top: 1px solid #e8e4dc !important;
 }
 
 #footer a,
 #footer .copyright,
 #footer .footer-copyright span {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #8b6f47 !important;
 }
 
 #footer #busuanzi_container_site_pv,
 #footer #busuanzi_container_site_uv {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: #a08060 !important;
 }
 
 /* 暗色模式适配 */
 [data-theme="dark"] #footer {
-  background: linear-gradient(135deg, #434975 0%, #4a3566 100%) !important;
+  background: #161410 !important;
+  border-top: 1px solid #2e2b26 !important;
+  color: #a09888 !important;
 }
 
 [data-theme="dark"] #recent-posts > .recent-post-item {
@@ -112,8 +132,8 @@
   width: 32px !important;
   height: 32px !important;
   object-fit: cover !important;
-  border: 2px solid #667eea !important;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.35) !important;
+  border: 2px solid #c4a882 !important;
+  box-shadow: 0 2px 8px rgba(139, 111, 71, 0.2) !important;
   margin-right: 8px;
   vertical-align: middle;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -121,7 +141,7 @@
 
 #nav #blog-info .site-icon:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.35) !important;
 }
 
 /* 关于页头像 — 与导航栏同风格，只是尺寸更大 */
@@ -130,8 +150,8 @@
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border: 3px solid #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+  border: 3px solid #c4a882;
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.2);
   display: block;
   margin: 0 auto 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -139,7 +159,7 @@
 
 .avatar-circle:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 16px rgba(139, 111, 71, 0.3);
 }
 
 /* 站点标题字体美化 */
@@ -150,10 +170,8 @@
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 1px;
-  background: linear-gradient(135deg, #fff 0%, #e8d5ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #3a3128 !important;
+  -webkit-text-fill-color: #3a3128 !important;
 }
 
 /* 滚动条美化 */
@@ -448,7 +466,7 @@
 .subscribe-button {
   width: 100%;
   padding: 10px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #8b6f47;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -464,7 +482,8 @@
 
 .subscribe-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background: #7a6040;
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
 }
 
 .subscribe-button i {
