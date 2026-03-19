@@ -172,9 +172,14 @@ body {
   align-items: center !important;
 }
 
-#nav #blog-info a {
+/* nav-page-title 默认隐藏，只在主题需要时显示 */
+#nav #blog-info a.nav-site-title {
   display: inline-flex !important;
   align-items: center !important;
+}
+
+#nav #blog-info a.nav-page-title {
+  display: none !important;
 }
 #nav .site-page:first-child img,
 /* 导航栏头像 - 圆框包裹（高优先级覆盖 Butterfly 默认样式） */
