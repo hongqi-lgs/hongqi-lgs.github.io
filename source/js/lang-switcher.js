@@ -51,7 +51,7 @@
 
   function makeSelect(lang) {
     var sel = document.createElement('select');
-    sel.style.cssText = 'padding:4px 28px 4px 10px;border:1px solid #c8bfb0;border-radius:6px;background:#faf8f4;color:#3a3128;cursor:pointer;font-size:13px;font-weight:500;outline:none;appearance:none;-webkit-appearance:none;transition:border-color 0.2s ease,box-shadow 0.2s ease;';
+    sel.style.cssText = 'padding:5px 10px;border:1.5px solid #c8bfb0;border-radius:6px;background:#faf8f4;color:#3a3128;cursor:pointer;font-size:13px;font-weight:500;outline:none;min-width:100px;transition:border-color 0.2s ease,box-shadow 0.2s ease;';
     [['zh-CN','🇨🇳 中文'],['en','🇺🇸 EN'],['ja','🇯🇵 日本語']].forEach(function(o) {
       var opt = document.createElement('option');
       opt.value = o[0]; opt.textContent = o[1];
