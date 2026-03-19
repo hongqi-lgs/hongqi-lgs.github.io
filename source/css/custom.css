@@ -155,13 +155,13 @@ body {
   content: none;
 }
 
-#nav #blog-info,
-#nav #blog-info .site-icon {
+/* 覆盖主题 nav-fixed 状态下隐藏头像的逻辑 */
+#page-header.nav-fixed #nav #blog-info > a:first-child {
   display: inline-flex !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  width: auto !important;
-  overflow: visible !important;
+}
+
+#page-header.nav-fixed #nav #blog-info > a:last-child {
+  display: none !important;
 }
 #nav .site-page:first-child img,
 /* 导航栏头像 - 圆框包裹（高优先级覆盖 Butterfly 默认样式） */
@@ -561,18 +561,33 @@ body {
 
 /* 语言选择器样式 */
 .lang-selector {
-  padding: 5px 10px !important;
-  border: 1px solid #ddd !important;
-  border-radius: 4px !important;
-  background: #fff !important;
+  padding: 4px 28px 4px 10px !important;
+  border: 1px solid #c8bfb0 !important;
+  border-radius: 6px !important;
+  background: #faf8f4 !important;
+  color: #3a3128 !important;
   cursor: pointer !important;
-  font-size: 14px !important;
-  margin-left: 5px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  margin-left: 6px !important;
   vertical-align: middle !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238b6f47' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .lang-selector:hover {
-  border-color: #667eea !important;
+  border-color: #8b6f47 !important;
+  box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.12) !important;
+}
+
+.lang-selector:focus {
+  outline: none !important;
+  border-color: #8b6f47 !important;
+  box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.15) !important;
 }
 
 /* 确保菜单项中的选择器正常显示 */
