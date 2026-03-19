@@ -6,8 +6,8 @@ body,
 #article-container,
 p, li, blockquote, td, th {
   font-family: 'LXGW WenKai', 'Noto Serif JP', 'Crimson Pro', 'PingFang SC', 'Hiragino Sans GB', serif !important;
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 15px;
+  line-height: 1.8;
 }
 
 /* 英文/数字用 Crimson Pro */
