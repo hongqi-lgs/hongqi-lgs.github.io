@@ -206,6 +206,8 @@ inject:
     - <script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script>
     - <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script>
     - <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script>
+    - <meta name="google-adsense-account" content="ca-pub-4079054696123142">
+    - <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script>
   bottom:
     - <script src="/js/i18n.js"></script>
     - <script src="/js/reward-kofi.js"></script>
