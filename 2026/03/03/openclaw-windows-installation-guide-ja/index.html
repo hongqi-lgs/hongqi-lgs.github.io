@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Windows PC に OpenClaw をインストールする完全ガイド：ゼロから AI アシスタントを起動まで | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Windows PC に OpenClaw AI アシスタントをインストールする方法を手取り足取り教えます。WSL2 設定、Node.js 環境準備、OpenClaw インストールと初回起動の完全な流れ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows PC に OpenClaw をインストールする完全ガイド：ゼロから AI アシスタントを起動まで">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide-ja/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="Windows PC に OpenClaw AI アシスタントをインストールする方法を手取り足取り教えます。WSL2 設定、Node.js 環境準備、OpenClaw インストールと初回起動の完全な流れ。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-03T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.154Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Japanese">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="WSL2">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="チュートリアル">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Windows PC に OpenClaw をインストールする完全ガイド：ゼロから AI アシスタントを起動まで",
+  "url": "https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide-ja/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-03T02:30:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.154Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide-ja/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Windows PC に OpenClaw をインストールする完全ガイド：ゼロから AI アシスタントを起動まで',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">Windows PC に OpenClaw をインストールする完全ガイド：ゼロから AI アシスタントを起動まで</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  ホームに戻る</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Windows PC に OpenClaw をインストールする完全ガイド：ゼロから AI アシスタントを起動まで</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">作成日</span><time class="post-meta-date-created" datetime="2026-03-03T02:30:00.000Z" title="作成日 2026-03-03 10:30:00">2026-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新日</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.154Z" title="更新日 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Japanese/">Japanese</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="OpenClaw-とは？"><a href="#OpenClaw-とは？" class="headerlink" title="OpenClaw とは？"></a>OpenClaw とは？</h2><p>OpenClaw は<strong>セルフホスト型 AI アシスタントゲートウェイ</strong>で、普段使っているチャットアプリ（WhatsApp、Telegram、Discord、iMessage など）と AI プログラミングアシスタントを接続できます。自分のマシンで実行し、データを完全にコントロール、ホスティングサービスに依存する必要はありません。</p>
+<p><strong>核心特徴：</strong></p>
+<ul>
+<li><strong>セルフホスト</strong>：あなたのハードウェアで実行、あなたのルール</li>
+<li><strong>マルチチャネルサポート</strong>：1つのゲートウェイで複数のチャットプラットフォームに同時対応</li>
+<li><strong>AI エージェント向け</strong>：ツール呼び出し、セッション管理、メモリーシステム、マルチエージェントルーティングをサポート</li>
+<li><strong>オープンソース</strong>：MIT ライセンス、コミュニティ駆動</li>
+</ul>
+<p>簡単に言えば、Node.js 22+、1つの API キー、5分の時間があれば、いつでも使える AI アシスタントを持てます。</p>
+<span id="more"></span>
+
+<h2 id="Windows-ユーザーの推奨方案：WSL2"><a href="#Windows-ユーザーの推奨方案：WSL2" class="headerlink" title="Windows ユーザーの推奨方案：WSL2"></a>Windows ユーザーの推奨方案：WSL2</h2><p>OpenClaw は Windows 上で<strong>WSL2（Windows Subsystem for Linux）経由での実行を推奨</strong>、特に Ubuntu ディストリビューションがおすすめです。</p>
+<p><strong>なぜ WSL2？</strong></p>
+<ol>
+<li><strong>ランタイムの一貫性</strong>：WSL2 は完全な Linux 環境を提供、OpenClaw のランタイムが macOS&#x2F;Linux 版と完全に一致することを保証</li>
+<li><strong>ツール互換性が良い</strong>：Node.js、pnpm、スキルスクリプトなどのツールは Linux 環境でより良く動作</li>
+<li><strong>インストールが簡単</strong>：<code>wsl --install</code> コマンド1つで WSL2 インストール完了</li>
+</ol>
+<blockquote>
+<p><strong>注</strong>：ネイティブ Windows 版のコンパニオンアプリは計画中ですが、現在は WSL2 の使用を推奨します。</p>
+</blockquote>
+<h2 id="完全インストールフロー"><a href="#完全インストールフロー" class="headerlink" title="完全インストールフロー"></a>完全インストールフロー</h2><h3 id="ステップ1：WSL2-と-Ubuntu-をインストール"><a href="#ステップ1：WSL2-と-Ubuntu-をインストール" class="headerlink" title="ステップ1：WSL2 と Ubuntu をインストール"></a>ステップ1：WSL2 と Ubuntu をインストール</h3><ol>
+<li><p><strong>PowerShell を管理者モードで開く</strong></p>
+<ul>
+<li><code>Win + X</code> を押し、「Windows PowerShell（管理者）」または「Windows ターミナル（管理者）」を選択</li>
+</ul>
+</li>
+<li><p><strong>WSL2 をインストール</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--install</span></span><br></pre></td></tr></table></figure>
+
+<p>明確に Ubuntu 24.04 を指定したい場合：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用可能なディストリビューションを確認</span></span><br><span class="line">wsl <span class="literal">--list</span> <span class="literal">--online</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu 24.04 をインストール</span></span><br><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu<span class="literal">-24</span>.<span class="number">04</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>PC を再起動</strong></p>
+<p>インストール完了後、Windows が再起動を促したら再起動してください。</p>
+</li>
+<li><p><strong>Ubuntu を初回起動</strong></p>
+<p>再起動後、「スタートメニュー」を開き、「Ubuntu」を検索して起動。初回起動時に以下を求められます：</p>
+<ul>
+<li>Linux ユーザー名を設定（小文字推奨）</li>
+<li>パスワードを設定（入力時は表示されません、これは正常です）</li>
+</ul>
+</li>
+</ol>
+<h3 id="ステップ2：systemd-を有効化（必須）"><a href="#ステップ2：systemd-を有効化（必須）" class="headerlink" title="ステップ2：systemd を有効化（必須）"></a>ステップ2：systemd を有効化（必須）</h3><p>OpenClaw の Gateway サービスは systemd サポートが必要です。</p>
+<ol>
+<li><p><strong>Ubuntu ターミナルで以下のコマンドを実行</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/wsl.conf &gt;/dev/null &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">[boot]</span><br><span class="line">systemd=<span class="literal">true</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>WSL2 をシャットダウン</strong></p>
+<p>PowerShell（管理者）に戻り、実行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--shutdown</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Ubuntu を再度開く</strong></p>
+<p>スタートメニューから再び Ubuntu を起動。</p>
+</li>
+<li><p><strong>systemd が有効化されたか確認</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl --user status</span><br></pre></td></tr></table></figure>
+
+<p>systemd の状態出力が見えれば（エラーでも問題なし、「command not found」でなければOK）、有効化成功です。</p>
+</li>
+</ol>
+<h3 id="ステップ3：Node-js-22-をインストール"><a href="#ステップ3：Node-js-22-をインストール" class="headerlink" title="ステップ3：Node.js 22+ をインストール"></a>ステップ3：Node.js 22+ をインストール</h3><p>OpenClaw は Node.js 22 以降が必要です。</p>
+<p><strong>推奨：nvm（Node Version Manager）を使用</strong></p>
+<ol>
+<li><p><strong>nvm をインストール</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>ターミナルを再起動またはシェル設定を再読込</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="comment"># または、zsh を使用している場合</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Node.js 22 をインストール</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvm install 22</span><br><span class="line">nvm use 22</span><br><span class="line">nvm <span class="built_in">alias</span> default 22</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>インストール確認</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node --version  <span class="comment"># v22.x.x が表示されるはず</span></span><br><span class="line">npm --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="ステップ4：OpenClaw-をインストール"><a href="#ステップ4：OpenClaw-をインストール" class="headerlink" title="ステップ4：OpenClaw をインストール"></a>ステップ4：OpenClaw をインストール</h3><ol>
+<li><p><strong>OpenClaw CLI をグローバルインストール</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @openclaw/cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>インストール確認</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw --version</span><br></pre></td></tr></table></figure>
+
+<p>バージョン番号が表示されれば成功です。</p>
+</li>
+</ol>
+<h3 id="ステップ5：OpenClaw-Gateway-を初期化"><a href="#ステップ5：OpenClaw-Gateway-を初期化" class="headerlink" title="ステップ5：OpenClaw Gateway を初期化"></a>ステップ5：OpenClaw Gateway を初期化</h3><ol>
+<li><p><strong>Gateway を初期化</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway init</span><br></pre></td></tr></table></figure>
+
+<p>プロンプトが表示されます：</p>
+<ul>
+<li><strong>Agent ID を入力</strong>（例：<code>main</code>、デフォルトでOK）</li>
+<li><strong>Model provider を選択</strong>（例：<code>anthropic</code>、<code>openai</code>、<code>zenmux</code> など）</li>
+<li><strong>API キーを入力</strong>（あなたの AI provider の API キー）</li>
+</ul>
+</li>
+<li><p><strong>設定ファイルを確認</strong></p>
+<p>初期化後、設定ファイルは <code>~/.openclaw/openclaw.json</code> に生成されます。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.openclaw/openclaw.json</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="ステップ6：Gateway-を起動"><a href="#ステップ6：Gateway-を起動" class="headerlink" title="ステップ6：Gateway を起動"></a>ステップ6：Gateway を起動</h3><ol>
+<li><p><strong>Gateway を起動</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>起動状態を確認</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway status</span><br></pre></td></tr></table></figure>
+
+<p><code>active (running)</code> と表示されれば成功です。</p>
+</li>
+<li><p><strong>ログを確認</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway logs</span><br></pre></td></tr></table></figure>
+
+<p>リアルタイムでログを確認できます（Ctrl+C で終了）。</p>
+</li>
+</ol>
+<h3 id="ステップ7：WebChat-で試す"><a href="#ステップ7：WebChat-で試す" class="headerlink" title="ステップ7：WebChat で試す"></a>ステップ7：WebChat で試す</h3><p>OpenClaw には組み込みの WebChat インターフェースがあります。</p>
+<ol>
+<li><p><strong>ブラウザを開く</strong></p>
+<p>アドレスバーに以下を入力：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:17550</span><br></pre></td></tr></table></figure>
+
+<p>（デフォルトポート。設定で変更している場合は対応するポートを使用）</p>
+</li>
+<li><p><strong>AI とチャット開始</strong></p>
+<p>WebChat インターフェースで、あなたの AI アシスタントと直接会話できます！</p>
+</li>
+</ol>
+<h2 id="トラブルシューティング"><a href="#トラブルシューティング" class="headerlink" title="トラブルシューティング"></a>トラブルシューティング</h2><h3 id="Node-js-バージョンが古い"><a href="#Node-js-バージョンが古い" class="headerlink" title="Node.js バージョンが古い"></a>Node.js バージョンが古い</h3><p><strong>問題</strong>：<code>node --version</code> が v22 未満を表示</p>
+<p><strong>解決</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvm install 22</span><br><span class="line">nvm use 22</span><br><span class="line">nvm <span class="built_in">alias</span> default 22</span><br></pre></td></tr></table></figure>
+
+<h3 id="systemd-が有効化されていない"><a href="#systemd-が有効化されていない" class="headerlink" title="systemd が有効化されていない"></a>systemd が有効化されていない</h3><p><strong>問題</strong>：Gateway 起動時に systemd エラー</p>
+<p><strong>解決</strong>：</p>
+<ol>
+<li><code>/etc/wsl.conf</code> を確認</li>
+<li>WSL をシャットダウン（PowerShell で <code>wsl --shutdown</code>）</li>
+<li>Ubuntu を再起動</li>
+</ol>
+<h3 id="ポート競合"><a href="#ポート競合" class="headerlink" title="ポート競合"></a>ポート競合</h3><p><strong>問題</strong>：<code>Port 17550 is already in use</code></p>
+<p><strong>解決方法1</strong>：他のプログラムを停止</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># どのプログラムがポートを使用しているか確認</span></span><br><span class="line"><span class="built_in">sudo</span> lsof -i :17550</span><br><span class="line"><span class="comment"># 対応するプロセスを停止</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解決方法2</strong>：ポートを変更<br><code>~/.openclaw/openclaw.json</code> を編集、<code>port</code> フィールドを変更。</p>
+<h3 id="API-キーエラー"><a href="#API-キーエラー" class="headerlink" title="API キーエラー"></a>API キーエラー</h3><p><strong>問題</strong>：<code>Invalid API key</code> または <code>Authentication failed</code></p>
+<p><strong>解決</strong>：</p>
+<ol>
+<li>API キーが正しいか確認</li>
+<li>API キーに十分なクレジットがあるか確認</li>
+<li>設定ファイルを再編集：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway config.patch</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="次のステップ"><a href="#次のステップ" class="headerlink" title="次のステップ"></a>次のステップ</h2><p>Gateway が正常に動作したら、以下を試せます：</p>
+<ol>
+<li><strong>チャネルを追加</strong>：Telegram、Discord、WeChat などを接続</li>
+<li><strong>Skills を探索</strong>：OpenClaw のスキルシステムを使用して AI の能力を拡張</li>
+<li><strong>カスタマイズ</strong>：<code>~/.openclaw/openclaw.json</code> を編集して動作を調整</li>
+<li><strong>コミュニティに参加</strong>：Discord、GitHub で他のユーザーと交流</li>
+</ol>
+<h2 id="参考リンク"><a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク</h2><ul>
+<li><strong>公式ドキュメント</strong>：<a target="_blank" rel="noopener" href="https://docs.openclaw.ai/">https://docs.openclaw.ai</a></li>
+<li><strong>GitHub リポジトリ</strong>：<a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw">https://github.com/openclaw/openclaw</a></li>
+<li><strong>Discord コミュニティ</strong>：<a target="_blank" rel="noopener" href="https://discord.com/invite/clawd">https://discord.com/invite/clawd</a></li>
+<li><strong>スキルハブ</strong>：<a target="_blank" rel="noopener" href="https://clawhub.com/">https://clawhub.com</a></li>
+</ul>
+<hr>
+<p><strong>おめでとうございます！</strong> あなたは今、自分の AI アシスタントを持っています。</p>
+<p>何か問題があれば、公式ドキュメントを確認するか、コミュニティで質問してください。</p>
+<p>楽しんでください！🎉</p>
+<hr>
+<p><strong>関連読書</strong>：</p>
+<ul>
+<li><a href="/2026/02/28/ai-company-model/">《AI時代の新しい会社モデル》</a></li>
+<li><a href="/2026/03/04/how-to-master-ai/">《普通の人がAIを使いこなす30日間計画》</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>著者: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>リンク: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide-ja/">https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide-ja/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>著作権表示: </span><span class="post-copyright-info">このブログのすべての記事は、<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ライセンスの下で提供されており、特に明記されていない限り、すべての権利を留保します。転載時には出典を明記してください: <a href="https://xiaoxiaduoyan.com">森哥 Ideas</a>。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Japanese/">Japanese</a><a class="post-meta__tags" href="/tags/OpenClaw/">OpenClaw</a><a class="post-meta__tags" href="/tags/Windows/">Windows</a><a class="post-meta__tags" href="/tags/WSL2/">WSL2</a><a class="post-meta__tags" href="/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/">チュートリアル</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/03/us-iran-military-ai-capabilities-ja/" title="米国の対イラン軍事作戦で活用される可能性のあるAI能力：情報分析から精密攻撃まで"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">米国の対イラン軍事作戦で活用される可能性のあるAI能力：情報分析から精密攻撃まで</div></div><div class="info-2"><div class="info-item-1">序論：AIが戦争の形態を変える現代戦争はもはや単純な兵器の対決ではなく、情報、技術、アルゴリズムの競争です。世界の軍事科学技術のリーダーである米国は、イランなどの地域への軍事作戦において、AI技術がすでに不可欠な「見えない戦力」となっています。
+2020年のイラン革命防衛隊のソレイマニ司令官への精密攻撃から、近年のイランの核施設やミサイル基地への精密攻撃まで、背後には先進的なAI能力のサポートがあ</div></div></div></a><a class="pagination-related" href="/2026/03/02/2028-global-intelligence-crisis-ja/" title="2028年グローバル知能危機"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">2028年グローバル知能危機</div></div><div class="info-2"><div class="info-item-1">もしAIが2028年に突然進歩を停止したらどうなるか？これはSFではなく、真剣に考えるべき問題だ。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>関連記事</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-ja/" title="AIは本当に心理カウンセラーを代替できないのか？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AIは本当に心理カウンセラーを代替できないのか？</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/ai-coding-steam-engine-on-cart-ja/" title="AI コーディングの現状：蒸気機関が馬車を引く"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AI コーディングの現状：蒸気機関が馬車を引く</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/13/ai-execution-layer-ja/" title="飛躍のたびに、人間がしたことはただ一つだった"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-13</div><div class="info-item-2">飛躍のたびに、人間がしたことはただ一つだった</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/18/ai-blockchain-future-ja/" title="AIはブロックチェーンを「信頼の保存」から「知性の実行」へと変える"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-18</div><div class="info-item-2">AIはブロックチェーンを「信頼の保存」から「知性の実行」へと変える</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">AI決済の未来：プログラマブル口座からエージェント自律決済へ</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/03/ai-restaurant-future-ja/" title="AI時代における飲食業界の未来"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">AI時代における飲食業界の未来</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目次</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenClaw-%E3%81%A8%E3%81%AF%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">OpenClaw とは？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AE%E6%8E%A8%E5%A5%A8%E6%96%B9%E6%A1%88%EF%BC%9AWSL2"><span class="toc-number">2.</span> <span class="toc-text">Windows ユーザーの推奨方案：WSL2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%95%E3%83%AD%E3%83%BC"><span class="toc-number">3.</span> <span class="toc-text">完全インストールフロー</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%971%EF%BC%9AWSL2-%E3%81%A8-Ubuntu-%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><span class="toc-number">3.1.</span> <span class="toc-text">ステップ1：WSL2 と Ubuntu をインストール</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%972%EF%BC%9Asystemd-%E3%82%92%E6%9C%89%E5%8A%B9%E5%8C%96%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">ステップ2：systemd を有効化（必須）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%973%EF%BC%9ANode-js-22-%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><span class="toc-number">3.3.</span> <span class="toc-text">ステップ3：Node.js 22+ をインストール</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%974%EF%BC%9AOpenClaw-%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><span class="toc-number">3.4.</span> <span class="toc-text">ステップ4：OpenClaw をインストール</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%975%EF%BC%9AOpenClaw-Gateway-%E3%82%92%E5%88%9D%E6%9C%9F%E5%8C%96"><span class="toc-number">3.5.</span> <span class="toc-text">ステップ5：OpenClaw Gateway を初期化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%976%EF%BC%9AGateway-%E3%82%92%E8%B5%B7%E5%8B%95"><span class="toc-number">3.6.</span> <span class="toc-text">ステップ6：Gateway を起動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%977%EF%BC%9AWebChat-%E3%81%A7%E8%A9%A6%E3%81%99"><span class="toc-number">3.7.</span> <span class="toc-text">ステップ7：WebChat で試す</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0"><span class="toc-number">4.</span> <span class="toc-text">トラブルシューティング</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8C%E5%8F%A4%E3%81%84"><span class="toc-number">4.1.</span> <span class="toc-text">Node.js バージョンが古い</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#systemd-%E3%81%8C%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84"><span class="toc-number">4.2.</span> <span class="toc-text">systemd が有効化されていない</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%83%9D%E3%83%BC%E3%83%88%E7%AB%B6%E5%90%88"><span class="toc-number">4.3.</span> <span class="toc-text">ポート競合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-%E3%82%AD%E3%83%BC%E3%82%A8%E3%83%A9%E3%83%BC"><span class="toc-number">4.4.</span> <span class="toc-text">API キーエラー</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A1%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97"><span class="toc-number">5.</span> <span class="toc-text">次のステップ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF"><span class="toc-number">6.</span> <span class="toc-text">参考リンク</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="読書モード"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="ライトモード/ダークモード切り替え"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="シングルカラムとダブルカラムの切り替え"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目次"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="トップに戻る"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

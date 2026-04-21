@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI 时代的基建 | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="每个时代都有自己的基建。铁路、电网、光纤……到了 AI 时代，我们需要修的&quot;路&quot;是什么？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 时代的基建">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/02/28/ai-infrastructure/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="每个时代都有自己的基建。铁路、电网、光纤……到了 AI 时代，我们需要修的&quot;路&quot;是什么？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-02-28T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.151Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="基础设施">
+<meta property="article:tag" content="技术思考">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI 时代的基建",
+  "url": "https://xiaoxiaduoyan.com/2026/02/28/ai-infrastructure/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-02-28T14:00:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.151Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/02/28/ai-infrastructure/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI 时代的基建',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">AI 时代的基建</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">AI 时代的基建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-28T14:00:00.000Z" title="发表于 2026-02-28 22:00:00">2026-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.151Z" title="更新于 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="修路的人"><a href="#修路的人" class="headerlink" title="修路的人"></a>修路的人</h2><p>小时候听过一句话：要想富，先修路。</p>
+<p>这话放到技术领域同样成立。每一次技术革命的爆发，背后都有一轮大规模的基础设施建设。蒸汽机时代修铁路，电气时代架电网，互联网时代铺光纤建数据中心。基建不性感，但没有它，再好的技术也跑不起来。</p>
+<p>现在轮到 AI 了。</p>
+<p>GPT 出来之后，所有人都在聊模型多聪明、能干什么。但很少有人认真聊过：<strong>要让 AI 真正跑起来，我们需要修什么路？</strong></p>
+<p>这篇文章想聊的就是这件事——AI 时代的基建，到底长什么样。</p>
+<h2 id="算力：最显眼的那一层"><a href="#算力：最显眼的那一层" class="headerlink" title="算力：最显眼的那一层"></a>算力：最显眼的那一层</h2><p>提到 AI 基建，大多数人第一反应是 GPU。没错，算力是最显眼、最烧钱的一层。英伟达的市值说明了一切。</p>
+<p>但算力的故事远不止”买更多卡”这么简单。</p>
+<p>训练一个大模型需要几千张 GPU 协同工作几个月，这背后是分布式计算、高速互联网络（InfiniBand&#x2F;NVLink）、大规模集群调度、故障恢复……每一项都是硬核工程。OpenAI 训练 GPT-4 的集群出过多少次故障、做了多少次 checkpoint 恢复，外面的人很难想象。</p>
+<p>而推理侧的挑战又完全不同。训练是一次性的（虽然很贵），但推理是持续的——每个用户的每次对话都在消耗算力。当你的产品有几亿用户时，推理成本才是真正的大头。所以你看到各家都在卷推理优化：量化、蒸馏、投机解码、KV Cache 优化……</p>
+<p><strong>但算力只是冰山一角。</strong> 就像互联网时代光有服务器不够，还需要 CDN、负载均衡、数据库一样，AI 时代光有 GPU 也远远不够。</p>
+<h2 id="数据：比算力更稀缺的资源"><a href="#数据：比算力更稀缺的资源" class="headerlink" title="数据：比算力更稀缺的资源"></a>数据：比算力更稀缺的资源</h2><p>有一个被反复验证的规律：<strong>数据的质量决定了模型的上限，算力只决定你能多快逼近这个上限。</strong></p>
+<p>互联网上的公开文本已经被刮得差不多了。各家模型公司都在为高质量数据发愁。你会看到一些看似荒诞的新闻——某公司花大价钱买下了一整个出版社的版权，某公司雇了几万人做数据标注，某公司用自己的模型生成合成数据再拿来训练。</p>
+<p>数据基建包含几个层面：</p>
+<p><strong>采集和清洗。</strong> 原始数据是脏的、重复的、有偏见的。把它变成可用的训练数据，需要一整套 pipeline：去重、过滤、脱敏、格式化。这些工作不光彩，但决定了模型的底色。</p>
+<p><strong>标注和对齐。</strong> RLHF（基于人类反馈的强化学习）需要大量高质量的人类偏好数据。标注员的水平直接影响模型的”三观”。这是一个劳动密集型的环节，也是最容易被低估的环节。</p>
+<p><strong>数据飞轮。</strong> 真正厉害的公司不是一次性搞定数据，而是建立了数据飞轮——用户使用产品产生数据，数据反哺模型，模型改善产品，产品吸引更多用户。ChatGPT 的数据飞轮已经转起来了，这是后来者最难追赶的壁垒。</p>
+<h2 id="模型服务：从实验室到生产环境"><a href="#模型服务：从实验室到生产环境" class="headerlink" title="模型服务：从实验室到生产环境"></a>模型服务：从实验室到生产环境</h2><p>训练出一个好模型只是开始。把它变成一个稳定、高效、可扩展的服务，又是另一个巨大的工程。</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/ai-infra-layers.png" alt="AI 基建层次架构"></p>
+<p>这里面有几个关键问题：</p>
+<p><strong>推理引擎。</strong> vLLM、TensorRT-LLM、SGLang……这些推理框架做的事情是：让同样的 GPU 能服务更多的请求。Continuous batching、PagedAttention、Speculative decoding——每一个优化都能带来几倍的吞吐提升。</p>
+<p><strong>模型路由。</strong> 不是所有请求都需要最大的模型。一个简单的问候用 GPT-4 回答是浪费。智能路由系统根据请求的复杂度，把它分发到合适的模型——简单的用小模型，复杂的用大模型，既省钱又快。</p>
+<p><strong>缓存和预计算。</strong> 很多请求是相似的。语义缓存可以把相似问题的答案直接返回，省掉推理开销。Prompt 前缀缓存可以复用 KV Cache，减少重复计算。</p>
+<p><strong>可观测性。</strong> 模型不是确定性系统，同样的输入可能给出不同的输出。你需要监控延迟、吞吐、错误率，还需要监控输出质量——有没有幻觉、有没有有害内容、有没有偏离预期。这比传统的 APM 复杂得多。</p>
+<h2 id="Agent-基础设施：被低估的新战场"><a href="#Agent-基础设施：被低估的新战场" class="headerlink" title="Agent 基础设施：被低估的新战场"></a>Agent 基础设施：被低估的新战场</h2><p>如果说大模型是 AI 时代的”发动机”，那 Agent 就是”整车”。而 Agent 要跑起来，需要自己的一套基建。</p>
+<p><strong>记忆系统。</strong> 我在上一篇文章里详细聊过这个。Agent 需要短期记忆（当前对话）、工作记忆（当前任务上下文）、长期记忆（用户偏好和历史知识）。现在大多数 Agent 的记忆还很原始——要么全塞进 context window，要么用 RAG 检索。未来需要更优雅的记忆架构。</p>
+<p><strong>工具生态。</strong> Agent 的能力取决于它能调用什么工具。浏览器、代码执行器、文件系统、API 调用……每一个工具都需要标准化的接口、权限控制、错误处理。MCP（Model Context Protocol）在尝试解决这个问题，但还很早期。</p>
+<p><strong>编排框架。</strong> 复杂任务需要多个 Agent 协作，或者一个 Agent 执行多步骤的工作流。LangChain、CrewAI、AutoGen 都在做这件事，但说实话，现在的编排框架还很粗糙。真正的挑战不是”怎么串起来”，而是”出错了怎么办”——重试、回滚、人工介入、部分恢复，这些在传统工作流引擎里已经解决的问题，在 Agent 领域还需要重新解决。</p>
+<p><strong>沙箱和安全。</strong> Agent 能执行代码、访问文件系统、操作浏览器——这意味着它有能力搞破坏。你需要沙箱来限制它的能力边界，需要审计日志来追踪它做了什么，需要人工审批机制来拦截高风险操作。</p>
+<h2 id="评估：AI-的”质检体系”"><a href="#评估：AI-的”质检体系”" class="headerlink" title="评估：AI 的”质检体系”"></a>评估：AI 的”质检体系”</h2><p>传统软件有单元测试、集成测试、压力测试。AI 系统的评估要难得多，因为输出是非确定性的，”正确”的定义本身就模糊。</p>
+<p>但没有评估体系，你就是在盲人摸象。</p>
+<p><strong>基准测试。</strong> MMLU、HumanEval、GSM8K……这些公开 benchmark 有用，但也有局限——模型可能在 benchmark 上刷分，在实际场景中拉胯。</p>
+<p><strong>领域评估。</strong> 每个具体应用都需要自己的评估集。你做客服机器人，就需要用真实的客服对话来评估；你做代码助手，就需要用真实的代码任务来评估。构建高质量的领域评估集，本身就是一项基建工作。</p>
+<p><strong>在线评估。</strong> A&#x2F;B 测试、用户满意度、任务完成率……这些指标需要在生产环境中持续收集。而且你需要区分”模型变好了”和”prompt 变好了”和”用户变了”——这比传统的 A&#x2F;B 测试复杂得多。</p>
+<p><strong>红队测试。</strong> 专门找模型的漏洞——能不能被诱导说出有害内容、能不能被绕过安全限制、会不会泄露训练数据。这是一个攻防对抗的过程，需要专门的团队和工具。</p>
+<h2 id="开发者视角：新时代的开发范式"><a href="#开发者视角：新时代的开发范式" class="headerlink" title="开发者视角：新时代的开发范式"></a>开发者视角：新时代的开发范式</h2><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/ai-infra-evolution.png" alt="基建演进时间线"></p>
+<p>作为一个开发者，我感受最深的是：<strong>AI 正在改变”写代码”这件事本身。</strong></p>
+<p>以前的开发范式是：写代码 → 编译 → 测试 → 部署。现在多了一个维度：<strong>写 prompt → 调模型 → 评估 → 迭代。</strong> 这不是替代，而是叠加。你的系统里既有确定性的代码逻辑，也有非确定性的模型调用，两者需要协同工作。</p>
+<p>这带来了新的基建需求：</p>
+<p><strong>Prompt 管理。</strong> Prompt 是新时代的”代码”，需要版本控制、A&#x2F;B 测试、灰度发布。但现在大多数团队还是把 prompt 硬编码在代码里，改一个 prompt 要发一次版。</p>
+<p><strong>模型网关。</strong> 你的应用可能同时调用多个模型提供商——OpenAI、Anthropic、本地部署的开源模型。你需要一个统一的网关来管理 API key、做负载均衡、处理降级、控制成本。</p>
+<p><strong>开发工具。</strong> IDE 里的 AI 助手（Copilot、Cursor）只是开始。未来的开发工具会深度集成 AI——不只是补全代码，而是理解你的整个项目、帮你做架构决策、自动写测试、自动做 code review。</p>
+<p><strong>成本管理。</strong> AI 调用是按 token 计费的，而且价格差异巨大——GPT-4 的价格是 GPT-3.5 的几十倍。你需要监控每个功能的 AI 成本，做预算控制，在质量和成本之间找平衡。</p>
+<h2 id="终局：像水电一样的-AI"><a href="#终局：像水电一样的-AI" class="headerlink" title="终局：像水电一样的 AI"></a>终局：像水电一样的 AI</h2><p>回到最开始的类比。</p>
+<p>电力刚出现的时候，每个工厂都自己建发电站。后来有了电网，电变成了公共服务——你不需要知道电是怎么发的，插上插头就能用。</p>
+<p>互联网也经历了类似的过程。从自建机房到托管，到云计算，到 Serverless——抽象层越来越高，开发者需要关心的底层细节越来越少。</p>
+<p><strong>AI 基建的终局，也应该是这样。</strong></p>
+<p>开发者不需要关心 GPU 调度、模型部署、推理优化。他只需要说”我需要一个能理解自然语言的接口”或者”我需要一个能分析图片的能力”，基建层自动搞定一切。</p>
+<p>我们现在还在”自建发电站”的阶段。各家公司都在自己搭 GPU 集群、自己训模型、自己建推理服务。这很正常——新技术的早期总是这样。但趋势是清晰的：<strong>标准化、服务化、平民化。</strong></p>
+<p>未来五年，AI 基建会经历一轮快速的标准化。就像 AWS 定义了云计算的基本形态一样，会有公司定义 AI 基建的基本形态。到那时候，”用 AI”会像”用数据库”一样自然——你不需要成为 AI 专家，就能在你的产品里用上 AI 能力。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>每个时代的基建都不性感。修铁路的人不如坐火车的人光鲜，建数据中心的人不如做 App 的人出名。但没有他们，火车跑不起来，App 也打不开。</p>
+<p>AI 时代也一样。聚光灯打在模型和应用上，但真正决定这个时代能走多远的，是底下那些不起眼的基建——数据管道、推理引擎、Agent 框架、评估体系、开发工具。</p>
+<p><strong>要想富，先修路。这句话，在 AI 时代依然成立。</strong></p>
+<p>如果你是一个开发者，我的建议是：不要只追模型的热点，也看看基建层在发生什么。那里有更持久的机会，也有更扎实的价值。</p>
+<p>毕竟，潮水退去之后，留下来的是基础设施。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/02/28/ai-infrastructure/">https://xiaoxiaduoyan.com/2026/02/28/ai-infrastructure/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xiaoxiaduoyan.com" target="_blank">森哥 Ideas</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/">技术思考</a><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/">基础设施</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/02/28/ai-company-model/" title="AI 时代的新公司模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">AI 时代的新公司模式</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-eyes-and-hands/" title="如何让Agent长出自己的眼和手"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">如何让Agent长出自己的眼和手</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/01/ai-social-revolution/" title="AI 会让社会发生怎样的变革"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-01</div><div class="info-item-2">AI 会让社会发生怎样的变革</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-eyes-and-hands/" title="如何让Agent长出自己的眼和手"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">如何让Agent长出自己的眼和手</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management/" title="谈谈超级大模型时代的Agent记忆管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">谈谈超级大模型时代的Agent记忆管理</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/ai-company-model/" title="AI 时代的新公司模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">AI 时代的新公司模式</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/ai-engineer-concepts-guide/" title="AI 工程师必须掌握的 30 个核心概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AI 工程师必须掌握的 30 个核心概念</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/19/ai-revolution-roles/" title="AI 时代的岗位革命：耕地的牛，还是无牛的田？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-19</div><div class="info-item-2">AI 时代的岗位革命：耕地的牛，还是无牛的田？</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E8%B7%AF%E7%9A%84%E4%BA%BA"><span class="toc-number">1.</span> <span class="toc-text">修路的人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E5%8A%9B%EF%BC%9A%E6%9C%80%E6%98%BE%E7%9C%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%B1%82"><span class="toc-number">2.</span> <span class="toc-text">算力：最显眼的那一层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%EF%BC%9A%E6%AF%94%E7%AE%97%E5%8A%9B%E6%9B%B4%E7%A8%80%E7%BC%BA%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">数据：比算力更稀缺的资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%EF%BC%9A%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%88%B0%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83"><span class="toc-number">4.</span> <span class="toc-text">模型服务：从实验室到生产环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%EF%BC%9A%E8%A2%AB%E4%BD%8E%E4%BC%B0%E7%9A%84%E6%96%B0%E6%88%98%E5%9C%BA"><span class="toc-number">5.</span> <span class="toc-text">Agent 基础设施：被低估的新战场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0%EF%BC%9AAI-%E7%9A%84%E2%80%9D%E8%B4%A8%E6%A3%80%E4%BD%93%E7%B3%BB%E2%80%9D"><span class="toc-number">6.</span> <span class="toc-text">评估：AI 的”质检体系”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%86%E8%A7%92%EF%BC%9A%E6%96%B0%E6%97%B6%E4%BB%A3%E7%9A%84%E5%BC%80%E5%8F%91%E8%8C%83%E5%BC%8F"><span class="toc-number">7.</span> <span class="toc-text">开发者视角：新时代的开发范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%88%E5%B1%80%EF%BC%9A%E5%83%8F%E6%B0%B4%E7%94%B5%E4%B8%80%E6%A0%B7%E7%9A%84-AI"><span class="toc-number">8.</span> <span class="toc-text">终局：像水电一样的 AI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">9.</span> <span class="toc-text">写在最后</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

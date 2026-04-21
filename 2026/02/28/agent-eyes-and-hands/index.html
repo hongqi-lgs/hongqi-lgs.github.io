@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>如何让Agent长出自己的眼和手 | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Agent 不能只会&quot;说&quot;，还得能&quot;看&quot;和&quot;做&quot;。从实践出发，聊聊如何给 Agent 装上眼睛和双手。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何让Agent长出自己的眼和手">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="Agent 不能只会&quot;说&quot;，还得能&quot;看&quot;和&quot;做&quot;。从实践出发，聊聊如何给 Agent 装上眼睛和双手。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-02-28T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.149Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="技术思考">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "如何让Agent长出自己的眼和手",
+  "url": "https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-02-28T12:00:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.149Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何让Agent长出自己的眼和手',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">如何让Agent长出自己的眼和手</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">如何让Agent长出自己的眼和手</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-28T12:00:00.000Z" title="发表于 2026-02-28 20:00:00">2026-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.149Z" title="更新于 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="一个会说但不会做的助手"><a href="#一个会说但不会做的助手" class="headerlink" title="一个会说但不会做的助手"></a>一个会说但不会做的助手</h2><p>你有没有遇到过这种情况：你问 AI 一个问题，它给你一段完美的回答，但你需要自己去执行每一步。</p>
+<p>“帮我把这个 bug 修了。”</p>
+<p>它会告诉你：打开某个文件，找到第 42 行，把 <code>foo</code> 改成 <code>bar</code>，然后运行 <code>npm test</code> 验证。</p>
+<p>说得头头是道。但它自己不动手。</p>
+<p>这就像你雇了一个顾问，他坐在旁边指点江山，但从来不碰键盘。你得自己打开编辑器、找到那一行、改完、跑测试、看结果、再回来告诉他”改完了，但测试还是挂了”。然后他再给你下一步建议。</p>
+<p><strong>来回折腾几次，你就会想：你能不能自己来？</strong></p>
+<p>这就是为什么 Agent 需要”眼”和”手”——不只是语言能力，还需要感知世界的能力和改变世界的能力。</p>
+<h2 id="眼：让-Agent-看见世界"><a href="#眼：让-Agent-看见世界" class="headerlink" title="眼：让 Agent 看见世界"></a>眼：让 Agent 看见世界</h2><p>一个没有感知能力的 Agent，就像一个蒙着眼睛的人。你得不停地口述周围的环境，它才能给出建议。效率极低，而且你描述的信息永远是有损的。</p>
+<h3 id="浏览器就是-Agent-的眼睛"><a href="#浏览器就是-Agent-的眼睛" class="headerlink" title="浏览器就是 Agent 的眼睛"></a>浏览器就是 Agent 的眼睛</h3><p>我最近的实践中，给 Agent 接入了一个浏览器工具。它能做什么呢？</p>
+<ul>
+<li><strong>打开网页</strong>：直接访问 URL，看到页面内容</li>
+<li><strong>获取快照（Snapshot）</strong>：拿到页面的 accessibility tree——一种结构化的页面描述，比截图更适合 AI 理解</li>
+<li><strong>截图</strong>：当需要视觉判断时，直接截取屏幕画面</li>
+<li><strong>执行 JavaScript</strong>：在页面上下文中运行代码，获取 DOM 信息或触发操作</li>
+</ul>
+<p>这里面最关键的是 <strong>Snapshot</strong>。</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/agent-perception.png" alt="Agent 感知能力架构"></p>
+<p>很多人第一反应是给 Agent 截图，让多模态模型”看”图片。这当然可以，但效率很低——一张截图可能要消耗几千 token，而且模型从图片中提取结构化信息的准确率远不如直接读结构化数据。</p>
+<p>Accessibility tree 是浏览器为无障碍功能维护的一棵树，它描述了页面上每个可交互元素的角色、名称和状态。对 Agent 来说，这就是一张”语义地图”——它不需要知道按钮是什么颜色、在屏幕哪个位置，它只需要知道”这里有一个叫’提交’的按钮，ref 是 e42”。</p>
+<p><strong>Snapshot 是 AI 友好的，截图是人类友好的。</strong> 给 Agent 用 Snapshot，给人类看截图。</p>
+<h3 id="不只是浏览器"><a href="#不只是浏览器" class="headerlink" title="不只是浏览器"></a>不只是浏览器</h3><p>眼睛不只是浏览器。Agent 的感知能力可以扩展到很多维度：</p>
+<ul>
+<li><strong>文件系统</strong>：读取代码文件、配置文件、日志文件</li>
+<li><strong>终端输出</strong>：执行命令后看到 stdout 和 stderr</li>
+<li><strong>API 响应</strong>：调用接口后解析返回数据</li>
+<li><strong>Git 状态</strong>：知道当前分支、未提交的改动、最近的 commit</li>
+</ul>
+<p>每一种感知通道都在告诉 Agent：<strong>世界现在是什么样子的。</strong></p>
+<h2 id="手：让-Agent-改变世界"><a href="#手：让-Agent-改变世界" class="headerlink" title="手：让 Agent 改变世界"></a>手：让 Agent 改变世界</h2><p>光看不够，还得能动手。</p>
+<h3 id="脚本执行是最通用的”手”"><a href="#脚本执行是最通用的”手”" class="headerlink" title="脚本执行是最通用的”手”"></a>脚本执行是最通用的”手”</h3><p>如果只能给 Agent 一种行动能力，我会选<strong>执行 shell 脚本</strong>。</p>
+<p>为什么？因为 shell 是万能胶水。你能用它：</p>
+<ul>
+<li>创建、修改、删除文件</li>
+<li>安装依赖、运行构建、执行测试</li>
+<li>调用 API、下载资源、处理数据</li>
+<li>操作 Git、部署代码、管理进程</li>
+</ul>
+<p>一个能执行 shell 脚本的 Agent，理论上能做任何程序员能做的事。</p>
+<h3 id="但粗粒度不够"><a href="#但粗粒度不够" class="headerlink" title="但粗粒度不够"></a>但粗粒度不够</h3><p>纯 shell 有个问题：它太底层了。让 Agent 用 <code>sed</code> 做文本替换，经常会因为转义字符、正则表达式的边界情况而翻车。</p>
+<p>所以更好的做法是提供<strong>多层次的行动能力</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>工具</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>精细操作</strong></td>
+<td>文件读写、搜索替换</td>
+<td>修改代码、更新配置</td>
+</tr>
+<tr>
+<td><strong>中等操作</strong></td>
+<td>浏览器交互（点击、填写、导航）</td>
+<td>Web 操作、测试验证</td>
+</tr>
+<tr>
+<td><strong>粗粒度操作</strong></td>
+<td>Shell 脚本</td>
+<td>构建、部署、系统管理</td>
+</tr>
+</tbody></table>
+<p>精细操作减少出错概率，粗粒度操作保证灵活性。两者结合，Agent 才能既稳又快。</p>
+<h3 id="一个真实的例子"><a href="#一个真实的例子" class="headerlink" title="一个真实的例子"></a>一个真实的例子</h3><p>我让 Agent 帮我搭这个博客的时候，它的”手”是这样协作的：</p>
+<ol>
+<li><strong>写文件</strong>（精细操作）：创建 Markdown 文章、修改配置文件</li>
+<li><strong>执行脚本</strong>（粗粒度）：<code>hexo generate</code> 构建、<code>git push</code> 部署</li>
+<li><strong>浏览器操作</strong>（中等操作）：打开部署后的页面，检查渲染效果</li>
+<li><strong>搜索替换</strong>（精细操作）：发现 CSS 问题后，精准修改样式文件</li>
+</ol>
+<p>整个流程它自己跑完，我只需要最后刷新页面看效果。</p>
+<h2 id="眼手协调：感知-决策-行动的闭环"><a href="#眼手协调：感知-决策-行动的闭环" class="headerlink" title="眼手协调：感知-决策-行动的闭环"></a>眼手协调：感知-决策-行动的闭环</h2><p>眼和手单独存在没有意义，关键是它们要形成<strong>闭环</strong>。</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/agent-loop.png" alt="感知-决策-行动闭环"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">感知（看到了什么）→ 决策（应该做什么）→ 行动（去做）→ 感知（做完后世界变了吗）→ ...</span><br></pre></td></tr></table></figure>
+
+<p>这个闭环听起来简单，但实现起来有很多细节：</p>
+<h3 id="1-行动后必须验证"><a href="#1-行动后必须验证" class="headerlink" title="1. 行动后必须验证"></a>1. 行动后必须验证</h3><p>Agent 执行了一个操作后，不能就假设成功了。它需要<strong>回头看一眼</strong>：</p>
+<ul>
+<li>改了代码？跑一下测试。</li>
+<li>部署了网站？打开浏览器看看。</li>
+<li>安装了依赖？检查 <code>node_modules</code> 是否存在。</li>
+</ul>
+<p><strong>不验证的行动是危险的。</strong> 这就像闭着眼睛过马路——你迈出了步子，但不知道有没有车。</p>
+<h3 id="2-错误是信息，不是终点"><a href="#2-错误是信息，不是终点" class="headerlink" title="2. 错误是信息，不是终点"></a>2. 错误是信息，不是终点</h3><p>当 Agent 执行脚本报错时，错误信息本身就是最有价值的感知输入。一个好的 Agent 会：</p>
+<ul>
+<li>读取错误信息</li>
+<li>分析原因</li>
+<li>调整方案</li>
+<li>重新执行</li>
+</ul>
+<p>而不是直接告诉你”执行失败了，请手动处理”。</p>
+<h3 id="3-知道什么时候该停"><a href="#3-知道什么时候该停" class="headerlink" title="3. 知道什么时候该停"></a>3. 知道什么时候该停</h3><p>闭环不能无限转下去。Agent 需要判断：</p>
+<ul>
+<li>任务完成了吗？</li>
+<li>是不是陷入了死循环？</li>
+<li>是不是应该问用户确认？</li>
+</ul>
+<p>这是一种<strong>元认知能力</strong>——不只是做事，还要知道自己在做什么、做得怎么样。</p>
+<h2 id="当前方案的局限"><a href="#当前方案的局限" class="headerlink" title="当前方案的局限"></a>当前方案的局限</h2><p>说了这么多好处，也得聊聊现实中的坑。</p>
+<h3 id="安全边界模糊"><a href="#安全边界模糊" class="headerlink" title="安全边界模糊"></a>安全边界模糊</h3><p>Agent 能执行 shell 脚本，意味着它理论上能 <code>rm -rf /</code>。虽然没有哪个正常的 Agent 会这么做，但<strong>权限控制</strong>是一个必须认真对待的问题。</p>
+<p>目前的做法通常是：</p>
+<ul>
+<li>限制工作目录</li>
+<li>禁止危险命令</li>
+<li>关键操作需要人工确认</li>
+</ul>
+<p>但这些都是打补丁。更根本的解决方案可能是<strong>沙箱化执行环境</strong>——Agent 在一个隔离的容器里操作，即使出错也不会影响宿主系统。</p>
+<h3 id="感知带宽有限"><a href="#感知带宽有限" class="headerlink" title="感知带宽有限"></a>感知带宽有限</h3><p>即使有了浏览器和文件系统，Agent 的感知带宽仍然远低于人类。人类一眼就能看出”这个页面布局不对”，Agent 需要解析整个 DOM 树才能得出类似的判断。</p>
+<p><strong>多模态模型在进步，但还没到”一眼看懂”的程度。</strong> 目前的最佳实践是结构化感知（Snapshot）和视觉感知（截图）结合使用。</p>
+<h3 id="长任务的上下文丢失"><a href="#长任务的上下文丢失" class="headerlink" title="长任务的上下文丢失"></a>长任务的上下文丢失</h3><p>一个复杂任务可能需要几十步操作。随着步骤增多，早期的感知信息会被挤出上下文窗口。Agent 可能忘了自己三步之前看到了什么。</p>
+<p>这又回到了记忆管理的问题——眼睛看到的东西，也需要被记住。</p>
+<h2 id="未来：更丰富的感知和更精准的行动"><a href="#未来：更丰富的感知和更精准的行动" class="headerlink" title="未来：更丰富的感知和更精准的行动"></a>未来：更丰富的感知和更精准的行动</h2><p>我觉得 Agent 的眼和手会沿着几个方向进化：</p>
+<h3 id="感知侧"><a href="#感知侧" class="headerlink" title="感知侧"></a>感知侧</h3><ul>
+<li><strong>实时视觉理解</strong>：不只是截图，而是像人一样”看”屏幕，理解布局、颜色、动画</li>
+<li><strong>多源信息融合</strong>：同时处理代码、日志、浏览器、数据库等多个信息源</li>
+<li><strong>主动探索</strong>：不等你告诉它看哪里，自己去翻文件、查日志、搜文档</li>
+</ul>
+<h3 id="行动侧"><a href="#行动侧" class="headerlink" title="行动侧"></a>行动侧</h3><ul>
+<li><strong>更精细的操作</strong>：像人一样操作 IDE——重构代码、运行调试器、设置断点</li>
+<li><strong>跨系统协作</strong>：同时操作多个服务、多个环境、多个工具链</li>
+<li><strong>物理世界交互</strong>：通过 IoT 设备、机器人接口，从数字世界延伸到物理世界</li>
+</ul>
+<h3 id="协调侧"><a href="#协调侧" class="headerlink" title="协调侧"></a>协调侧</h3><ul>
+<li><strong>自适应策略</strong>：根据任务复杂度自动选择感知精度和行动粒度</li>
+<li><strong>并行操作</strong>：同时执行多个子任务，而不是串行等待</li>
+<li><strong>协作能力</strong>：多个 Agent 分工合作，一个负责前端，一个负责后端，一个负责测试</li>
+</ul>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>回到最初的问题：如何让 Agent 长出自己的眼和手？</p>
+<p>技术上，答案是给它接入浏览器、文件系统、终端、API 等工具。但更深层的答案是：<strong>让它形成感知-决策-行动的闭环，并且在这个闭环中不断学习和改进。</strong></p>
+<p>一个只会说的 Agent 是顾问。一个能看能做的 Agent 是同事。一个能看、能做、还能从错误中学习的 Agent，才是真正的伙伴。</p>
+<p>我们正在从”顾问时代”走向”同事时代”。这条路还很长，但每一步都让人兴奋。</p>
+<hr>
+<p><em>这篇文章的搭建、部署、调试过程，全部由一个有眼有手的 Agent 完成。它看到了页面白屏，自己查了原因，改了配置，重新部署。这就是眼和手的力量。</em></p>
+<p><em>如果你也在探索 Agent 的能力边界，欢迎在 <a target="_blank" rel="noopener" href="https://twitter.com/xiaosen_lu">Twitter</a> 上找我聊。</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands/">https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xiaoxiaduoyan.com" target="_blank">森哥 Ideas</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Agent/">Agent</a><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/">技术思考</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/02/28/ai-infrastructure/" title="AI 时代的基建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">AI 时代的基建</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management/" title="谈谈超级大模型时代的Agent记忆管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">谈谈超级大模型时代的Agent记忆管理</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management/" title="谈谈超级大模型时代的Agent记忆管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">谈谈超级大模型时代的Agent记忆管理</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/ai-infrastructure/" title="AI 时代的基建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">AI 时代的基建</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future/" title="AI支付的未来：从可编程账户到Agent自主支付"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">AI支付的未来：从可编程账户到Agent自主支付</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/01/ai-social-revolution/" title="AI 会让社会发生怎样的变革"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-01</div><div class="info-item-2">AI 会让社会发生怎样的变革</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/ai-company-model/" title="AI 时代的新公司模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">AI 时代的新公司模式</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/02/rust-ai-language/" title="Rust 会是 AI 时代的最好的编程语言吗？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-02</div><div class="info-item-2">Rust 会是 AI 时代的最好的编程语言吗？</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BC%9A%E8%AF%B4%E4%BD%86%E4%B8%8D%E4%BC%9A%E5%81%9A%E7%9A%84%E5%8A%A9%E6%89%8B"><span class="toc-number">1.</span> <span class="toc-text">一个会说但不会做的助手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%BC%EF%BC%9A%E8%AE%A9-Agent-%E7%9C%8B%E8%A7%81%E4%B8%96%E7%95%8C"><span class="toc-number">2.</span> <span class="toc-text">眼：让 Agent 看见世界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B0%B1%E6%98%AF-Agent-%E7%9A%84%E7%9C%BC%E7%9D%9B"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器就是 Agent 的眼睛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AA%E6%98%AF%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">不只是浏览器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%EF%BC%9A%E8%AE%A9-Agent-%E6%94%B9%E5%8F%98%E4%B8%96%E7%95%8C"><span class="toc-number">3.</span> <span class="toc-text">手：让 Agent 改变世界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E6%98%AF%E6%9C%80%E9%80%9A%E7%94%A8%E7%9A%84%E2%80%9D%E6%89%8B%E2%80%9D"><span class="toc-number">3.1.</span> <span class="toc-text">脚本执行是最通用的”手”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%86%E7%B2%97%E7%B2%92%E5%BA%A6%E4%B8%8D%E5%A4%9F"><span class="toc-number">3.2.</span> <span class="toc-text">但粗粒度不够</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">3.3.</span> <span class="toc-text">一个真实的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%BC%E6%89%8B%E5%8D%8F%E8%B0%83%EF%BC%9A%E6%84%9F%E7%9F%A5-%E5%86%B3%E7%AD%96-%E8%A1%8C%E5%8A%A8%E7%9A%84%E9%97%AD%E7%8E%AF"><span class="toc-number">4.</span> <span class="toc-text">眼手协调：感知-决策-行动的闭环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A1%8C%E5%8A%A8%E5%90%8E%E5%BF%85%E9%A1%BB%E9%AA%8C%E8%AF%81"><span class="toc-number">4.1.</span> <span class="toc-text">1. 行动后必须验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%94%99%E8%AF%AF%E6%98%AF%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%B8%8D%E6%98%AF%E7%BB%88%E7%82%B9"><span class="toc-number">4.2.</span> <span class="toc-text">2. 错误是信息，不是终点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%AF%A5%E5%81%9C"><span class="toc-number">4.3.</span> <span class="toc-text">3. 知道什么时候该停</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%B1%80%E9%99%90"><span class="toc-number">5.</span> <span class="toc-text">当前方案的局限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%BE%B9%E7%95%8C%E6%A8%A1%E7%B3%8A"><span class="toc-number">5.1.</span> <span class="toc-text">安全边界模糊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%9F%E7%9F%A5%E5%B8%A6%E5%AE%BD%E6%9C%89%E9%99%90"><span class="toc-number">5.2.</span> <span class="toc-text">感知带宽有限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%A2%E5%A4%B1"><span class="toc-number">5.3.</span> <span class="toc-text">长任务的上下文丢失</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%EF%BC%9A%E6%9B%B4%E4%B8%B0%E5%AF%8C%E7%9A%84%E6%84%9F%E7%9F%A5%E5%92%8C%E6%9B%B4%E7%B2%BE%E5%87%86%E7%9A%84%E8%A1%8C%E5%8A%A8"><span class="toc-number">6.</span> <span class="toc-text">未来：更丰富的感知和更精准的行动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%9F%E7%9F%A5%E4%BE%A7"><span class="toc-number">6.1.</span> <span class="toc-text">感知侧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%8A%A8%E4%BE%A7"><span class="toc-number">6.2.</span> <span class="toc-text">行动侧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%B0%83%E4%BE%A7"><span class="toc-number">6.3.</span> <span class="toc-text">协调侧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">7.</span> <span class="toc-text">写在最后</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

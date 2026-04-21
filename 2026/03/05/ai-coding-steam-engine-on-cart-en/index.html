@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI Coding Today: Steam Engines Pulling Carriages | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="We use AI to generate code, but still rely on project structures, dependency management, and testing methods from a century ago. This isn&#39;t a revolution—it&#39;s a steam engine pulling a carriage.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Coding Today: Steam Engines Pulling Carriages">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-en/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="We use AI to generate code, but still rely on project structures, dependency management, and testing methods from a century ago. This isn&#39;t a revolution—it&#39;s a steam engine pulling a carriage.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-05T03:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.150Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="English">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Technology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Coding Today: Steam Engines Pulling Carriages",
+  "url": "https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-en/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-05T03:30:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.150Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI Coding Today: Steam Engines Pulling Carriages',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">AI Coding Today: Steam Engines Pulling Carriages</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">AI Coding Today: Steam Engines Pulling Carriages</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-05T03:30:00.000Z" title="Created 2026-03-05 11:30:00">2026-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.150Z" title="Updated 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/English/">English</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="A-Real-Scenario"><a href="#A-Real-Scenario" class="headerlink" title="A Real Scenario"></a>A Real Scenario</h2><p>Yesterday, I asked Cursor to refactor a Node.js project. It quickly delivered beautiful code: decoupled logic, optimized performance, and added type annotations.</p>
+<p>Then I spent two hours:</p>
+<ul>
+<li>Manually adjusting 40+ <code>import</code> paths</li>
+<li>Re-running unit tests (because the AI didn’t know I used Jest vs. Mocha)</li>
+<li>Resolving three version conflicts (AI used new APIs, but my dependencies were old)</li>
+<li>Rewriting the README (AI-generated docs weren’t usable)</li>
+</ul>
+<p>AI wrote the code in 3 minutes. I spent 2 hours cleaning up.</p>
+<p>This reminded me of a story from history class: in the early 19th century, the British invented steam locomotives, but railways weren’t widespread yet. So what did they do? They mounted steam engines on horse carriages.</p>
+<p>The result? Carriage wheels couldn’t handle the engine’s weight, roads got destroyed, and the turning radius was worse than horses.</p>
+<p><strong>That’s AI Coding today: 2025 AI pulling a 1995 carriage.</strong></p>
+<hr>
+<h2 id="What-Are-Our-“Carriages”"><a href="#What-Are-Our-“Carriages”" class="headerlink" title="What Are Our “Carriages”?"></a>What Are Our “Carriages”?</h2><h3 id="1-File-Systems-AI’s-Nightmare"><a href="#1-File-Systems-AI’s-Nightmare" class="headerlink" title="1. File Systems: AI’s Nightmare"></a>1. File Systems: AI’s Nightmare</h3><p>AI generates code fast, but it doesn’t know:</p>
+<ul>
+<li>Does your project use <code>src/</code> or <code>lib/</code>?</li>
+<li>Are utility functions in <code>utils/</code> or <code>helpers/</code>?</li>
+<li>Is the config file named <code>config.js</code> or <code>settings.json</code>?</li>
+</ul>
+<p>Every time AI generates code, you have to:</p>
+<ol>
+<li>Copy code to the correct file</li>
+<li>Adjust <code>import</code> paths</li>
+<li>Manually merge with existing code</li>
+</ol>
+<p><strong>This isn’t AI’s fault—it’s the file system’s.</strong></p>
+<p>File systems were designed for humans in the 1960s: when you see <code>src/components/Button.tsx</code>, your brain instantly knows it’s a button component.</p>
+<p>But AI just sees a string. It doesn’t know if <code>Button.tsx</code> and <code>button.tsx</code> are the same file (they’re not on Linux, but are on Windows).</p>
+<h3 id="2-Dependency-Management-Version-Hell"><a href="#2-Dependency-Management-Version-Hell" class="headerlink" title="2. Dependency Management: Version Hell"></a>2. Dependency Management: Version Hell</h3><p>AI gives you this code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useQuery &#125; <span class="keyword">from</span> <span class="string">&#x27;@tanstack/react-query&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">UserList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; data &#125; = <span class="title function_">useQuery</span>(<span class="string">&#x27;users&#x27;</span>, fetchUsers)</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Looks fine. But:</p>
+<ul>
+<li>Your project uses React Query v3, this is v4 syntax</li>
+<li>You also have <code>swr</code> installed, now you have two data-fetching libraries</li>
+<li>AI doesn’t know if you use npm, yarn, or pnpm</li>
+</ul>
+<p>You need to:</p>
+<ol>
+<li>Check <code>package.json</code></li>
+<li>Upgrade dependencies (or downgrade AI’s code)</li>
+<li>Reinstall</li>
+<li>Pray there are no breaking changes</li>
+</ol>
+<p><strong>Dependency management was designed for manual coding</strong>, assuming humans carefully read changelogs and upgrade dependencies one by one. AI generates code 100× faster than humans, but dependency management is still stuck in 2010.</p>
+<h3 id="3-Testing-AI-Doesn’t-Know-What-You’re-Testing"><a href="#3-Testing-AI-Doesn’t-Know-What-You’re-Testing" class="headerlink" title="3. Testing: AI Doesn’t Know What You’re Testing"></a>3. Testing: AI Doesn’t Know What You’re Testing</h3><p>AI finishes the code, you ask: “Write tests for this.”</p>
+<p>It generates:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;Calculator&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&#x27;should add two numbers&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(<span class="title function_">add</span>(<span class="number">1</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">3</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>But:</p>
+<ul>
+<li>You use Vitest, not Jest (syntax is similar, but imports differ)</li>
+<li>Your project convention: tests go in <code>__tests__/</code> directory, not <code>.test.js</code> suffix</li>
+<li>Your CI requires &gt;80% coverage, AI only tested the simplest case</li>
+</ul>
+<p><strong>Testing systems assume you “write tests after code”</strong>, but AI Coding’s rhythm is “generate and test simultaneously.” We need real-time validation, not post-hoc homework.</p>
+<h3 id="4-Git-AI-Doesn’t-Understand-Your-Commit-Conventions"><a href="#4-Git-AI-Doesn’t-Understand-Your-Commit-Conventions" class="headerlink" title="4. Git: AI Doesn’t Understand Your Commit Conventions"></a>4. Git: AI Doesn’t Understand Your Commit Conventions</h3><p>AI modified 10 files, now you need to commit.</p>
+<p>But your team’s convention:</p>
+<ul>
+<li>Commit messages must start with <code>feat:</code> &#x2F; <code>fix:</code></li>
+<li>Each commit changes only one feature</li>
+<li>Must link to Jira tickets</li>
+</ul>
+<p>AI doesn’t know this. It just modifies code, doesn’t care how you commit.</p>
+<p>You either manually split commits (time-consuming) or do one big commit (get yelled at in code review).</p>
+<hr>
+<h2 id="Why-Is-This-Happening"><a href="#Why-Is-This-Happening" class="headerlink" title="Why Is This Happening?"></a>Why Is This Happening?</h2><p>Because our development toolchain was designed for <strong>manual human programming</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Traditional Assumption</th>
+<th>AI Coding Reality</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Programmers write line by line</td>
+<td>AI generates hundreds of lines at once</td>
+</tr>
+<tr>
+<td>Read existing code before modifying</td>
+<td>AI only sees context window (limited)</td>
+</tr>
+<tr>
+<td>Understand overall project structure</td>
+<td>AI has limited architectural understanding</td>
+</tr>
+<tr>
+<td>Remember previous modifications</td>
+<td>AI restarts with each conversation</td>
+</tr>
+<tr>
+<td>Write slowly, test slowly</td>
+<td>AI generates fast, humans clean up slowly</td>
+</tr>
+</tbody></table>
+<p><strong>We’re running a 21st-century engine on 20th-century roads.</strong></p>
+<hr>
+<h2 id="What-Would-True-AI-Native-Development-Look-Like"><a href="#What-Would-True-AI-Native-Development-Look-Like" class="headerlink" title="What Would True AI-Native Development Look Like?"></a>What Would True AI-Native Development Look Like?</h2><h3 id="1-Ditch-File-Systems-Embrace-Knowledge-Graphs"><a href="#1-Ditch-File-Systems-Embrace-Knowledge-Graphs" class="headerlink" title="1. Ditch File Systems, Embrace Knowledge Graphs"></a>1. Ditch File Systems, Embrace Knowledge Graphs</h3><p>Instead of <code>src/utils/formatDate.js</code>, use:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Knowledge Graph:</span><br><span class="line">- [Function: formatDate]</span><br><span class="line">  - Type: utility function</span><br><span class="line">  - Dependencies: [dayjs]</span><br><span class="line">  - Used by: [UserProfile, OrderList]</span><br></pre></td></tr></table></figure>
+
+<p>AI doesn’t need to remember paths, it just needs to know: “<code>formatDate</code> is a utility function, depends on dayjs, used in UserProfile.”</p>
+<p>File systems are just <strong>serialized forms</strong> of knowledge graphs (so Git can track them), but shouldn’t be the primary interface for developers and AI.</p>
+<h3 id="2-Declarative-Dependencies"><a href="#2-Declarative-Dependencies" class="headerlink" title="2. Declarative Dependencies"></a>2. Declarative Dependencies</h3><p>Instead of <code>package.json</code>, use:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">I need:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">Data fetching:</span> <span class="string">fast,</span> <span class="string">supports</span> <span class="string">caching,</span> <span class="string">TypeScript-friendly</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">State management:</span> <span class="string">simple,</span> <span class="string">minimal</span> <span class="string">boilerplate</span></span><br><span class="line"></span><br><span class="line"><span class="attr">AI recommends:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">TanStack</span> <span class="string">Query</span> <span class="string">v5</span> <span class="string">(meets</span> <span class="string">your</span> <span class="string">needs)</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Version</span> <span class="string">compatibility</span> <span class="string">handled</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">TypeScript</span> <span class="string">configured</span></span><br></pre></td></tr></table></figure>
+
+<p>AI selects dependencies based on your <strong>intent</strong>, not you manually searching, comparing, installing, configuring.</p>
+<h3 id="3-Real-Time-Validation-Over-Unit-Tests"><a href="#3-Real-Time-Validation-Over-Unit-Tests" class="headerlink" title="3. Real-Time Validation Over Unit Tests"></a>3. Real-Time Validation Over Unit Tests</h3><p>Instead of writing <code>add.test.js</code>, use:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Real-time constraints:</span><br><span class="line">  - add(1, 2) must equal 3</span><br><span class="line">  - add(negative numbers) must have defined behavior</span><br><span class="line">  - Performance: 1000 calls &lt; 10ms</span><br></pre></td></tr></table></figure>
+
+<p>AI <strong>checks these constraints in real-time</strong> while generating code, not generate code → write tests → run tests → fail → fix code.</p>
+<h3 id="4-AI-Manages-Version-Control-Directly"><a href="#4-AI-Manages-Version-Control-Directly" class="headerlink" title="4. AI Manages Version Control Directly"></a>4. AI Manages Version Control Directly</h3><p>Instead of manual commits, use:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AI:</span><br><span class="line">  - Feature: add user search</span><br><span class="line">  - Files affected: 3</span><br><span class="line">  - Linked to: JIRA-1234</span><br><span class="line">  - Risk: medium (modified core query logic)</span><br><span class="line">  - Suggestion: deploy to staging first</span><br></pre></td></tr></table></figure>
+
+<p>AI auto-generates compliant commit messages, auto-splits commits, auto-links issues.</p>
+<hr>
+<h2 id="How-Far-Are-We-from-AI-Native"><a href="#How-Far-Are-We-from-AI-Native" class="headerlink" title="How Far Are We from AI-Native?"></a>How Far Are We from AI-Native?</h2><p><strong>Technically: 3-5 years.</strong></p>
+<p>There are already early attempts:</p>
+<ul>
+<li>Replit’s Agent: you don’t manage file paths, the Agent finds them</li>
+<li>val.town: code lives in the cloud, dependencies auto-handled</li>
+<li>Cursor’s Composer: can edit multiple files simultaneously</li>
+</ul>
+<p>But these are “better carriages,” not trains.</p>
+<p><strong>What does a real train need?</strong></p>
+<ol>
+<li><strong>New project organization</strong> (not file systems)</li>
+<li><strong>New dependency management</strong> (not package.json)</li>
+<li><strong>New validation mechanisms</strong> (not unit tests)</li>
+<li><strong>New collaboration methods</strong> (not Git + PR)</li>
+</ol>
+<p>This requires <strong>rebuilding the entire ecosystem</strong>, not something a single AI editor can solve alone.</p>
+<hr>
+<h2 id="What-Can-We-Do-Now"><a href="#What-Can-We-Do-Now" class="headerlink" title="What Can We Do Now?"></a>What Can We Do Now?</h2><p>Before the new ecosystem matures, we can:</p>
+<h3 id="1-Establish-AI-Friendly-Project-Conventions"><a href="#1-Establish-AI-Friendly-Project-Conventions" class="headerlink" title="1. Establish AI-Friendly Project Conventions"></a>1. Establish AI-Friendly Project Conventions</h3><p><strong>Bad:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">  src/</span><br><span class="line">    components/</span><br><span class="line">    utils/</span><br><span class="line">    pages/</span><br><span class="line">    hooks/</span><br></pre></td></tr></table></figure>
+
+<p><strong>Better:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">  README.AI.md  # Tell AI about structure, conventions, gotchas</span><br><span class="line">  src/</span><br><span class="line">    Each directory has README.md explaining its purpose</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Reduce-Implicit-Conventions"><a href="#2-Reduce-Implicit-Conventions" class="headerlink" title="2. Reduce Implicit Conventions"></a>2. Reduce Implicit Conventions</h3><p><strong>Bad:</strong><br>“Our team convention: utils only contain pure functions” (AI doesn’t know)</p>
+<p><strong>Better:</strong><br>Enforce in ESLint rules: <code>utils/</code> directory forbids side effects</p>
+<h3 id="3-Use-Tools-to-Enforce-Standards"><a href="#3-Use-Tools-to-Enforce-Standards" class="headerlink" title="3. Use Tools to Enforce Standards"></a>3. Use Tools to Enforce Standards</h3><ul>
+<li>Commit messages → commitlint</li>
+<li>Code formatting → prettier</li>
+<li>Import order → eslint-plugin-import</li>
+</ul>
+<p>AI isn’t good at remembering implicit rules, but tools can enforce them.</p>
+<h3 id="4-Accept-“Imperfection”"><a href="#4-Accept-“Imperfection”" class="headerlink" title="4. Accept “Imperfection”"></a>4. Accept “Imperfection”</h3><p>AI-generated code won’t be 100% in your style. Instead of spending time tweaking formatting, focus on logical correctness.</p>
+<p><strong>Perfection is the enemy of good code.</strong></p>
+<hr>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>The era of steam engines pulling carriages didn’t last long. Soon, people realized: to harness the power of steam engines, they needed railways, train stations, signaling systems—an entire new infrastructure.</p>
+<p>AI Coding is the same.</p>
+<p>Right now we use AI to generate code, then manually adjust paths, fix dependencies, write tests, split commits. It’s inefficient, but it’s a necessary transition period.</p>
+<p><strong>The real revolution isn’t better AI models, but entirely new development infrastructure designed for AI.</strong></p>
+<p>When that happens, developers won’t “write code” anymore. They’ll “define intent, validate results, make architectural decisions.”</p>
+<p>Code generation, testing, deployment—those are AI’s job.</p>
+<p>We’re standing at this turning point.</p>
+<p>The steam engine is already mounted on the carriage. Can the railway be far behind?</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-en/">https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/English/">English</a><a class="post-meta__tags" href="/tags/Programming/">Programming</a><a class="post-meta__tags" href="/tags/Technology/">Technology</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-en/" title="Can AI Really Not Replace Therapists?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Can AI Really Not Replace Therapists?</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/embodied-ai-future-en/" title="The Future of Embodied AI: Paradise or Hell?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">The Future of Embodied AI: Paradise or Hell?</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/05/ai-engineer-concepts-guide-en/" title="30 Core Concepts Every AI Engineer Must Know"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">30 Core Concepts Every AI Engineer Must Know</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/19/ai-revolution-roles-en/" title="The AI Role Revolution: More Oxen, One Ox, or No Oxen?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-19</div><div class="info-item-2">The AI Role Revolution: More Oxen, One Ox, or No Oxen?</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-eyes-and-hands-en/" title="How to Give Your Agent Eyes and Hands"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">How to Give Your Agent Eyes and Hands</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/03/ai-restaurant-future-en/" title="The Future of the Restaurant Industry in the AI Era"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">The Future of the Restaurant Industry in the AI Era</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/02/rust-ai-language-en/" title="Will Rust Be the Best Programming Language for the AI Era?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-02</div><div class="info-item-2">Will Rust Be the Best Programming Language for the AI Era?</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/13/ai-execution-layer-en/" title="Every Leap, Humans Did Only One Thing"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-13</div><div class="info-item-2">Every Leap, Humans Did Only One Thing</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Real-Scenario"><span class="toc-number">1.</span> <span class="toc-text">A Real Scenario</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-Are-Our-%E2%80%9CCarriages%E2%80%9D"><span class="toc-number">2.</span> <span class="toc-text">What Are Our “Carriages”?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-File-Systems-AI%E2%80%99s-Nightmare"><span class="toc-number">2.1.</span> <span class="toc-text">1. File Systems: AI’s Nightmare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Dependency-Management-Version-Hell"><span class="toc-number">2.2.</span> <span class="toc-text">2. Dependency Management: Version Hell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Testing-AI-Doesn%E2%80%99t-Know-What-You%E2%80%99re-Testing"><span class="toc-number">2.3.</span> <span class="toc-text">3. Testing: AI Doesn’t Know What You’re Testing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Git-AI-Doesn%E2%80%99t-Understand-Your-Commit-Conventions"><span class="toc-number">2.4.</span> <span class="toc-text">4. Git: AI Doesn’t Understand Your Commit Conventions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Is-This-Happening"><span class="toc-number">3.</span> <span class="toc-text">Why Is This Happening?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-Would-True-AI-Native-Development-Look-Like"><span class="toc-number">4.</span> <span class="toc-text">What Would True AI-Native Development Look Like?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Ditch-File-Systems-Embrace-Knowledge-Graphs"><span class="toc-number">4.1.</span> <span class="toc-text">1. Ditch File Systems, Embrace Knowledge Graphs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Declarative-Dependencies"><span class="toc-number">4.2.</span> <span class="toc-text">2. Declarative Dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Real-Time-Validation-Over-Unit-Tests"><span class="toc-number">4.3.</span> <span class="toc-text">3. Real-Time Validation Over Unit Tests</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-AI-Manages-Version-Control-Directly"><span class="toc-number">4.4.</span> <span class="toc-text">4. AI Manages Version Control Directly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Far-Are-We-from-AI-Native"><span class="toc-number">5.</span> <span class="toc-text">How Far Are We from AI-Native?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-Can-We-Do-Now"><span class="toc-number">6.</span> <span class="toc-text">What Can We Do Now?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Establish-AI-Friendly-Project-Conventions"><span class="toc-number">6.1.</span> <span class="toc-text">1. Establish AI-Friendly Project Conventions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Reduce-Implicit-Conventions"><span class="toc-number">6.2.</span> <span class="toc-text">2. Reduce Implicit Conventions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Use-Tools-to-Enforce-Standards"><span class="toc-number">6.3.</span> <span class="toc-text">3. Use Tools to Enforce Standards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Accept-%E2%80%9CImperfection%E2%80%9D"><span class="toc-number">6.4.</span> <span class="toc-text">4. Accept “Imperfection”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">7.</span> <span class="toc-text">Conclusion</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

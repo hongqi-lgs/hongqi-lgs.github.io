@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI コーディングの現状：蒸気機関が馬車を引く | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AIでコードを生成しても、プロジェクト構造、依存関係管理、テスト方法は百年前のまま。これは革命ではなく、蒸気機関が馬車を引いているようなものだ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI コーディングの現状：蒸気機関が馬車を引く">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-ja/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="AIでコードを生成しても、プロジェクト構造、依存関係管理、テスト方法は百年前のまま。これは革命ではなく、蒸気機関が馬車を引いているようなものだ。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-05T03:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.150Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Japanese">
+<meta property="article:tag" content="プログラミング">
+<meta property="article:tag" content="技術">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI コーディングの現状：蒸気機関が馬車を引く",
+  "url": "https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-ja/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-05T03:30:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.150Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-ja/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI コーディングの現状：蒸気機関が馬車を引く',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">AI コーディングの現状：蒸気機関が馬車を引く</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  ホームに戻る</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">AI コーディングの現状：蒸気機関が馬車を引く</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">作成日</span><time class="post-meta-date-created" datetime="2026-03-05T03:30:00.000Z" title="作成日 2026-03-05 11:30:00">2026-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新日</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.150Z" title="更新日 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Japanese/">Japanese</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="実際のシーン"><a href="#実際のシーン" class="headerlink" title="実際のシーン"></a>実際のシーン</h2><p>昨日、CursorにNode.jsプロジェクトのリファクタリングを依頼した。すぐに美しいコードが返ってきた：ロジックの分離、パフォーマンスの最適化、型注釈の追加。</p>
+<p>その後、私は2時間かけて：</p>
+<ul>
+<li>40以上の<code>import</code>パスを手動調整</li>
+<li>単体テストを再実行（AIはJestかMochaか知らなかった）</li>
+<li>3つのバージョン競合を解決（AIは新しいAPIを使ったが、依存関係は古いバージョン）</li>
+<li>READMEを書き直し（AI生成のドキュメントは使えない）</li>
+</ul>
+<p>AIがコードを書くのに3分、私が後始末に2時間。</p>
+<p>これは歴史の授業で聞いた話を思い出させた：19世紀初頭、イギリス人は蒸気機関車を作ったが、鉄道はまだ普及していない。どうする？蒸気機関を馬車に載せる。</p>
+<p>結果は？馬車の車輪は蒸気機関の重さに耐えられず、路面は壊れ、旋回半径は馬より悪い。</p>
+<p><strong>これが今のAIコーディング：2025年のAIで、1995年の馬車を引いている。</strong></p>
+<hr>
+<h2 id="私たちの「馬車」とは？"><a href="#私たちの「馬車」とは？" class="headerlink" title="私たちの「馬車」とは？"></a>私たちの「馬車」とは？</h2><h3 id="1-ファイルシステム：AIの悪夢"><a href="#1-ファイルシステム：AIの悪夢" class="headerlink" title="1. ファイルシステム：AIの悪夢"></a>1. ファイルシステム：AIの悪夢</h3><p>AIはコード生成が速いが、知らない：</p>
+<ul>
+<li>プロジェクトは<code>src/</code>か<code>lib/</code>か？</li>
+<li>ユーティリティ関数は<code>utils/</code>か<code>helpers/</code>か？</li>
+<li>設定ファイルは<code>config.js</code>か<code>settings.json</code>か？</li>
+</ul>
+<p>AIがコードを生成するたびに：</p>
+<ol>
+<li>コードを正しいファイルにコピー</li>
+<li><code>import</code>パスを調整</li>
+<li>既存のコードと手動でマージ</li>
+</ol>
+<p><strong>これはAIの問題ではなく、ファイルシステムの問題。</strong></p>
+<p>ファイルシステムは1960年代に人間のために設計された：<code>src/components/Button.tsx</code>を見れば、脳は自動的にコンポーネントディレクトリ内のボタンだと理解する。</p>
+<p>しかしAIが見るのは文字列だけ。<code>Button.tsx</code>と<code>button.tsx</code>が同じファイルかどうかわからない（Linuxでは違う、Windowsでは同じ）。</p>
+<h3 id="2-依存関係管理：バージョン地獄"><a href="#2-依存関係管理：バージョン地獄" class="headerlink" title="2. 依存関係管理：バージョン地獄"></a>2. 依存関係管理：バージョン地獄</h3><p>AIがこのコードをくれる：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useQuery &#125; <span class="keyword">from</span> <span class="string">&#x27;@tanstack/react-query&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">UserList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; data &#125; = <span class="title function_">useQuery</span>(<span class="string">&#x27;users&#x27;</span>, fetchUsers)</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>問題なさそう。しかし：</p>
+<ul>
+<li>プロジェクトはReact Query v3、これはv4の構文</li>
+<li><code>swr</code>もインストール済み、今プロジェクトに2つのデータ取得ライブラリ</li>
+<li>AIはnpmかyarnかpnpmか知らない</li>
+</ul>
+<p>必要なこと：</p>
+<ol>
+<li><code>package.json</code>を確認</li>
+<li>依存関係をアップグレード（またはAIのコードをダウングレード）</li>
+<li>再インストール</li>
+<li>破壊的変更がないことを祈る</li>
+</ol>
+<p><strong>依存関係管理は手動コーディング用に設計された</strong>、人間が慎重にchangelogを読み、依存関係を一つずつアップグレードすることを想定。AIはコード生成が人間の100倍速いが、依存関係管理は2010年に留まっている。</p>
+<h3 id="3-テスト：AIはあなたが何をテストしているか知らない"><a href="#3-テスト：AIはあなたが何をテストしているか知らない" class="headerlink" title="3. テスト：AIはあなたが何をテストしているか知らない"></a>3. テスト：AIはあなたが何をテストしているか知らない</h3><p>AIがコードを書き終えたら、「テストを書いて」と頼む。</p>
+<p>生成される：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;Calculator&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&#x27;should add two numbers&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(<span class="title function_">add</span>(<span class="number">1</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">3</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>しかし：</p>
+<ul>
+<li>VitestでJestじゃない（構文は似ているが、importが違う）</li>
+<li>プロジェクトの慣例：テストファイルは<code>__tests__/</code>ディレクトリ、<code>.test.js</code>サフィックスではない</li>
+<li>CIは80%以上のカバレッジが必要、AIは最も簡単なケースしかテストしていない</li>
+</ul>
+<p><strong>テストシステムは「コード後にテストを補足」を想定</strong>、しかしAI Codingのリズムは「生成しながら同時にテスト」。必要なのはリアルタイム検証、事後の宿題ではない。</p>
+<hr>
+<h2 id="真のAI-Native開発とは？"><a href="#真のAI-Native開発とは？" class="headerlink" title="真のAI-Native開発とは？"></a>真のAI-Native開発とは？</h2><h3 id="1-ファイルシステムを捨て、知識グラフを採用"><a href="#1-ファイルシステムを捨て、知識グラフを採用" class="headerlink" title="1. ファイルシステムを捨て、知識グラフを採用"></a>1. ファイルシステムを捨て、知識グラフを採用</h3><p><code>src/utils/formatDate.js</code>の代わりに：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">知識グラフ：</span><br><span class="line">- [Function: formatDate]</span><br><span class="line">  - タイプ：ユーティリティ関数</span><br><span class="line">  - 依存：[dayjs]</span><br><span class="line">  - 使用者：[UserProfile, OrderList]</span><br></pre></td></tr></table></figure>
+
+<p>AIはパスを覚える必要がなく、「<code>formatDate</code>はユーティリティ関数、dayjsに依存、UserProfileで使用」とだけ知ればいい。</p>
+<p>ファイルシステムは知識グラフの<strong>シリアライズ形式</strong>（Gitが追跡できるように）にすぎず、開発者とAIの主要インターフェースであるべきではない。</p>
+<h3 id="2-宣言的依存関係"><a href="#2-宣言的依存関係" class="headerlink" title="2. 宣言的依存関係"></a>2. 宣言的依存関係</h3><p><code>package.json</code>の代わりに：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">必要なもの：</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">データ取得：高速、キャッシュサポート、TypeScriptフレンドリー</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">状態管理：シンプル、最小限のボイラープレート</span></span><br><span class="line"></span><br><span class="line"><span class="string">AI推奨：</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">TanStack</span> <span class="string">Query</span> <span class="string">v5（ニーズに合致）</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">バージョン互換性処理済み</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">TypeScript設定済み</span></span><br></pre></td></tr></table></figure>
+
+<p>AIは<strong>意図</strong>に基づいて依存関係を選択、手動で検索、比較、インストール、設定する必要なし。</p>
+<h3 id="3-リアルタイム検証がユニットテストに取って代わる"><a href="#3-リアルタイム検証がユニットテストに取って代わる" class="headerlink" title="3. リアルタイム検証がユニットテストに取って代わる"></a>3. リアルタイム検証がユニットテストに取って代わる</h3><p><code>add.test.js</code>を書く代わりに：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">リアルタイム制約：</span><br><span class="line">  - add(1, 2) は3でなければならない</span><br><span class="line">  - add(負の数) は明確な動作が必要</span><br><span class="line">  - パフォーマンス：1000回呼び出し &lt; 10ms</span><br></pre></td></tr></table></figure>
+
+<p>AIはコード生成中に<strong>リアルタイムでこれらの制約をチェック</strong>、コード生成 → テスト書く → テスト実行 → 失敗 → コード修正ではない。</p>
+<hr>
+<h2 id="AI-Nativeまであとどれくらい？"><a href="#AI-Nativeまであとどれくらい？" class="headerlink" title="AI-Nativeまであとどれくらい？"></a>AI-Nativeまであとどれくらい？</h2><p><strong>技術的に：3-5年。</strong></p>
+<p>すでに初期の試みがある：</p>
+<ul>
+<li>ReplitのAgent：ファイルパスを管理不要、Agentが見つける</li>
+<li>val.town：コードはクラウド上、依存関係は自動処理</li>
+<li>CursorのComposer：複数ファイルを同時編集可能</li>
+</ul>
+<p>しかしこれらは「より良い馬車」、列車ではない。</p>
+<p><strong>本当の列車に必要なもの：</strong></p>
+<ol>
+<li><strong>新しいプロジェクト組織方法</strong>（ファイルシステムではない）</li>
+<li><strong>新しい依存関係管理</strong>（package.jsonではない）</li>
+<li><strong>新しい検証メカニズム</strong>（ユニットテストではない）</li>
+<li><strong>新しいコラボレーション方法</strong>（Git + PRではない）</li>
+</ol>
+<p>これには<strong>エコシステム全体の再構築</strong>が必要、単一のAIエディタでは解決できない。</p>
+<hr>
+<h2 id="今できること"><a href="#今できること" class="headerlink" title="今できること"></a>今できること</h2><p>新しいエコシステムが成熟するまで、できること：</p>
+<h3 id="1-AI-Friendlyなプロジェクト規約を確立"><a href="#1-AI-Friendlyなプロジェクト規約を確立" class="headerlink" title="1. AI-Friendlyなプロジェクト規約を確立"></a>1. AI-Friendlyなプロジェクト規約を確立</h3><p><strong>悪い例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">  src/</span><br><span class="line">    components/</span><br><span class="line">    utils/</span><br></pre></td></tr></table></figure>
+
+<p><strong>良い例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">  README.AI.md  # AIにプロジェクト構造、慣例、注意事項を伝える</span><br><span class="line">  src/</span><br><span class="line">    各ディレクトリにREADME.mdで目的を説明</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-暗黙の慣例を減らす"><a href="#2-暗黙の慣例を減らす" class="headerlink" title="2. 暗黙の慣例を減らす"></a>2. 暗黙の慣例を減らす</h3><p><strong>悪い例：</strong><br>「チームの慣例：utilsは純粋関数のみ」（AIは知らない）</p>
+<p><strong>良い例：</strong><br>ESLintルールで強制：<code>utils/</code>ディレクトリは副作用禁止</p>
+<h3 id="3-ツールで規約を強制"><a href="#3-ツールで規約を強制" class="headerlink" title="3. ツールで規約を強制"></a>3. ツールで規約を強制</h3><ul>
+<li>commit message → commitlint</li>
+<li>コードフォーマット → prettier</li>
+<li>import順序 → eslint-plugin-import</li>
+</ul>
+<p>AIは暗黙のルールを覚えるのが苦手、しかしツールで強制できる。</p>
+<hr>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>蒸気機関が馬車を引く時代は長く続かなかった。すぐに人類は気づいた：蒸気機関の力を発揮するには、鉄道、駅、信号システム—全く新しいインフラが必要だと。</p>
+<p>AI Codingも同じ。</p>
+<p>今はAIでコードを生成し、その後手動でパスを調整、依存関係を修正、テストを書き、commitを分割。これは非効率だが、移行期の必然。</p>
+<p><strong>真の変革は、より良いAIモデルではなく、AI用に設計された全く新しい開発インフラ。</strong></p>
+<p>その時、開発者の仕事は「コードを書く」ことではなく、「意図を定義し、結果を検証し、アーキテクチャの決定をする」ことになる。</p>
+<p>コード生成、テスト、デプロイ—これらはすべてAIの仕事。</p>
+<p>私たちは今この転換点に立っている。</p>
+<p>蒸気機関がすでに馬車に載っている。鉄道はまだ遠いだろうか？</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>著者: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>リンク: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-ja/">https://xiaoxiaduoyan.com/2026/03/05/ai-coding-steam-engine-on-cart-ja/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>著作権表示: </span><span class="post-copyright-info">このブログのすべての記事は、<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ライセンスの下で提供されており、特に明記されていない限り、すべての権利を留保します。転載時には出典を明記してください: <a href="https://xiaoxiaduoyan.com">森哥 Ideas</a>。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Japanese/">Japanese</a><a class="post-meta__tags" href="/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a><a class="post-meta__tags" href="/tags/%E6%8A%80%E8%A1%93/">技術</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-ja/" title="AIは本当に心理カウンセラーを代替できないのか？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">AIは本当に心理カウンセラーを代替できないのか？</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/embodied-ai-future-ja/" title="具身知能の未来：天国か地獄か？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">具身知能の未来：天国か地獄か？</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>関連記事</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/05/embodied-ai-future-ja/" title="具身知能の未来：天国か地獄か？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">具身知能の未来：天国か地獄か？</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/19/ai-revolution-roles-ja/" title="AI時代の役割革命：牛を増やすか、一頭にするか、それとも牛なしか？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-19</div><div class="info-item-2">AI時代の役割革命：牛を増やすか、一頭にするか、それとも牛なしか？</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-ja/" title="AIは本当に心理カウンセラーを代替できないのか？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AIは本当に心理カウンセラーを代替できないのか？</div></div></div></a><a class="pagination-related" href="/2026/03/03/us-iran-military-ai-capabilities-ja/" title="米国の対イラン軍事作戦で活用される可能性のあるAI能力：情報分析から精密攻撃まで"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">米国の対イラン軍事作戦で活用される可能性のあるAI能力：情報分析から精密攻撃まで</div></div><div class="info-2"><div class="info-item-1">序論：AIが戦争の形態を変える現代戦争はもはや単純な兵器の対決ではなく、情報、技術、アルゴリズムの競争です。世界の軍事科学技術のリーダーである米国は、イランなどの地域への軍事作戦において、AI技術がすでに不可欠な「見えない戦力」となっています。
+2020年のイラン革命防衛隊のソレイマニ司令官への精密攻撃から、近年のイランの核施設やミサイル基地への精密攻撃まで、背後には先進的なAI能力のサポートがあ</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/ai-engineer-concepts-guide-ja/" title="AIエンジニアが習得すべき30の核心概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AIエンジニアが習得すべき30の核心概念</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">AI決済の未来：プログラマブル口座からエージェント自律決済へ</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目次</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9F%E9%9A%9B%E3%81%AE%E3%82%B7%E3%83%BC%E3%83%B3"><span class="toc-number">1.</span> <span class="toc-text">実際のシーン</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%81%E3%81%9F%E3%81%A1%E3%81%AE%E3%80%8C%E9%A6%AC%E8%BB%8A%E3%80%8D%E3%81%A8%E3%81%AF%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">私たちの「馬車」とは？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%EF%BC%9AAI%E3%81%AE%E6%82%AA%E5%A4%A2"><span class="toc-number">2.1.</span> <span class="toc-text">1. ファイルシステム：AIの悪夢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E7%AE%A1%E7%90%86%EF%BC%9A%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%9C%B0%E7%8D%84"><span class="toc-number">2.2.</span> <span class="toc-text">2. 依存関係管理：バージョン地獄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%83%86%E3%82%B9%E3%83%88%EF%BC%9AAI%E3%81%AF%E3%81%82%E3%81%AA%E3%81%9F%E3%81%8C%E4%BD%95%E3%82%92%E3%83%86%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E7%9F%A5%E3%82%89%E3%81%AA%E3%81%84"><span class="toc-number">2.3.</span> <span class="toc-text">3. テスト：AIはあなたが何をテストしているか知らない</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%9F%E3%81%AEAI-Native%E9%96%8B%E7%99%BA%E3%81%A8%E3%81%AF%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">真のAI-Native開発とは？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%92%E6%8D%A8%E3%81%A6%E3%80%81%E7%9F%A5%E8%AD%98%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92%E6%8E%A1%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">1. ファイルシステムを捨て、知識グラフを採用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%A3%E8%A8%80%E7%9A%84%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82"><span class="toc-number">3.2.</span> <span class="toc-text">2. 宣言的依存関係</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%83%AA%E3%82%A2%E3%83%AB%E3%82%BF%E3%82%A4%E3%83%A0%E6%A4%9C%E8%A8%BC%E3%81%8C%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%E3%83%86%E3%82%B9%E3%83%88%E3%81%AB%E5%8F%96%E3%81%A3%E3%81%A6%E4%BB%A3%E3%82%8F%E3%82%8B"><span class="toc-number">3.3.</span> <span class="toc-text">3. リアルタイム検証がユニットテストに取って代わる</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AI-Native%E3%81%BE%E3%81%A7%E3%81%82%E3%81%A8%E3%81%A9%E3%82%8C%E3%81%8F%E3%82%89%E3%81%84%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">AI-Nativeまであとどれくらい？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%93%E3%81%A8"><span class="toc-number">5.</span> <span class="toc-text">今できること</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-AI-Friendly%E3%81%AA%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E8%A6%8F%E7%B4%84%E3%82%92%E7%A2%BA%E7%AB%8B"><span class="toc-number">5.1.</span> <span class="toc-text">1. AI-Friendlyなプロジェクト規約を確立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9A%97%E9%BB%99%E3%81%AE%E6%85%A3%E4%BE%8B%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99"><span class="toc-number">5.2.</span> <span class="toc-text">2. 暗黙の慣例を減らす</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%83%84%E3%83%BC%E3%83%AB%E3%81%A7%E8%A6%8F%E7%B4%84%E3%82%92%E5%BC%B7%E5%88%B6"><span class="toc-number">5.3.</span> <span class="toc-text">3. ツールで規約を強制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AA%9E"><span class="toc-number">6.</span> <span class="toc-text">結語</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="読書モード"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="ライトモード/ダークモード切り替え"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="シングルカラムとダブルカラムの切り替え"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目次"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="トップに戻る"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

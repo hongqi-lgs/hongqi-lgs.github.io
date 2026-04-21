@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI's Open Source Productivity Explosion: How Do We Keep It Secure? | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AI has made code generation 10x faster, but security review speed remains unchanged. This asymmetric race is reshaping the entire security foundation of the open source ecosystem.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI&#39;s Open Source Productivity Explosion: How Do We Keep It Secure?">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/02/ai-opensource-security-en/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="AI has made code generation 10x faster, but security review speed remains unchanged. This asymmetric race is reshaping the entire security foundation of the open source ecosystem.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-02T09:28:00.000Z">
+<meta property="article:modified_time" content="2026-03-02T09:28:00.000Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI Security">
+<meta property="article:tag" content="Code Security">
+<meta property="article:tag" content="Open Source Security">
+<meta property="article:tag" content="Supply Chain Security">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI's Open Source Productivity Explosion: How Do We Keep It Secure?",
+  "url": "https://xiaoxiaduoyan.com/2026/03/02/ai-opensource-security-en/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-02T09:28:00.000Z",
+  "dateModified": "2026-03-02T09:28:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/02/ai-opensource-security-en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI\'s Open Source Productivity Explosion: How Do We Keep It Secure?',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">AI's Open Source Productivity Explosion: How Do We Keep It Secure?</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">AI's Open Source Productivity Explosion: How Do We Keep It Secure?</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-02T09:28:00.000Z" title="Created 2026-03-02 17:28:00">2026-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-02T09:28:00.000Z" title="Updated 2026-03-02 17:28:00">2026-03-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/English/">English</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h1 id="AI’s-Open-Source-Productivity-Explosion-How-Do-We-Keep-It-Secure"><a href="#AI’s-Open-Source-Productivity-Explosion-How-Do-We-Keep-It-Secure" class="headerlink" title="AI’s Open Source Productivity Explosion: How Do We Keep It Secure?"></a>AI’s Open Source Productivity Explosion: How Do We Keep It Secure?</h1><p>Last year, a developer bragged on Twitter: used Copilot to write a complete backend system, finished in three days. Hundreds of replies below, half marveling at the efficiency, half asking “did you review the code?”</p>
+<p>He never answered the second question.</p>
+<h2 id="The-Productivity-Explosion-is-Real"><a href="#The-Productivity-Explosion-is-Real" class="headerlink" title="The Productivity Explosion is Real"></a>The Productivity Explosion is Real</h2><p>The data doesn’t lie. GitHub statistics show that AI-generated code commits increased 300% year-over-year in 2024. This isn’t incremental improvement—it’s an order-of-magnitude leap.</p>
+<p>I’ve noticed something strange in many open source projects lately: commit histories look different. Features that used to require days of iteration now often appear as single, massive commits. You can tell from the commit messages:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">feat: add complete authentication system with JWT, refresh tokens, rate limiting, and email verification</span><br><span class="line"></span><br><span class="line">+2847 -0</span><br></pre></td></tr></table></figure>
+
+<p>That’s not something one person can write in three days, but AI can generate a first draft in three hours.</p>
+<p>Here’s the question: who’s reviewing those 2,847 lines?</p>
+<h2 id="The-Code-Review-Dilemma"><a href="#The-Code-Review-Dilemma" class="headerlink" title="The Code Review Dilemma"></a>The Code Review Dilemma</h2><p>Traditional code review assumes this model: developers write code, reviewers check logic, performance, and security line by line. This works when code volume is manageable.</p>
+<p>But AI changed the game.</p>
+<p>Typical scenario: an intern uses ChatGPT to generate an authentication module. Looks feature-complete, passes tests. The reviewer spends half an hour browsing, finds no obvious issues, approves merge.</p>
+<p>Three months later, the security team discovers a timing attack vulnerability. Attackers can infer whether usernames exist by measuring response times.</p>
+<p>This is the classic problem with AI-generated code: <strong>functionally correct, but containing non-obvious security flaws</strong>.</p>
+<p>Worse, reviewers face a subtle psychological trap when reviewing AI code: “This is AI-written, should be pretty standard, right?” This assumption is dangerous.</p>
+<h2 id="New-Supply-Chain-Threats"><a href="#New-Supply-Chain-Threats" class="headerlink" title="New Supply Chain Threats"></a>New Supply Chain Threats</h2><p>Open source supply chain security was already hard. AI makes it harder.</p>
+<p>Last year, npm saw a batch of “seemingly normal” packages. Code structure was reasonable, documentation complete, even had unit tests. But closer inspection revealed these packages executed malicious code under specific conditions.</p>
+<p>Security researchers later confirmed these packages were likely AI-batch-generated. Attackers only needed to:</p>
+<ol>
+<li>Use AI to generate a seemingly useful package</li>
+<li>Plant malicious code at key points</li>
+<li>Use AI to generate “natural” commit history</li>
+<li>Publish to npm</li>
+</ol>
+<p>Frighteningly cheap, remarkably effective. Because these packages look indistinguishable from legitimate ones at first glance.</p>
+<p>We’re no longer facing a few hackers handcrafting malicious packages. We might be facing industrialized, scaled supply chain attacks.</p>
+<h2 id="Why-Traditional-Solutions-Fail"><a href="#Why-Traditional-Solutions-Fail" class="headerlink" title="Why Traditional Solutions Fail"></a>Why Traditional Solutions Fail</h2><p>Static analysis tools seem somewhat powerless against AI code.</p>
+<p>Simple reason: these tools rely on rules and pattern matching. But AI-generated code is often “too standard,” bypassing many static checks.</p>
+<p>For example, traditional SQL injection detection flags code like:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query = <span class="string">&quot;SELECT * FROM users WHERE id = &quot;</span> + user_id</span><br></pre></td></tr></table></figure>
+
+<p>But AI typically generates “safer-looking” code:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query = <span class="string">f&quot;SELECT * FROM users WHERE id = <span class="subst">&#123;sanitize_input(user_id)&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Problem is: <code>sanitize_input</code> might not exist, or its implementation might be flawed. But seeing the “sanitization” step, static analysis tools might let it pass.</p>
+<p>Manual review hit bottlenecks too. Facing thousands of lines of AI-generated code, reviewers struggle to maintain focus. Cognitive load is too high, easy to miss critical issues.</p>
+<h2 id="What-Kind-of-Security-Solutions-Do-We-Need"><a href="#What-Kind-of-Security-Solutions-Do-We-Need" class="headerlink" title="What Kind of Security Solutions Do We Need"></a>What Kind of Security Solutions Do We Need</h2><p>Honestly, I don’t have perfect answers. But from practice, a few directions seem promising.</p>
+<h3 id="1-Intervene-During-Generation"><a href="#1-Intervene-During-Generation" class="headerlink" title="1. Intervene During Generation"></a>1. Intervene During Generation</h3><p>Rather than review after the fact, inject security constraints while AI generates code.</p>
+<p>People are already trying this approach. For example, explicitly requiring in prompts:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Generate user login endpoint, requirements:</span><br><span class="line">- Use parameterized queries to prevent SQL injection</span><br><span class="line">- Passwords must use bcrypt encryption, not MD5 or SHA1</span><br><span class="line">- Implement rate limiting, same IP max 5 attempts per 5 minutes</span><br><span class="line">- All error messages must be uniform, not reveal whether user exists</span><br></pre></td></tr></table></figure>
+
+<p>This generates much better code. But it requires developers themselves to have security awareness, knowing what to ask for.</p>
+<h3 id="2-Build-Secure-Code-Libraries"><a href="#2-Build-Secure-Code-Libraries" class="headerlink" title="2. Build Secure Code Libraries"></a>2. Build Secure Code Libraries</h3><p>Rather than letting AI generate from scratch each time, build a set of security-reviewed code templates.</p>
+<p>Stripe’s approach is worth noting. They have an internal code snippet library. All code involving sensitive operations comes from this library. Developers can use AI assistance, but critical parts must use verified templates.</p>
+<p>Not a perfect solution, but at least ensures baseline security.</p>
+<h3 id="3-Redesign-Review-Processes"><a href="#3-Redesign-Review-Processes" class="headerlink" title="3. Redesign Review Processes"></a>3. Redesign Review Processes</h3><p>Traditional pull request review may no longer suit the AI era.</p>
+<p>Some teams are experimenting with new workflows:</p>
+<ul>
+<li>Grade AI-generated code: critical path code requires deep manual review</li>
+<li>Introduce “security reviewer” role, specifically responsible for checking AI-generated code security</li>
+<li>Use differentiated review: AI-generated code and human-written code adopt different review standards</li>
+</ul>
+<p>These experiments are ongoing, but the direction is right.</p>
+<h3 id="4-Toolchain-Upgrades"><a href="#4-Toolchain-Upgrades" class="headerlink" title="4. Toolchain Upgrades"></a>4. Toolchain Upgrades</h3><p>We need next-generation security tools specifically for AI-generated code characteristics.</p>
+<p>Some interesting attempts:</p>
+<ul>
+<li>Semantic analysis tools: not just syntax, but understanding code intent</li>
+<li>Anomaly pattern detection: flag code that “looks too perfect”</li>
+<li>AI vs AI: use AI to review AI-generated code</li>
+</ul>
+<p>The last one sounds ironic, but might be most effective. After all, AI best understands what mistakes AI makes.</p>
+<h2 id="Where-Are-the-Responsibility-Boundaries"><a href="#Where-Are-the-Responsibility-Boundaries" class="headerlink" title="Where Are the Responsibility Boundaries"></a>Where Are the Responsibility Boundaries</h2><p>This is an even harder question.</p>
+<p>When AI-generated code has security issues, who’s responsible?</p>
+<ul>
+<li>Developers say: I just used a tool, how would I know the generated code has problems?</li>
+<li>AI providers say: Our terms of service say generated code needs manual review.</li>
+<li>Companies say: We trust developers’ professional judgment.</li>
+</ul>
+<p>Result: nobody’s really responsible.</p>
+<p>This responsibility ambiguity will have disastrous consequences. We need clear rules:</p>
+<ul>
+<li>Developers using AI to generate code have an obligation to understand and review generated code</li>
+<li>AI providers need to warn about known security issues</li>
+<li>Organizations need clear AI code usage guidelines</li>
+</ul>
+<p>Laws and regulations may intervene, but before that, the industry needs self-regulation.</p>
+<h2 id="Some-Actionable-Suggestions"><a href="#Some-Actionable-Suggestions" class="headerlink" title="Some Actionable Suggestions"></a>Some Actionable Suggestions</h2><p>For individual developers:</p>
+<ol>
+<li>Never directly copy-paste AI-generated code, at least understand what it’s doing</li>
+<li>Stay skeptical about security-related code, manually check critical logic</li>
+<li>Learn basic security knowledge, AI can’t replace your judgment</li>
+</ol>
+<p>For teams:</p>
+<ol>
+<li>Establish AI code usage guidelines, clarify which scenarios allow it, which don’t</li>
+<li>Invest in security training, ensure team understands AI code risks</li>
+<li>Build layered review mechanisms, critical code must pass security expert review</li>
+</ol>
+<p>For open source projects:</p>
+<ol>
+<li>State in README which parts used AI assistance</li>
+<li>Conduct additional security review for AI-generated code</li>
+<li>Establish vulnerability disclosure mechanisms, encourage security researchers to participate</li>
+</ol>
+<h2 id="This-Isn’t-Alarmism"><a href="#This-Isn’t-Alarmism" class="headerlink" title="This Isn’t Alarmism"></a>This Isn’t Alarmism</h2><p>I’m not opposing AI-assisted development. Quite the opposite, I believe AI will become a standard development tool.</p>
+<p>But we must face a fact: <strong>explosive productivity growth must be accompanied by synchronized security capability improvement</strong>.</p>
+<p>The issue isn’t whether AI generates code with vulnerabilities—it definitely will. The issue is whether we’ve established sufficient mechanisms to identify and fix these vulnerabilities.</p>
+<p>Current situation: code generation speed increased 10x, but security review speed remains the same. This gap widens every day.</p>
+<p>If we don’t close this gap soon, we might face an open source security crisis. Not because AI is malicious, but because our security mechanisms can’t keep up with productivity explosion.</p>
+<h2 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h2><p>Technological progress is always a double-edged sword. Steam engines brought industrial revolution, also brought environmental pollution. The internet connected the world, also created new crime spaces.</p>
+<p>AI dramatically improves development efficiency, while also amplifying security risks. This is the reality we must face.</p>
+<p>The good news is, we still have time. The open source community has always been good at self-correction and evolution. As long as we recognize the problem’s severity and build security mechanisms adapted to the AI era, this productivity explosion will ultimately be positive.</p>
+<p>But the time window won’t stay open forever. Now is the time to act.</p>
+<hr>
+<p><em>How much code in your project is AI-generated? Have you reviewed it?</em></p>
+<p><em>This isn’t questioning, it’s reminding. Including myself.</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/02/ai-opensource-security-en/">https://xiaoxiaduoyan.com/2026/03/02/ai-opensource-security-en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI-Security/">AI Security</a><a class="post-meta__tags" href="/tags/Open-Source-Security/">Open Source Security</a><a class="post-meta__tags" href="/tags/Code-Security/">Code Security</a><a class="post-meta__tags" href="/tags/Supply-Chain-Security/">Supply Chain Security</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/02/ai-first-bucket-gold-en/" title="How to Earn Your First Bucket of Gold with AI: 7 Practical Paths for Ordinary People"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">How to Earn Your First Bucket of Gold with AI: 7 Practical Paths for Ordinary People</div></div><div class="info-2"><div class="info-item-1">AI money-making opportunities do exist, but not the &#039;making <a class="pagination-related" href="/2026/03/02/ai-first-bucket-gold-en/" title="How to Earn Your First Bucket of Gold with AI: 7 Practical Paths for Ordinary People"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info "><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">How to Earn Your First Bucket of Gold with AI: 7 Practical Paths for Ordinary People</div></div><div class="info-2"><div class="info-item-1">AI money-making opportunities do exist, but not the 'making $10K a month' myths you see online. This article talks about what ordinary people can actually do.</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/02/ai-coding-implicit-contracts-en/" title="One of AI Coding's Stumbling Blocks: The Problem of Implicit Contracts in Programs"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">One of AI Coding's Stumbling Blocks: The Problem of Implicit Contracts in Programs</div></div></div></a>0K a month&#039; myths you see online. This article talks about what ordinary people can actually do.</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/02/ai-coding-implicit-contracts-en/" title="One of AI Coding&#039;s Stumbling Blocks: The Problem of Implicit Contracts in Programs"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">One of AI Coding&#039;s Stumbling Blocks: The Problem of Implicit Contracts in Programs</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AI%E2%80%99s-Open-Source-Productivity-Explosion-How-Do-We-Keep-It-Secure"><span class="toc-number">1.</span> <span class="toc-text">AI’s Open Source Productivity Explosion: How Do We Keep It Secure?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Productivity-Explosion-is-Real"><span class="toc-number">1.1.</span> <span class="toc-text">The Productivity Explosion is Real</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Code-Review-Dilemma"><span class="toc-number">1.2.</span> <span class="toc-text">The Code Review Dilemma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#New-Supply-Chain-Threats"><span class="toc-number">1.3.</span> <span class="toc-text">New Supply Chain Threats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Traditional-Solutions-Fail"><span class="toc-number">1.4.</span> <span class="toc-text">Why Traditional Solutions Fail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-Kind-of-Security-Solutions-Do-We-Need"><span class="toc-number">1.5.</span> <span class="toc-text">What Kind of Security Solutions Do We Need</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Intervene-During-Generation"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. Intervene During Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Build-Secure-Code-Libraries"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. Build Secure Code Libraries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Redesign-Review-Processes"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. Redesign Review Processes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Toolchain-Upgrades"><span class="toc-number">1.5.4.</span> <span class="toc-text">4. Toolchain Upgrades</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Where-Are-the-Responsibility-Boundaries"><span class="toc-number">1.6.</span> <span class="toc-text">Where Are the Responsibility Boundaries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Some-Actionable-Suggestions"><span class="toc-number">1.7.</span> <span class="toc-text">Some Actionable Suggestions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#This-Isn%E2%80%99t-Alarmism"><span class="toc-number">1.8.</span> <span class="toc-text">This Isn’t Alarmism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Finally"><span class="toc-number">1.9.</span> <span class="toc-text">Finally</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="When AI starts replacing humans in payment actions, the entire underlying logic of the payment system will be rewritten. Programmable accounts, Agent authorization architecture, OpenAI entering paymen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/31/ai-payment-future-en/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="When AI starts replacing humans in payment actions, the entire underlying logic of the payment system will be rewritten. Programmable accounts, Agent authorization architecture, OpenAI entering paymen">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-31T02:40:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.152Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="English">
+<meta property="article:tag" content="Fintech">
+<meta property="article:tag" content="Payment">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions",
+  "url": "https://xiaoxiaduoyan.com/2026/03/31/ai-payment-future-en/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-31T02:40:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.152Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/31/ai-payment-future-en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.152Z" title="Updated 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/English/">English</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><p>Payments look like a solved problem. QR codes, cards, NFC — the experience is already seamless. But that seamlessness rests on a single assumption: <strong>the one making the payment is a human being</strong>.</p>
+<p>When that assumption starts to crack, the entire payment system needs to be rebuilt from its foundations.</p>
+<h2 id="From-“Humans-Pay”-to-“Agents-Pay”"><a href="#From-“Humans-Pay”-to-“Agents-Pay”" class="headerlink" title="From “Humans Pay” to “Agents Pay”"></a>From “Humans Pay” to “Agents Pay”</h2><p>Imagine this: you tell your AI assistant “arrange my trip to Shanghai next week,” and it automatically checks train tickets, books a hotel, and calls a ride for your departure — all without you opening a single app or entering a single password. The receipt arrives afterward, you glance at it, it looks reasonable.</p>
+<p>This isn’t science fiction. It’s the interaction pattern that will become mainstream within three to five years.</p>
+<p>But buried inside this convenience is a question nobody is asking: <strong>who actually paid?</strong></p>
+<p>Not you — you just said a sentence. The AI assistant completed every transaction on your behalf. Yet the entire existing payment infrastructure, from identity verification to fraud models, was built assuming a human operator. Facial recognition, SMS verification, behavioral biometrics — these defenses are useless against AI, and equally incapable of distinguishing a compromised AI from a legitimate one.</p>
+<p>The payments industry isn’t facing a feature upgrade. It’s facing an architectural rebuild.</p>
+<h2 id="Programmable-Payments-Giving-Money-a-Logic-Layer"><a href="#Programmable-Payments-Giving-Money-a-Logic-Layer" class="headerlink" title="Programmable Payments: Giving Money a Logic Layer"></a>Programmable Payments: Giving Money a Logic Layer</h2><p>Traditional payment is an action: money moves from A to B. Programmable payment is a program: <strong>when condition X is met, money moves from A to B, and only for purpose Y</strong>.</p>
+<p>That distinction sounds small. In practice, it redefines what money itself means.</p>
+<h3 id="Three-Parallel-Technical-Paths"><a href="#Three-Parallel-Technical-Paths" class="headerlink" title="Three Parallel Technical Paths"></a>Three Parallel Technical Paths</h3><p><strong>Smart contracts</strong> are the most mature implementation of programmable payments. Ethereum contracts can encode arbitrarily complex payment logic: escrow, installments, multi-signature, conditional triggers. Code is the contract; execution requires no trusted intermediary. But the challenges are real — the oracle problem (getting trustworthy off-chain data onto the chain), fiat bridging complexity, and high barriers for ordinary users keep it largely confined to crypto-native contexts for now.</p>
+<p><strong>Central bank digital currencies</strong> are the more strategically important direction, especially the digital yuan. The People’s Bank of China has already publicly tested “conditional payment” capabilities: earmarked funds (subsidies restricted to specific categories), expiration dates (automatic destruction after a deadline), and venue locking (valid only at designated merchants). This is programmable money being pushed by national infrastructure. No other country has anything comparable. The digital yuan’s programmability isn’t a peripheral feature — it’s central to why the system was designed this way.</p>
+<p><strong>Open banking</strong> is traditional finance’s path of self-evolution. Europe’s PSD2&#x2F;PSD3 framework mandates that banks expose APIs, enabling third parties to operate accounts programmatically. The IETF has published the RAR (Rich Authorization Requests) standard, upgrading coarse-grained permissions like “access my account” to fine-grained logic like “pay merchant A no more than 150 yuan before 6 PM today.” Stripe’s Payment Intents API is moving in the same direction.</p>
+<h3 id="Where-Programmable-Payments-Actually-Create-Value"><a href="#Where-Programmable-Payments-Actually-Create-Value" class="headerlink" title="Where Programmable Payments Actually Create Value"></a>Where Programmable Payments Actually Create Value</h3><p>Not convenience — <strong>the elimination of trust costs</strong>.</p>
+<p>Payment terms in B2B trade (net-30, net-60, net-90) are externalized trust costs. The buyer isn’t sure about product quality, so payment is delayed; the seller accepts unfavorable terms to maintain the relationship. Programmable payments can encode contract terms directly as payment logic: goods received and quality verified → payment triggers automatically. Payment terms become economically unnecessary.</p>
+<p>Insurance claims follow the same logic. The cumbersome claims process exists because “accident occurred” and “payment executed” require extensive human verification in between. If sensor data can be reliably fed into a programmable account, conditions met equals automatic payout, and the entire claims department’s purpose needs rethinking.</p>
+<p>The deeper shift is the <strong>restructuring of business models</strong>: pay-for-results becomes the default. Ad spend paid on actual conversions, SaaS fees based on real output, outsourcing paid on delivery quality. AI verifies the outcome; programmable payments execute the transfer; human review and dispute arbitration become unnecessary.</p>
+<h2 id="Agent-Authorization-Architecture-Designing-“Pre-Consent”"><a href="#Agent-Authorization-Architecture-Designing-“Pre-Consent”" class="headerlink" title="Agent Authorization Architecture: Designing “Pre-Consent”"></a>Agent Authorization Architecture: Designing “Pre-Consent”</h2><p>Programmable payments solve how money flows. They don’t solve who has the right to trigger it. When AI Agents initiate payments on behalf of humans, the authorization system needs to be designed from scratch.</p>
+<p>The core tension is simple: <strong>users want convenience (autonomous Agent operation), but don’t want to lose control (money shouldn’t move without reason)</strong>.</p>
+<h3 id="A-Three-Layer-Authorization-Model"><a href="#A-Three-Layer-Authorization-Model" class="headerlink" title="A Three-Layer Authorization Model"></a>A Three-Layer Authorization Model</h3><p><strong>The identity layer</strong> answers “who is this Agent?” Existing authentication (face ID, passwords, SMS codes) was built for humans; Agents can’t use it and shouldn’t have to. A more coherent approach is delegated credentials: the user signs a limited-scope sub-credential with their master key and issues it to the Agent, specifying validity period, authorized scope, spending limits, and non-delegability (the Agent cannot re-delegate to other Agents). W3C’s DID (Decentralized Identifiers) and Verifiable Credentials standards are the most likely technical foundation for this layer.</p>
+<p><strong>The permission layer</strong> answers “what can the Agent do?” Five dimensions need precise control: amount (per-transaction cap, daily and monthly limits), category (food delivery and rides allowed; transfers and withdrawals blocked), time (weekdays only, or “only act autonomously when I’m offline”), frequency (same merchant daily cap), and confirmation rules (above a threshold, push a notification and wait for human approval). Designing the right permission granularity is the real product challenge — too coarse and it’s unsafe, too fine and convenience disappears.</p>
+<p><strong>The execution layer</strong> answers “what happens when things go wrong?” Two mechanisms are non-negotiable: a cooling window (Agent-initiated payments enter a 30-second-to-5-minute pending state during which the user can cancel) and circuit breakers (if behavior deviates from historical patterns beyond a threshold, Agent payment permissions are automatically frozen pending human review). Every AI-initiated transaction must maintain a complete audit trail: what triggered it, the decision logic, the execution timestamp.</p>
+<h3 id="The-Hard-Problem-Multi-Agent-Nesting"><a href="#The-Hard-Problem-Multi-Agent-Nesting" class="headerlink" title="The Hard Problem: Multi-Agent Nesting"></a>The Hard Problem: Multi-Agent Nesting</h3><p>Reality will be far more complex than single-layer authorization:</p>
+<p>Your AI assistant calls a travel platform’s AI, which calls a hotel’s AI, which triggers the payment. You only authorized the first layer. If any intermediate Agent is compromised, who’s responsible?</p>
+<p>A reasonable design principle is <strong>permissions can only narrow, never expand</strong>: you give Claude a daily limit of 500 yuan, Claude passes a maximum of 200 yuan to Trip.com’s AI, which passes a maximum of 100 yuan to the hotel’s AI. Every delegation can only constrict the scope. Even if one link in the chain fails, the damage is bounded.</p>
+<h2 id="The-Identity-Layer-War-Next-Decade’s-Payment-Entry-Point"><a href="#The-Identity-Layer-War-Next-Decade’s-Payment-Entry-Point" class="headerlink" title="The Identity Layer War: Next Decade’s Payment Entry Point"></a>The Identity Layer War: Next Decade’s Payment Entry Point</h2><p>Once you understand this architecture, you understand what platforms are really competing for.</p>
+<p>On the surface it looks like market share. At the core, it’s <strong>control of the Agent identity layer</strong>.</p>
+<p>Wherever users create their AI assistants, that platform issues the delegated credentials. Whichever credentials payment processors recognize, that platform collects the toll. This logic is identical to the mobile payment entry-point wars of a decade ago — the battlefield shifted from “binding a card” to “binding an Agent identity.”</p>
+<p>Apple is currently best positioned. Secure Enclave + Apple Pay + Apple Intelligence form a natural identity-payment closed loop: the user’s Agent key lives in the iPhone, Apple manages it, and all payment actions must pass through Apple’s identity layer. Google has the same logic on Android, but Android fragmentation is a genuine weakness.</p>
+<p>The Chinese market will be more concentrated. WeChat and Alipay, as super-apps, will almost certainly remain the entry points for users’ AI assistants, and both have strong incentives to bind AI identity with payment accounts into an inseparable whole.</p>
+<p>OpenAI and Anthropic are the biggest wildcards.</p>
+<h2 id="OpenAI-Entering-Payments-Not-“If”-but-“How”"><a href="#OpenAI-Entering-Payments-Not-“If”-but-“How”" class="headerlink" title="OpenAI Entering Payments: Not “If” but “How”"></a>OpenAI Entering Payments: Not “If” but “How”</h2><p>OpenAI’s motivation to enter payments is stronger than most people realize.</p>
+<p>When Agents become ubiquitous and users let AI handle their purchases, OpenAI is deeply involved in every transaction — it understood the user’s intent, orchestrated the execution, called the merchant’s interface — but under the current system, it gets nothing. This tension will become increasingly acute as Agent adoption scales.</p>
+<p>Sam Altman has long had serious interest in financial infrastructure. World ID (iris scanning to prove you’re human) and Worldcoin together are laying the groundwork for a larger ambition: a complete identity + AI + payment closed loop. World ID looks strange in isolation; it makes perfect sense in this context.</p>
+<p>The likely paths: acquisition (Stripe’s history with OpenAI is well documented, and Stripe’s API design is uniquely suited to Agent scenarios); an AI wallet (users deposit funds, the Agent spends within limits — starting with prepaid to avoid banking license requirements); or deep partnership with Visa&#x2F;Mastercard for a dedicated Agent payment channel through the Operator protocol.</p>
+<p>Whatever path is taken, the biggest obstacle isn’t technical — it’s <strong>regulatory trust</strong>. “A company that trains AI models also managing my money” — said aloud today, most users would hesitate. Trust is built slowly, which is why payment product timelines will likely lag technical readiness by two to three years.</p>
+<p>Anthropic’s strategy is smarter and more indirect: define the standard through MCP (Model Context Protocol). MCP currently specifies how Agents call tools; payment tool authorization extensions are inevitable. If MCP becomes the industry standard, Anthropic controls the protocol layer — it doesn’t need to run payments itself, just collect the standard fee from the ecosystem. This is Android’s playbook, not Apple’s, and the long-term leverage may be greater.</p>
+<h2 id="How-Regulation-Will-Unfold"><a href="#How-Regulation-Will-Unfold" class="headerlink" title="How Regulation Will Unfold"></a>How Regulation Will Unfold</h2><p>The trajectories for three regions are fairly predictable.</p>
+<p>China will lead with strong control. The PBOC, through the digital yuan, directly controls programmable currency infrastructure. AI payments will almost certainly require whitelisting; Agents with payment capabilities will need to be registered. The control is strong, but it also means the digital yuan can become the natural substrate for AI payments, and rollout speed may actually be faster.</p>
+<p>The US will see markets run ahead of regulation. Stripe and Visa will ship products first; the CFPB and SEC will gradually establish rules under pressure from litigation and public opinion. Standardization will be slow, but the innovation space will be large.</p>
+<p>The EU will legislate before deploying. The intersection of the AI Act and PSD3 will create the world’s strictest user consent and right-of-revocation frameworks, with the highest compliance costs — but also likely the most rigorous Agent payment standards, which other regions may ultimately adopt as reference.</p>
+<p>Every regulatory framework will face the same core question: <strong>when AI pays on behalf of a human, who is responsible?</strong> The user (who set the rules)? The platform (whose systems the Agent runs on)? The developer (who designed the Agent’s decision logic)? There’s no ready legal answer, and that answer will determine how the entire industry allocates risk.</p>
+<h2 id="Closing"><a href="#Closing" class="headerlink" title="Closing"></a>Closing</h2><p>Payments are superficially a financial problem, structurally a trust problem, and fundamentally an identity problem. AI has restructured the concept of identity — when the “person” making a payment might be an Agent, when an Agent can be any program designed by anyone, the foundation of the entire trust system needs to be repoured.</p>
+<p>Programmable payments, Agent authorization architecture, the AI identity layer — these three directions converge on the same endpoint:</p>
+<p><strong>Money will carry intent.</strong> It won’t just be a number — it will know what it can be used for, who can trigger it, under what conditions it flows.</p>
+<p>This is a massive efficiency gain, and an unprecedented concentration of control. Whoever designs these rules controls the financial infrastructure of the next era. The competition has already started. Most people just haven’t noticed yet.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/31/ai-payment-future-en/">https://xiaoxiaduoyan.com/2026/03/31/ai-payment-future-en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Agent/">Agent</a><a class="post-meta__tags" href="/tags/English/">English</a><a class="post-meta__tags" href="/tags/Payment/">Payment</a><a class="post-meta__tags" href="/tags/Fintech/">Fintech</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</div></div></div></a><a class="pagination-related" href="/2026/03/27/universe-consciousness-en/" title="You Are Not a Point in the Universe — The Universe Is Inside You"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">You Are Not a Point in the Universe — The Universe Is Inside You</div></div><div class="info-2"><div class="info-item-1">Someone once said: humans are cosmic signal receivers.
+It sounds like mysticism at first. But push it seriously, and something interesting starts to emerge.</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management-en/" title="Agent Memory Management in the Era of Super Large Models"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">Agent Memory Management in the Era of Super Large Models</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-eyes-and-hands-en/" title="How to Give Your Agent Eyes and Hands"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">How to Give Your Agent Eyes and Hands</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/01/ai-social-revolution-en/" title="How AI Will Transform Society"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-01</div><div class="info-item-2">How AI Will Transform Society</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/ai-engineer-concepts-guide-en/" title="30 Core Concepts Every AI Engineer Must Know"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">30 Core Concepts Every AI Engineer Must Know</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-en/" title="Can AI Really Not Replace Therapists?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">Can AI Really Not Replace Therapists?</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/ai-coding-steam-engine-on-cart-en/" title="AI Coding Today: Steam Engines Pulling Carriages"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AI Coding Today: Steam Engines Pulling Carriages</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#From-%E2%80%9CHumans-Pay%E2%80%9D-to-%E2%80%9CAgents-Pay%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">From “Humans Pay” to “Agents Pay”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Programmable-Payments-Giving-Money-a-Logic-Layer"><span class="toc-number">2.</span> <span class="toc-text">Programmable Payments: Giving Money a Logic Layer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Three-Parallel-Technical-Paths"><span class="toc-number">2.1.</span> <span class="toc-text">Three Parallel Technical Paths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Where-Programmable-Payments-Actually-Create-Value"><span class="toc-number">2.2.</span> <span class="toc-text">Where Programmable Payments Actually Create Value</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-Authorization-Architecture-Designing-%E2%80%9CPre-Consent%E2%80%9D"><span class="toc-number">3.</span> <span class="toc-text">Agent Authorization Architecture: Designing “Pre-Consent”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Three-Layer-Authorization-Model"><span class="toc-number">3.1.</span> <span class="toc-text">A Three-Layer Authorization Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Hard-Problem-Multi-Agent-Nesting"><span class="toc-number">3.2.</span> <span class="toc-text">The Hard Problem: Multi-Agent Nesting</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Identity-Layer-War-Next-Decade%E2%80%99s-Payment-Entry-Point"><span class="toc-number">4.</span> <span class="toc-text">The Identity Layer War: Next Decade’s Payment Entry Point</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenAI-Entering-Payments-Not-%E2%80%9CIf%E2%80%9D-but-%E2%80%9CHow%E2%80%9D"><span class="toc-number">5.</span> <span class="toc-text">OpenAI Entering Payments: Not “If” but “How”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Regulation-Will-Unfold"><span class="toc-number">6.</span> <span class="toc-text">How Regulation Will Unfold</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closing"><span class="toc-number">7.</span> <span class="toc-text">Closing</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI Coding 的绊脚石之一：程序的隐式契约问题 | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AI写的代码能跑，但你总感觉哪里不对？问题可能出在&quot;隐式契约&quot;上——那些没写在文档里、但每个人都默认存在的规则。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Coding 的绊脚石之一：程序的隐式契约问题">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/02/ai-coding-implicit-contracts/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="AI写的代码能跑，但你总感觉哪里不对？问题可能出在&quot;隐式契约&quot;上——那些没写在文档里、但每个人都默认存在的规则。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-02T06:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.150Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI编程">
+<meta property="article:tag" content="代码质量">
+<meta property="article:tag" content="软件开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Coding 的绊脚石之一：程序的隐式契约问题",
+  "url": "https://xiaoxiaduoyan.com/2026/03/02/ai-coding-implicit-contracts/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-02T06:00:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.150Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/02/ai-coding-implicit-contracts/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI Coding 的绊脚石之一：程序的隐式契约问题',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">AI Coding 的绊脚石之一：程序的隐式契约问题</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">AI Coding 的绊脚石之一：程序的隐式契约问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-02T06:00:00.000Z" title="发表于 2026-03-02 14:00:00">2026-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.150Z" title="更新于 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/">技术思考</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h1 id="AI-Coding-的绊脚石之一：程序的隐式契约问题"><a href="#AI-Coding-的绊脚石之一：程序的隐式契约问题" class="headerlink" title="AI Coding 的绊脚石之一：程序的隐式契约问题"></a>AI Coding 的绊脚石之一：程序的隐式契约问题</h1><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="隐式契约示意图"></p>
+<h2 id="引言：当AI遇到”不言而喻”的规则"><a href="#引言：当AI遇到”不言而喻”的规则" class="headerlink" title="引言：当AI遇到”不言而喻”的规则"></a>引言：当AI遇到”不言而喻”的规则</h2><p>最近在尝试用AI助手编写代码时，我发现了一个有趣的现象：有些代码看起来完美无缺，逻辑清晰，语法正确，但就是无法正常工作。经过深入分析，我发现问题的根源往往不在于代码本身，而在于那些<strong>从未被明确写出，却对程序运行至关重要的隐式契约</strong>。</p>
+<p>这些隐式契约就像是软件开发中的”潜规则”——人类开发者通过经验和上下文理解它们，但AI却常常在这些规则面前碰壁。</p>
+<h2 id="什么是隐式契约？"><a href="#什么是隐式契约？" class="headerlink" title="什么是隐式契约？"></a>什么是隐式契约？</h2><p>隐式契约（Implicit Contract）指的是那些没有被明确写在代码或文档中，但对程序正确运行至关重要的假设、约定和期望。它们通常包括：</p>
+<ol>
+<li><strong>性能期望</strong>：函数应该在多长时间内完成</li>
+<li><strong>资源使用</strong>：函数会消耗多少内存、CPU或网络带宽</li>
+<li><strong>副作用</strong>：函数会修改哪些外部状态</li>
+<li><strong>错误处理</strong>：在什么情况下函数应该抛出异常，什么情况下应该静默处理</li>
+<li><strong>并发安全</strong>：函数是否可以在多线程环境下安全调用</li>
+</ol>
+<h2 id="实例分析：AI编程中的隐式契约陷阱"><a href="#实例分析：AI编程中的隐式契约陷阱" class="headerlink" title="实例分析：AI编程中的隐式契约陷阱"></a>实例分析：AI编程中的隐式契约陷阱</h2><h3 id="案例一：文件读取的”合理”超时"><a href="#案例一：文件读取的”合理”超时" class="headerlink" title="案例一：文件读取的”合理”超时"></a>案例一：文件读取的”合理”超时</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AI生成的代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_large_file</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">return</span> f.read()</span><br></pre></td></tr></table></figure>
+
+<p><strong>问题</strong>：这段代码对于小文件工作正常，但对于10GB的大文件，它会耗尽内存并导致程序崩溃。人类开发者会意识到需要分块读取或使用流式处理，但AI只看到了”读取文件”这个明确需求。</p>
+<p><strong>隐式契约</strong>：读取操作应该在合理时间内完成，且不会耗尽系统资源。</p>
+<h3 id="案例二：API调用的”礼貌”重试"><a href="#案例二：API调用的”礼貌”重试" class="headerlink" title="案例二：API调用的”礼貌”重试"></a>案例二：API调用的”礼貌”重试</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AI生成的API调用代码</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchUserData</span>(<span class="params">userId</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`/api/users/<span class="subst">$&#123;userId&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">return</span> response.<span class="title function_">json</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>问题</strong>：网络请求可能失败，但代码没有重试机制。人类开发者知道网络是不可靠的，通常会添加重试逻辑、超时处理和错误回退。</p>
+<p><strong>隐式契约</strong>：网络操作应该具有弹性，能够处理临时故障。</p>
+<h3 id="案例三：缓存更新的”一致性”保证"><a href="#案例三：缓存更新的”一致性”保证" class="headerlink" title="案例三：缓存更新的”一致性”保证"></a>案例三：缓存更新的”一致性”保证</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AI生成的缓存更新代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateUserCache</span><span class="params">(User user)</span> &#123;</span><br><span class="line">    cache.put(user.getId(), user);</span><br><span class="line">    database.update(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>问题</strong>：如果数据库更新失败，缓存中已经存储了不一致的数据。人类开发者会使用事务或两阶段提交来保证一致性。</p>
+<p><strong>隐式契约</strong>：数据更新操作应该保持系统状态的一致性。</p>
+<h2 id="隐式契约的根源：为什么它们如此普遍？"><a href="#隐式契约的根源：为什么它们如此普遍？" class="headerlink" title="隐式契约的根源：为什么它们如此普遍？"></a>隐式契约的根源：为什么它们如此普遍？</h2><h3 id="1-历史遗留与约定俗成"><a href="#1-历史遗留与约定俗成" class="headerlink" title="1. 历史遗留与约定俗成"></a>1. 历史遗留与约定俗成</h3><p>许多隐式契约源于历史原因。比如，Unix命令行工具遵循”安静成功，详细失败”的原则——这个原则从未在man page中明确写出，但所有有经验的开发者都知道。</p>
+<h3 id="2-性能与简洁性的权衡"><a href="#2-性能与简洁性的权衡" class="headerlink" title="2. 性能与简洁性的权衡"></a>2. 性能与简洁性的权衡</h3><p>明确写出所有契约会使代码变得冗长。例如，每个函数都加上性能保证注释是不现实的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果每个函数都这样写...</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_data</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    处理数据。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    性能契约：</span></span><br><span class="line"><span class="string">    - 时间复杂度：O(n log n)</span></span><br><span class="line"><span class="string">    - 空间复杂度：O(n)</span></span><br><span class="line"><span class="string">    - 最大输入大小：10,000条记录</span></span><br><span class="line"><span class="string">    - 预期执行时间：&lt; 2秒（在标准硬件上）</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    副作用契约：</span></span><br><span class="line"><span class="string">    - 不会修改输入数据</span></span><br><span class="line"><span class="string">    - 会写入日志文件</span></span><br><span class="line"><span class="string">    - 可能向监控系统发送指标</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    错误契约：</span></span><br><span class="line"><span class="string">    - 输入为空时返回空列表</span></span><br><span class="line"><span class="string">    - 数据格式错误时抛出ValueError</span></span><br><span class="line"><span class="string">    - 内存不足时抛出MemoryError</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 实际实现...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-领域知识的缺失"><a href="#3-领域知识的缺失" class="headerlink" title="3. 领域知识的缺失"></a>3. 领域知识的缺失</h3><p>AI缺乏特定领域的专业知识。医疗软件、金融系统、航空航天控制等领域都有大量的领域特定隐式契约，这些知识通常通过多年经验积累。</p>
+<h3 id="4-上下文依赖"><a href="#4-上下文依赖" class="headerlink" title="4. 上下文依赖"></a>4. 上下文依赖</h3><p>许多契约依赖于具体的使用场景。同一个函数在批处理系统和实时系统中可能有完全不同的性能期望。</p>
+<h2 id="隐式契约带来的具体问题"><a href="#隐式契约带来的具体问题" class="headerlink" title="隐式契约带来的具体问题"></a>隐式契约带来的具体问题</h2><h3 id="1-调试困难"><a href="#1-调试困难" class="headerlink" title="1. 调试困难"></a>1. 调试困难</h3><p>当违反隐式契约时，错误信息往往不明确。程序可能只是”运行缓慢”或”偶尔崩溃”，而不是抛出清晰的异常。</p>
+<h3 id="2-集成问题"><a href="#2-集成问题" class="headerlink" title="2. 集成问题"></a>2. 集成问题</h3><p>不同团队或不同系统对同一概念可能有不同的隐式契约，导致集成时出现微妙的不兼容。</p>
+<h3 id="3-技术债务积累"><a href="#3-技术债务积累" class="headerlink" title="3. 技术债务积累"></a>3. 技术债务积累</h3><p>随着时间的推移，未被文档化的隐式契约会变成”部落知识”——只有少数老员工知道，新员工和AI助手都会反复踩坑。</p>
+<h3 id="4-阻碍自动化"><a href="#4-阻碍自动化" class="headerlink" title="4. 阻碍自动化"></a>4. 阻碍自动化</h3><p>隐式契约是自动化测试、静态分析和AI代码生成的重大障碍。如果规则不明确，机器就无法可靠地验证或生成代码。</p>
+<h2 id="解决方案：让隐式契约显式化"><a href="#解决方案：让隐式契约显式化" class="headerlink" title="解决方案：让隐式契约显式化"></a>解决方案：让隐式契约显式化</h2><h3 id="1-契约优先设计（Contract-First-Design）"><a href="#1-契约优先设计（Contract-First-Design）" class="headerlink" title="1. 契约优先设计（Contract-First Design）"></a>1. 契约优先设计（Contract-First Design）</h3><p>在编写实现之前，先明确写出函数的契约。这可以通过多种形式实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Protocol</span><br><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"></span><br><span class="line"><span class="meta">@dataclass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PerformanceContract</span>:</span><br><span class="line">    max_time_ms: <span class="built_in">int</span></span><br><span class="line">    max_memory_mb: <span class="built_in">int</span></span><br><span class="line">    thread_safe: <span class="built_in">bool</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataProcessor</span>(<span class="title class_ inherited__">Protocol</span>):</span><br><span class="line">    performance: PerformanceContract</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process</span>(<span class="params">self, data: <span class="built_in">list</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        契约：</span></span><br><span class="line"><span class="string">        1. 不会修改输入数据</span></span><br><span class="line"><span class="string">        2. 时间复杂度 O(n log n)</span></span><br><span class="line"><span class="string">        3. 空输入返回空列表</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用契约编程框架"><a href="#2-使用契约编程框架" class="headerlink" title="2. 使用契约编程框架"></a>2. 使用契约编程框架</h3><p>利用现有的契约编程工具，如Python的<code>icontract</code>、Java的<code>Contracts for Java</code>或Eiffel语言内置的契约支持：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> icontract</span><br><span class="line"></span><br><span class="line"><span class="meta">@icontract.require(<span class="params"><span class="keyword">lambda</span> x: x &gt; <span class="number">0</span>, <span class="string">&quot;输入必须为正数&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@icontract.ensure(<span class="params"><span class="keyword">lambda</span> result: result &gt; <span class="number">0</span>, <span class="string">&quot;结果必须为正数&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@icontract.snapshot(<span class="params"><span class="keyword">lambda</span> x: x, <span class="string">&quot;保存原始值&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_square_root</span>(<span class="params">x: <span class="built_in">float</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">    <span class="comment"># 实现必须满足前后条件</span></span><br><span class="line">    <span class="keyword">return</span> x ** <span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-增强的API文档"><a href="#3-增强的API文档" class="headerlink" title="3. 增强的API文档"></a>3. 增强的API文档</h3><p>在文档中明确列出所有隐式契约。可以使用标准化的模板：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 性能特征</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**时间复杂度**</span>：O(n)</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**空间复杂度**</span>：O(1)</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**线程安全**</span>：是</span><br><span class="line"></span><br><span class="line"><span class="section">## 副作用</span></span><br><span class="line"><span class="bullet">-</span> 会修改全局配置</span><br><span class="line"><span class="bullet">-</span> 会写入日志文件</span><br><span class="line"></span><br><span class="line"><span class="section">## 错误处理</span></span><br><span class="line"><span class="bullet">-</span> 输入无效时抛出<span class="code">`ValueError`</span></span><br><span class="line"><span class="bullet">-</span> 资源不足时抛出<span class="code">`RuntimeError`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-运行时契约检查"><a href="#4-运行时契约检查" class="headerlink" title="4. 运行时契约检查"></a>4. 运行时契约检查</h3><p>在开发和测试环境中启用契约检查，在生产环境中关闭以提高性能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ContractAwareProcessor</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, debug=<span class="literal">False</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.debug = debug</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process</span>(<span class="params">self, data</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.debug:</span><br><span class="line">            <span class="variable language_">self</span>._check_preconditions(data)</span><br><span class="line">        </span><br><span class="line">        result = <span class="variable language_">self</span>._actual_process(data)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.debug:</span><br><span class="line">            <span class="variable language_">self</span>._check_postconditions(data, result)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-AI友好的代码注解"><a href="#5-AI友好的代码注解" class="headerlink" title="5. AI友好的代码注解"></a>5. AI友好的代码注解</h3><p>为AI助手提供专门的注解，帮助它们理解隐式契约：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @ai-contract: 这个函数用于处理用户输入，对性能敏感</span></span><br><span class="line"><span class="comment"># @ai-expectation: 应该在100ms内完成</span></span><br><span class="line"><span class="comment"># @ai-side-effect: 会更新数据库中的用户状态</span></span><br><span class="line"><span class="comment"># @ai-error-case: 网络超时时重试3次</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_user_request</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="comment"># 实现...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="面向未来的思考"><a href="#面向未来的思考" class="headerlink" title="面向未来的思考"></a>面向未来的思考</h2><h3 id="1-契约作为一等公民"><a href="#1-契约作为一等公民" class="headerlink" title="1. 契约作为一等公民"></a>1. 契约作为一等公民</h3><p>未来的编程语言可能会将契约作为语言的一等公民，就像类型系统一样。编译器可以静态检查契约，IDE可以提供更好的支持。</p>
+<h3 id="2-AI可理解的契约语言"><a href="#2-AI可理解的契约语言" class="headerlink" title="2. AI可理解的契约语言"></a>2. AI可理解的契约语言</h3><p>我们需要开发一种既对人类友好，又对AI可解析的契约描述语言。这种语言应该能够表达复杂的约束和期望。</p>
+<h3 id="3-契约学习与推理"><a href="#3-契约学习与推理" class="headerlink" title="3. 契约学习与推理"></a>3. 契约学习与推理</h3><p>AI系统可以通过分析大量代码库，自动学习和推断常见的隐式契约，并建议将它们显式化。</p>
+<h3 id="4-契约驱动的代码生成"><a href="#4-契约驱动的代码生成" class="headerlink" title="4. 契约驱动的代码生成"></a>4. 契约驱动的代码生成</h3><p>未来的AI代码生成器可以以契约为输入，生成满足所有约束的代码实现。</p>
+<h2 id="实践建议"><a href="#实践建议" class="headerlink" title="实践建议"></a>实践建议</h2><h3 id="给开发者的建议："><a href="#给开发者的建议：" class="headerlink" title="给开发者的建议："></a>给开发者的建议：</h3><ol>
+<li><strong>识别关键契约</strong>：在代码审查时，特别关注那些可能包含隐式契约的函数</li>
+<li><strong>逐步显式化</strong>：不要试图一次性文档化所有契约，从最关键的开始</li>
+<li><strong>建立契约文化</strong>：在团队中推广契约优先的思维方式</li>
+<li><strong>利用工具</strong>：使用静态分析工具检测可能的契约违反</li>
+</ol>
+<h3 id="给AI提示工程师的建议："><a href="#给AI提示工程师的建议：" class="headerlink" title="给AI提示工程师的建议："></a>给AI提示工程师的建议：</h3><ol>
+<li><strong>明确表达期望</strong>：在提示中不仅说明”做什么”，还要说明”在什么约束下做”</li>
+<li><strong>提供上下文</strong>：告诉AI代码将运行在什么环境中，有什么性能要求</li>
+<li><strong>要求契约注释</strong>：让AI生成的代码包含明确的契约注释</li>
+<li><strong>测试边界条件</strong>：特别测试那些可能违反隐式契约的边缘情况</li>
+</ol>
+<h2 id="结语：从隐式到显式的进化"><a href="#结语：从隐式到显式的进化" class="headerlink" title="结语：从隐式到显式的进化"></a>结语：从隐式到显式的进化</h2><p>隐式契约问题是AI编程成熟过程中的必经阶段。正如软件工程从”写代码”进化到”设计系统”，从”能运行”进化到”可维护”，我们现在正经历从”隐式理解”到”显式表达”的进化。</p>
+<p>解决隐式契约问题不仅是让AI更好地编程，更是让所有软件更加可靠、可维护、可理解。在这个过程中，我们不仅教会了AI如何编程，也教会了自己如何更好地表达意图、管理复杂性和构建健壮的系统。</p>
+<p>最终，显式的契约会成为连接人类意图、机器理解和代码实现的重要桥梁。当这座桥梁建成时，AI编程才能真正从”辅助工具”进化为”可靠伙伴”。</p>
+<hr>
+<p><strong>思考题</strong>：在你的项目中，有哪些重要的隐式契约？如果让AI来维护你的代码，哪些契约最需要被显式化？</p>
+<p><strong>延伸阅读</strong>：</p>
+<ol>
+<li>《设计模式：可复用面向对象软件的基础》- 模式本身就是一种高级契约</li>
+<li>《代码大全》- 关于软件构建的全面指南</li>
+<li>《重构：改善既有代码的设计》- 如何安全地修改代码而不违反契约</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/02/ai-coding-implicit-contracts/">https://xiaoxiaduoyan.com/2026/03/02/ai-coding-implicit-contracts/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xiaoxiaduoyan.com" target="_blank">森哥 Ideas</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI%E7%BC%96%E7%A8%8B/">AI编程</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a><a class="post-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F/">代码质量</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/02/ai-opensource-security/" title="AI导致开源生产率爆炸，安全如何保障？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">AI导致开源生产率爆炸，安全如何保障？</div></div><div class="info-2"><div class="info-item-1">AI让代码生成速度提升了10倍，但安全审查的速度还是那么慢。这场不对等的竞赛，正在重塑整个开源生态的安全基础。</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/02/rust-ai-language/" title="Rust 会是 AI 时代的最好的编程语言吗？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Rust 会是 AI 时代的最好的编程语言吗？</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AI-Coding-%E7%9A%84%E7%BB%8A%E8%84%9A%E7%9F%B3%E4%B9%8B%E4%B8%80%EF%BC%9A%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%9A%90%E5%BC%8F%E5%A5%91%E7%BA%A6%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">AI Coding 的绊脚石之一：程序的隐式契约问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E5%BD%93AI%E9%81%87%E5%88%B0%E2%80%9D%E4%B8%8D%E8%A8%80%E8%80%8C%E5%96%BB%E2%80%9D%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">引言：当AI遇到”不言而喻”的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%90%E5%BC%8F%E5%A5%91%E7%BA%A6%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是隐式契约？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9AAI%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E5%A5%91%E7%BA%A6%E9%99%B7%E9%98%B1"><span class="toc-number">1.3.</span> <span class="toc-text">实例分析：AI编程中的隐式契约陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E4%B8%80%EF%BC%9A%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E7%9A%84%E2%80%9D%E5%90%88%E7%90%86%E2%80%9D%E8%B6%85%E6%97%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">案例一：文件读取的”合理”超时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E4%BA%8C%EF%BC%9AAPI%E8%B0%83%E7%94%A8%E7%9A%84%E2%80%9D%E7%A4%BC%E8%B2%8C%E2%80%9D%E9%87%8D%E8%AF%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">案例二：API调用的”礼貌”重试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E4%B8%89%EF%BC%9A%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E7%9A%84%E2%80%9D%E4%B8%80%E8%87%B4%E6%80%A7%E2%80%9D%E4%BF%9D%E8%AF%81"><span class="toc-number">1.3.3.</span> <span class="toc-text">案例三：缓存更新的”一致性”保证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E5%A5%91%E7%BA%A6%E7%9A%84%E6%A0%B9%E6%BA%90%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E4%BB%AC%E5%A6%82%E6%AD%A4%E6%99%AE%E9%81%8D%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">隐式契约的根源：为什么它们如此普遍？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8E%86%E5%8F%B2%E9%81%97%E7%95%99%E4%B8%8E%E7%BA%A6%E5%AE%9A%E4%BF%97%E6%88%90"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 历史遗留与约定俗成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%80%A7%E8%83%BD%E4%B8%8E%E7%AE%80%E6%B4%81%E6%80%A7%E7%9A%84%E6%9D%83%E8%A1%A1"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 性能与简洁性的权衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%A2%86%E5%9F%9F%E7%9F%A5%E8%AF%86%E7%9A%84%E7%BC%BA%E5%A4%B1"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 领域知识的缺失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BE%9D%E8%B5%96"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. 上下文依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E5%A5%91%E7%BA%A6%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%85%B7%E4%BD%93%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">隐式契约带来的具体问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B0%83%E8%AF%95%E5%9B%B0%E9%9A%BE"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 调试困难</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9B%86%E6%88%90%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 集成问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8A%80%E6%9C%AF%E5%80%BA%E5%8A%A1%E7%A7%AF%E7%B4%AF"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. 技术债务积累</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%98%BB%E7%A2%8D%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">1.5.4.</span> <span class="toc-text">4. 阻碍自动化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E8%AE%A9%E9%9A%90%E5%BC%8F%E5%A5%91%E7%BA%A6%E6%98%BE%E5%BC%8F%E5%8C%96"><span class="toc-number">1.6.</span> <span class="toc-text">解决方案：让隐式契约显式化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A5%91%E7%BA%A6%E4%BC%98%E5%85%88%E8%AE%BE%E8%AE%A1%EF%BC%88Contract-First-Design%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 契约优先设计（Contract-First Design）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E5%A5%91%E7%BA%A6%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 使用契约编程框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A2%9E%E5%BC%BA%E7%9A%84API%E6%96%87%E6%A1%A3"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 增强的API文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A5%91%E7%BA%A6%E6%A3%80%E6%9F%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">4. 运行时契约检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-AI%E5%8F%8B%E5%A5%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.6.5.</span> <span class="toc-text">5. AI友好的代码注解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%9C%AA%E6%9D%A5%E7%9A%84%E6%80%9D%E8%80%83"><span class="toc-number">1.7.</span> <span class="toc-text">面向未来的思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A5%91%E7%BA%A6%E4%BD%9C%E4%B8%BA%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91"><span class="toc-number">1.7.1.</span> <span class="toc-text">1. 契约作为一等公民</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-AI%E5%8F%AF%E7%90%86%E8%A7%A3%E7%9A%84%E5%A5%91%E7%BA%A6%E8%AF%AD%E8%A8%80"><span class="toc-number">1.7.2.</span> <span class="toc-text">2. AI可理解的契约语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A5%91%E7%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%8E%A8%E7%90%86"><span class="toc-number">1.7.3.</span> <span class="toc-text">3. 契约学习与推理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A5%91%E7%BA%A6%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90"><span class="toc-number">1.7.4.</span> <span class="toc-text">4. 契约驱动的代码生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.8.</span> <span class="toc-text">实践建议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.8.1.</span> <span class="toc-text">给开发者的建议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99AI%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%BB%BA%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.8.2.</span> <span class="toc-text">给AI提示工程师的建议：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E4%BB%8E%E9%9A%90%E5%BC%8F%E5%88%B0%E6%98%BE%E5%BC%8F%E7%9A%84%E8%BF%9B%E5%8C%96"><span class="toc-number">1.9.</span> <span class="toc-text">结语：从隐式到显式的进化</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

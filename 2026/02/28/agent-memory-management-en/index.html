@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Agent Memory Management in the Era of Super Large Models | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="When context windows are already massive, do Agents still need memory management? Sharing my thoughts from hands-on experience.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent Memory Management in the Era of Super Large Models">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/02/28/agent-memory-management-en/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="When context windows are already massive, do Agents still need memory management? Sharing my thoughts from hands-on experience.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-02-28T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.149Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="English">
+<meta property="article:tag" content="Thoughts">
+<meta property="article:tag" content="Writing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Agent Memory Management in the Era of Super Large Models",
+  "url": "https://xiaoxiaduoyan.com/2026/02/28/agent-memory-management-en/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-02-28T10:00:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.149Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/02/28/agent-memory-management-en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Agent Memory Management in the Era of Super Large Models',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">Agent Memory Management in the Era of Super Large Models</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Agent Memory Management in the Era of Super Large Models</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-28T10:00:00.000Z" title="Created 2026-02-28 18:00:00">2026-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.149Z" title="Updated 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/English/">English</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="A-Real-Scenario"><a href="#A-Real-Scenario" class="headerlink" title="A Real Scenario"></a>A Real Scenario</h2><p>I’ve been using an AI Agent recently to help me with all sorts of tasks — building a blog, writing a component library, tweaking styles, deploying code. After a few days, I noticed something interesting:</p>
+<p><strong>It remembers that I prefer pnpm, knows my GitHub username, remembers I said “get rid of the top banner,” and even knows my WeChat ID.</strong></p>
+<p>But sometimes it makes rookie mistakes — like reverting a bug fix I’d already confirmed, or forgetting a preference I’d explicitly stated.</p>
+<p>This got me thinking seriously about a question: <strong>In an era where model context windows are already hundreds of thousands of tokens, how should Agent memory management actually work?</strong></p>
+<h2 id="Is-a-Bigger-Context-Window-Enough"><a href="#Is-a-Bigger-Context-Window-Enough" class="headerlink" title="Is a Bigger Context Window Enough?"></a>Is a Bigger Context Window Enough?</h2><p>Many people have an intuition: context windows are getting huge — 128K, 200K, even 1M tokens. Can’t we just stuff all the history in there and call it a day?</p>
+<p><strong>The answer is: not even close.</strong></p>
+<p>Three reasons:</p>
+<h3 id="1-Cost-Is-a-Hard-Constraint"><a href="#1-Cost-Is-a-Hard-Constraint" class="headerlink" title="1. Cost Is a Hard Constraint"></a>1. Cost Is a Hard Constraint</h3><p>Even if a model supports 1M tokens of context, do you really want to fill it every single inference call? At current API pricing, a single million-token call might cost several dollars. An active Agent might run hundreds of inferences per day.</p>
+<p><strong>Do the math: if you max out 1M context every time, daily API costs could easily hit thousands of dollars.</strong> That’s unacceptable for individual developers and a massive cost pressure for enterprises.</p>
+<h3 id="2-Long-Context-≠-Long-Memory"><a href="#2-Long-Context-≠-Long-Memory" class="headerlink" title="2. Long Context ≠ Long Memory"></a>2. Long Context ≠ Long Memory</h3><p>This is something many people overlook. Models show significantly degraded information extraction from the middle portions of very long contexts — the so-called <strong>“Lost in the Middle”</strong> problem.</p>
+<p>If you bury a conversation from three months ago at the 500K-token mark, the model will likely ignore it completely. A context window is a queue, not a database. <strong>You can’t expect a model to pinpoint critical information from massive text like a search engine.</strong></p>
+<h3 id="3-Not-Everything-Is-Worth-Remembering"><a href="#3-Not-Everything-Is-Worth-Remembering" class="headerlink" title="3. Not Everything Is Worth Remembering"></a>3. Not Everything Is Worth Remembering</h3><p>This is the most crucial point. The reason human memory is efficient isn’t because we remember everything — it’s because we’re <strong>good at forgetting</strong>.</p>
+<p>You don’t need to remember the output of every <code>git push</code>, but you do need to remember “this project uses pnpm instead of npm because npm has cache permission issues.” The former is noise; the latter is knowledge.</p>
+<p><strong>Good memory management is essentially the art of forgetting.</strong></p>
+<h2 id="Current-Mainstream-Agent-Memory-Approaches"><a href="#Current-Mainstream-Agent-Memory-Approaches" class="headerlink" title="Current Mainstream Agent Memory Approaches"></a>Current Mainstream Agent Memory Approaches</h2><p>The industry’s Agent memory management roughly breaks down into several layers:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/memory-layers.png" alt="Agent Memory Architecture"></p>
+<h3 id="Working-Memory"><a href="#Working-Memory" class="headerlink" title="Working Memory"></a>Working Memory</h3><p>The current conversation context. What the model can directly “see.” Limited capacity, but fastest access and highest accuracy.</p>
+<p>Human analogy: what you’re actively thinking about right now.</p>
+<h3 id="Short-term-Memory"><a href="#Short-term-Memory" class="headerlink" title="Short-term Memory"></a>Short-term Memory</h3><p>Summaries of recent conversation rounds. Usually auto-compressed by an LLM, retaining key information while discarding details.</p>
+<p>Human analogy: you roughly remember what you did today, but the exact words of every conversation are already fuzzy.</p>
+<h3 id="Long-term-Memory"><a href="#Long-term-Memory" class="headerlink" title="Long-term Memory"></a>Long-term Memory</h3><p>Persistent information across sessions. Typically stored in vector databases, retrieved via embedding similarity.</p>
+<p>Human analogy: you know a colleague’s habits, a project’s architectural decisions — knowledge accumulated over time.</p>
+<h3 id="External-Knowledge"><a href="#External-Knowledge" class="headerlink" title="External Knowledge"></a>External Knowledge</h3><p>Documentation, codebases, API docs, etc. Agents access these on-demand through RAG (Retrieval-Augmented Generation).</p>
+<p>Human analogy: you don’t memorize the entire manual, but you know where to look.</p>
+<h2 id="Key-Problems-I’ve-Observed"><a href="#Key-Problems-I’ve-Observed" class="headerlink" title="Key Problems I’ve Observed"></a>Key Problems I’ve Observed</h2><p>Through hands-on Agent usage, I’ve identified several pain points with existing memory approaches:</p>
+<h3 id="Problem-1-Summaries-Lose-Critical-Details"><a href="#Problem-1-Summaries-Lose-Critical-Details" class="headerlink" title="Problem 1: Summaries Lose Critical Details"></a>Problem 1: Summaries Lose Critical Details</h3><p>When an Agent compresses long conversations into summaries, it has to make trade-offs. But <strong>judging what’s important and what’s not is inherently difficult</strong>.</p>
+<p>Example: I told my Agent “don’t add the <code>/ideas/</code> prefix to image paths.” In a long debugging conversation, this might be just one line, but it’s a <strong>critical project rule</strong>. If it gets dropped during summarization, the same mistake will happen again.</p>
+<h3 id="Problem-2-Vector-Retrieval-Has-Unstable-Recall"><a href="#Problem-2-Vector-Retrieval-Has-Unstable-Recall" class="headerlink" title="Problem 2: Vector Retrieval Has Unstable Recall"></a>Problem 2: Vector Retrieval Has Unstable Recall</h3><p>Long-term memory typically relies on vector similarity search. But natural language semantics are fuzzy — “npm has permission issues” and “use pnpm instead of npm” are semantically related but expressed very differently. Critical information might be missed during retrieval.</p>
+<h3 id="Problem-3-Memory-Lacks-Structure"><a href="#Problem-3-Memory-Lacks-Structure" class="headerlink" title="Problem 3: Memory Lacks Structure"></a>Problem 3: Memory Lacks Structure</h3><p>Most Agent memories are just piles of text fragments. But human memory is structured — we organize knowledge into concepts, rules, experiences, preferences, and other categories.</p>
+<p><strong>An Agent should know that “user prefers pnpm” is a preference rule, not just a sentence that appeared in some conversation.</strong></p>
+<h2 id="My-Vision-The-Ideal-Agent-Memory-System"><a href="#My-Vision-The-Ideal-Agent-Memory-System" class="headerlink" title="My Vision: The Ideal Agent Memory System"></a>My Vision: The Ideal Agent Memory System</h2><p>Based on these observations, I believe future Agent memory systems should have several characteristics:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/memory-radar.png" alt="Memory Type Characteristics"></p>
+<h3 id="1-Layered-Categorized"><a href="#1-Layered-Categorized" class="headerlink" title="1. Layered + Categorized"></a>1. Layered + Categorized</h3><p>Not a simple “short-term&#x2F;long-term” binary, but categorized by information type:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Facts</strong></td>
+<td>User’s GitHub username is hongqi-lgs</td>
+<td>High certainty, rarely changes</td>
+</tr>
+<tr>
+<td><strong>Preferences</strong></td>
+<td>User likes headed browser mode</td>
+<td>May change, but infrequently</td>
+</tr>
+<tr>
+<td><strong>Rules</strong></td>
+<td>Don’t add &#x2F;ideas&#x2F; prefix to image paths</td>
+<td>Project-level hard constraints</td>
+</tr>
+<tr>
+<td><strong>Lessons</strong></td>
+<td>npm has cache permission issues, use pnpm</td>
+<td>Learned from mistakes</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>Currently developing the Switch component</td>
+<td>Time-sensitive, will expire</td>
+</tr>
+</tbody></table>
+<p>Different types of memory should have different storage strategies, retrieval weights, and expiration mechanisms.</p>
+<h3 id="2-Active-Forgetting"><a href="#2-Active-Forgetting" class="headerlink" title="2. Active Forgetting"></a>2. Active Forgetting</h3><p>Agents should be able to proactively clean up outdated information. Debugging logs from three months ago, details of resolved bugs, temporary intermediate states — these should all be gradually phased out.</p>
+<p><strong>Not deletion, but de-prioritization.</strong> Like human memory, information that’s rarely recalled gradually fades, but can still be retrieved if triggered.</p>
+<h3 id="3-Self-Correcting-Memory"><a href="#3-Self-Correcting-Memory" class="headerlink" title="3. Self-Correcting Memory"></a>3. Self-Correcting Memory</h3><p>When an Agent discovers its memory contradicts reality, it should auto-update. If a user says “I’ve switched to npm now,” the Agent shouldn’t cling to the old “use pnpm” memory.</p>
+<p>This requires a <strong>conflict detection and resolution mechanism</strong> — when new information contradicts old memory, prioritize the new and mark the old as “outdated.”</p>
+<h3 id="4-Explainable-Memory"><a href="#4-Explainable-Memory" class="headerlink" title="4. Explainable Memory"></a>4. Explainable Memory</h3><p>Users should be able to see what the Agent remembers, why it remembers it, and when it was stored. This isn’t just about transparency — it’s the foundation of trust.</p>
+<p><strong>If you don’t know what information an AI has stored about you, how can you trust it with important tasks?</strong></p>
+<h2 id="A-Bolder-Idea"><a href="#A-Bolder-Idea" class="headerlink" title="A Bolder Idea"></a>A Bolder Idea</h2><p>I’ve been mulling over a possibly ahead-of-its-time thought:</p>
+<p><strong>Future Agent memory shouldn’t follow a “store-retrieve” model, but a “grow-evolve” model.</strong></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/memory-evolution.png" alt="Store &amp; Retrieve vs Grow &amp; Evolve"></p>
+<p>What do I mean?</p>
+<p>Current memory systems are essentially databases: store it, query it. But human memory doesn’t work that way. Our memories get reorganized during sleep, different memory fragments get reconnected, forming new understanding.</p>
+<p>Imagine: an Agent during “idle time” (when there’s no user interaction) automatically reviews its memories, organizes scattered experiences into systematic knowledge, discovers common patterns across different projects, and even proactively suggests optimizations.</p>
+<p><strong>This is no longer memory management — it’s knowledge evolution.</strong></p>
+<p>Of course, this requires solving many technical challenges — computational cost, hallucination control, knowledge consistency verification, and more. But I believe this is an important direction for Agent development.</p>
+<h2 id="Final-Thoughts"><a href="#Final-Thoughts" class="headerlink" title="Final Thoughts"></a>Final Thoughts</h2><p>We’re at a fascinating inflection point. Model capabilities are advancing rapidly, context windows keep expanding, but Agent memory management remains a largely unsolved problem.</p>
+<p><strong>No matter how large the context window gets, it only gives you a bigger workbench. True intelligence lies in knowing what to put on that workbench — and what to leave off.</strong></p>
+<p>As someone who works with Agents every day, I increasingly believe that memory management might be the key step in determining whether Agents evolve from “tools” into “partners.”</p>
+<p>An assistant that can’t remember your preferences will always be a tool that needs constant re-training. An assistant that understands you, remembers you, and can even anticipate your needs — that’s a true partner.</p>
+<p>We’re still on the journey, but the direction is clear.</p>
+<hr>
+<p><em>If you’re also working on Agent-related projects, I’d love to connect. Find me on Twitter at <a target="_blank" rel="noopener" href="https://twitter.com/xiaosen_lu">@xiaosen_lu</a>.</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/02/28/agent-memory-management-en/">https://xiaoxiaduoyan.com/2026/02/28/agent-memory-management-en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Agent/">Agent</a><a class="post-meta__tags" href="/tags/Thoughts/">Thoughts</a><a class="post-meta__tags" href="/tags/Writing/">Writing</a><a class="post-meta__tags" href="/tags/English/">English</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/02/28/agent-eyes-and-hands-en/" title="How to Give Your Agent Eyes and Hands"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">How to Give Your Agent Eyes and Hands</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/why-blog-en/" title="Why Blog?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Why Blog?</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/02/28/agent-eyes-and-hands-en/" title="How to Give Your Agent Eyes and Hands"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">How to Give Your Agent Eyes and Hands</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-en/" title="Can AI Really Not Replace Therapists?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">Can AI Really Not Replace Therapists?</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/ai-company-model-en/" title="New Company Models in the AI Era"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">New Company Models in the AI Era</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/why-blog-en/" title="Why Blog?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">Why Blog?</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/ai-infrastructure-en/" title="The Infrastructure of the AI Era"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">The Infrastructure of the AI Era</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Real-Scenario"><span class="toc-number">1.</span> <span class="toc-text">A Real Scenario</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Is-a-Bigger-Context-Window-Enough"><span class="toc-number">2.</span> <span class="toc-text">Is a Bigger Context Window Enough?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Cost-Is-a-Hard-Constraint"><span class="toc-number">2.1.</span> <span class="toc-text">1. Cost Is a Hard Constraint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Long-Context-%E2%89%A0-Long-Memory"><span class="toc-number">2.2.</span> <span class="toc-text">2. Long Context ≠ Long Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Not-Everything-Is-Worth-Remembering"><span class="toc-number">2.3.</span> <span class="toc-text">3. Not Everything Is Worth Remembering</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Current-Mainstream-Agent-Memory-Approaches"><span class="toc-number">3.</span> <span class="toc-text">Current Mainstream Agent Memory Approaches</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Working-Memory"><span class="toc-number">3.1.</span> <span class="toc-text">Working Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Short-term-Memory"><span class="toc-number">3.2.</span> <span class="toc-text">Short-term Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Long-term-Memory"><span class="toc-number">3.3.</span> <span class="toc-text">Long-term Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#External-Knowledge"><span class="toc-number">3.4.</span> <span class="toc-text">External Knowledge</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Problems-I%E2%80%99ve-Observed"><span class="toc-number">4.</span> <span class="toc-text">Key Problems I’ve Observed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Problem-1-Summaries-Lose-Critical-Details"><span class="toc-number">4.1.</span> <span class="toc-text">Problem 1: Summaries Lose Critical Details</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Problem-2-Vector-Retrieval-Has-Unstable-Recall"><span class="toc-number">4.2.</span> <span class="toc-text">Problem 2: Vector Retrieval Has Unstable Recall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Problem-3-Memory-Lacks-Structure"><span class="toc-number">4.3.</span> <span class="toc-text">Problem 3: Memory Lacks Structure</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#My-Vision-The-Ideal-Agent-Memory-System"><span class="toc-number">5.</span> <span class="toc-text">My Vision: The Ideal Agent Memory System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Layered-Categorized"><span class="toc-number">5.1.</span> <span class="toc-text">1. Layered + Categorized</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Active-Forgetting"><span class="toc-number">5.2.</span> <span class="toc-text">2. Active Forgetting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Self-Correcting-Memory"><span class="toc-number">5.3.</span> <span class="toc-text">3. Self-Correcting Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Explainable-Memory"><span class="toc-number">5.4.</span> <span class="toc-text">4. Explainable Memory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Bolder-Idea"><span class="toc-number">6.</span> <span class="toc-text">A Bolder Idea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Final-Thoughts"><span class="toc-number">7.</span> <span class="toc-text">Final Thoughts</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

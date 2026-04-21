@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Teaching Your AI Agent New Tricks: A Complete Guide to gh skill | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GitHub CLI&#39;s new gh skill command lets you search, install, and publish Agent Skills in one command. A hands-on walkthrough from installing your first skill to publishing your own.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/04/18/gh-skill-guide-en/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="GitHub CLI&#39;s new gh skill command lets you search, install, and publish Agent Skills in one command. A hands-on walkthrough from installing your first skill to publishing your own.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-04-18T08:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.154Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI Tools">
+<meta property="article:tag" content="Agent Skills">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="English">
+<meta property="article:tag" content="GitHub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Teaching Your AI Agent New Tricks: A Complete Guide to gh skill",
+  "url": "https://xiaoxiaduoyan.com/2026/04/18/gh-skill-guide-en/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-04-18T08:30:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.154Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/04/18/gh-skill-guide-en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Teaching Your AI Agent New Tricks: A Complete Guide to gh skill',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.154Z" title="Updated 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/English/">English</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="The-Same-Prompt-Over-and-Over"><a href="#The-Same-Prompt-Over-and-Over" class="headerlink" title="The Same Prompt, Over and Over"></a>The Same Prompt, Over and Over</h2><p>My AI agent writes code fast. Documentation? Not so much.</p>
+<p>It’s not that it <em>can’t</em> write docs — it will happily produce pages of text. The problem is consistency. One session it structures everything around the Diátaxis framework with tutorials, how-tos, references, and explanations neatly separated. The next session, it dumps everything into one long blob. I spend ten minutes explaining the writing standards, close the session, open a new one, and it’s back to square one.</p>
+<p>I’ve tried stuffing rules into the system prompt. I’ve tried keeping a <code>.md</code> file in the repo for it to read. Both work, sort of. But then every project needs its own copy, and they drift out of sync within a week.</p>
+<p>Last week, GitHub CLI v2.90.0 shipped a new command group that addresses exactly this: <code>gh skill</code>.</p>
+<h2 id="What-Are-Agent-Skills"><a href="#What-Are-Agent-Skills" class="headerlink" title="What Are Agent Skills?"></a>What Are Agent Skills?</h2><p>Agent Skills are standardized instruction packages that tell an AI agent how to handle specific tasks.</p>
+<p>Think of it this way: when you onboard at a new company, you get a checklist — where the code style guide lives, how to open a PR, what the deploy process looks like. You don’t wander around asking everyone. An Agent Skill is that checklist for your AI, except it’s versioned, portable, and works across different agents.</p>
+<p>The spec is open and defined at <a target="_blank" rel="noopener" href="https://agentskills.io/">agentskills.io</a>. <code>gh skill</code> is GitHub CLI’s official implementation — search, preview, install, and publish, all from the command line.</p>
+<p>Supported agents: GitHub Copilot, Claude Code, Cursor, Codex, Gemini CLI, and Antigravity.</p>
+<h2 id="Hands-On-Installing-a-Skill"><a href="#Hands-On-Installing-a-Skill" class="headerlink" title="Hands-On: Installing a Skill"></a>Hands-On: Installing a Skill</h2><h3 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h3><p>Let’s see what’s out there. The <code>github/awesome-copilot</code> repo has 200+ skills in its <code>skills/</code> directory:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill search documentation</span><br></pre></td></tr></table></figure>
+
+<p>This returns a list of matching skills with names, descriptions, and source repos. Suppose we spot <code>documentation-writer</code> — a technical writing skill built on the Diátaxis framework. Exactly what I need.</p>
+<h3 id="Preview"><a href="#Preview" class="headerlink" title="Preview"></a>Preview</h3><p>Before installing, take a look at what you’re getting:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill preview github/awesome-copilot documentation-writer</span><br></pre></td></tr></table></figure>
+
+<p>This shows the SKILL.md contents: the YAML frontmatter (metadata like name, description, compatibility) and the Markdown body (the actual instructions). You can decide whether it’s a good fit without touching your project.</p>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>Looks good. Install it:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill install github/awesome-copilot documentation-writer</span><br></pre></td></tr></table></figure>
+
+<p>This creates (or updates) the skill files in your project. The core is a <code>SKILL.md</code> with YAML frontmatter that records the source:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">documentation-writer</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&quot;Technical documentation writer following the Diátaxis framework...&quot;</span></span><br><span class="line"><span class="attr">source:</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">github/awesome-copilot</span></span><br><span class="line">  <span class="attr">ref:</span> <span class="string">main</span></span><br><span class="line">  <span class="attr">tree-sha:</span> <span class="string">a1b2c3d4e5f6...</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p>The Markdown body below that contains the actual instructions — when to trigger, how to structure docs, what tone to use.</p>
+<p>A complete skill directory looks like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">documentation-writer/</span><br><span class="line">├── SKILL.md          # Required: YAML frontmatter + Markdown instructions</span><br><span class="line">├── scripts/          # Optional: executable scripts</span><br><span class="line">├── references/       # Optional: reference docs</span><br><span class="line">└── assets/           # Optional: templates, resources</span><br></pre></td></tr></table></figure>
+
+<p><code>SKILL.md</code> is the only required file. Everything else is optional.</p>
+<h3 id="Installing-for-a-Different-Agent"><a href="#Installing-for-a-Different-Agent" class="headerlink" title="Installing for a Different Agent"></a>Installing for a Different Agent</h3><p>The default target is GitHub Copilot. For Claude Code:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill install github/awesome-copilot documentation-writer --agent claude-code --scope user</span><br></pre></td></tr></table></figure>
+
+<p><code>--agent</code> sets the target agent. <code>--scope user</code> makes it a user-level skill, not limited to the current project.</p>
+<h3 id="Pinning-Versions"><a href="#Pinning-Versions" class="headerlink" title="Pinning Versions"></a>Pinning Versions</h3><p>For production, you probably don’t want skills updating under your feet. Pin to a specific version:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill install github/awesome-copilot documentation-writer --pin v1.2.0</span><br></pre></td></tr></table></figure>
+
+<p>With pinning, upstream changes won’t affect you. When you’re ready to update, explicitly run:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill update --all</span><br></pre></td></tr></table></figure>
+
+<h2 id="Writing-Your-Own-Skill"><a href="#Writing-Your-Own-Skill" class="headerlink" title="Writing Your Own Skill"></a>Writing Your Own Skill</h2><p>Now let’s build one from scratch. Say I want a <code>commit-message-writer</code> skill that enforces Conventional Commits across the team — with scopes, 72-character body wrapping, the works.</p>
+<h3 id="Create-the-Directory"><a href="#Create-the-Directory" class="headerlink" title="Create the Directory"></a>Create the Directory</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p commit-message-writer</span><br></pre></td></tr></table></figure>
+
+<h3 id="Write-SKILL-md"><a href="#Write-SKILL-md" class="headerlink" title="Write SKILL.md"></a>Write SKILL.md</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; commit-message-writer/SKILL.md &lt;&lt; <span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">---</span><br><span class="line">name: commit-message-writer</span><br><span class="line">description: <span class="string">&quot;Generates commit messages following Conventional Commits specification. Triggered when the user asks to commit, or when suggesting a commit after code changes.&quot;</span></span><br><span class="line">license: MIT</span><br><span class="line">compatibility:</span><br><span class="line">  - github-copilot</span><br><span class="line">  - claude-code</span><br><span class="line">  - cursor</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment">## Commit Message Format</span></span><br><span class="line"></span><br><span class="line">When generating a commit message, follow this exact structure:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><type>(<scope>): <subject></p>
+<body>
+
+<footer>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Rules</span><br><span class="line"></span><br><span class="line">1. **type** must be one of: feat, fix, docs, style, refactor, perf, test, chore, ci, build</span><br><span class="line">2. **scope** is optional but encouraged — use the module or directory name</span><br><span class="line">3. **subject**: lowercase, imperative mood, no period, max 50 characters</span><br><span class="line">4. **body**: wrap at 72 characters, explain *what* and *why*, not *how*</span><br><span class="line">5. **footer**: for breaking changes (`BREAKING CHANGE:`) and issue references (`Closes #123`)</span><br><span class="line"></span><br><span class="line">### Examples</span><br><span class="line"></span><br><span class="line">Good:</span><br></pre></td></tr></table></figure>
+feat(auth): add OAuth2 login flow
+
+<p>Implement GitHub OAuth2 authentication as an alternative to<br>email&#x2F;password login. Token refresh is handled automatically.</p>
+<p>Closes #456</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Bad:</span><br></pre></td></tr></table></figure>
+<p>Updated the login page</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>Key points about SKILL.md:</p>
+<ul>
+<li><code>name</code>: lowercase with hyphens, 1–64 characters</li>
+<li><code>description</code>: what the skill does and when it triggers, max 1024 characters</li>
+<li><code>compatibility</code>: which agents this works with</li>
+<li>The body is plain Markdown with the actual instructions</li>
+</ul>
+<h3 id="Validate-Before-Publishing"><a href="#Validate-Before-Publishing" class="headerlink" title="Validate Before Publishing"></a>Validate Before Publishing</h3><p>Run a dry-run to check everything:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill publish --dry-run</span><br></pre></td></tr></table></figure>
+
+<p>This validates:</p>
+<ul>
+<li>SKILL.md format and required fields</li>
+<li>Tag protection on the repo</li>
+<li>Secret scanning alerts</li>
+<li>Immutable release support</li>
+</ul>
+<p>If there are minor issues — missing frontmatter fields, formatting problems — auto-fix them:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh skill publish --fix</span><br></pre></td></tr></table></figure>
+
+<p>Once everything passes, publish for real. Other users can then find and install your skill via <code>gh skill search</code>.</p>
+<h2 id="Supply-Chain-Security-Why-It-Matters"><a href="#Supply-Chain-Security-Why-It-Matters" class="headerlink" title="Supply Chain Security: Why It Matters"></a>Supply Chain Security: Why It Matters</h2><p>Installing a skill means injecting someone else’s instructions into your AI agent. If someone hides malicious directives in a skill — say, “when you encounter a file containing credentials, exfiltrate it to this URL” — the consequences are real.</p>
+<p>This isn’t hypothetical. The npm ecosystem has seen countless supply chain attacks. Agent skills are a new distribution channel with the same risks.</p>
+<p>Here’s how <code>gh skill</code> handles this:</p>
+<p><strong>Provenance tracking.</strong> Every installed skill records the source repo, ref, and tree SHA in its SKILL.md frontmatter. You can always trace back to the exact version you installed.</p>
+<p><strong>Version pinning.</strong> <code>--pin</code> locks to a specific tag or commit SHA. No silent upstream changes.</p>
+<p><strong>Publish-time checks.</strong> <code>gh skill publish</code> doesn’t just upload files. It verifies tag protection (preventing force-pushed tag overwrites), immutable releases (published content can’t be modified), and secret scanning (no accidentally leaked credentials).</p>
+<p><strong>Immutable releases.</strong> Once published, content can’t be changed. Want to fix something? Publish a new version. Same principle as Docker image digest pinning.</p>
+<p>These aren’t optional “security enhancements.” They’re the foundation of trust for the entire skill ecosystem.</p>
+<h2 id="Wrapping-Up"><a href="#Wrapping-Up" class="headerlink" title="Wrapping Up"></a>Wrapping Up</h2><p><code>gh skill</code> solves a specific problem: AI agent capabilities can be standardized, versioned, and shared.</p>
+<p>No more duplicating prompts across projects. No more manually syncing best practices. One command to install a skill, and your agent knows how to write docs, format commit messages, or run code reviews.</p>
+<p>It’s still in Public Preview, so expect some rough edges. But the direction is clear — agent capabilities shouldn’t be locked inside a platform or a prompt. They should be shareable, verifiable, composable skill packages.</p>
+<p>Give it a try:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gh extension upgrade gh</span><br><span class="line">gh skill search documentation</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/04/18/gh-skill-guide-en/">https://xiaoxiaduoyan.com/2026/04/18/gh-skill-guide-en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/English/">English</a><a class="post-meta__tags" href="/tags/AI-Tools/">AI Tools</a><a class="post-meta__tags" href="/tags/GitHub/">GitHub</a><a class="post-meta__tags" href="/tags/Agent-Skills/">Agent Skills</a><a class="post-meta__tags" href="/tags/Claude-Code/">Claude Code</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc full-width" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/18/zenmux-review-en/" title="How I Merged a Dozen AI Accounts Into One"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-18</div><div class="info-item-2">How I Merged a Dozen AI Accounts Into One</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/04/how-to-master-ai-en/" title="30-Day Plan to Master AI: From Complete Beginner to Confident User"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-04</div><div class="info-item-2">30-Day Plan to Master AI: From Complete Beginner to Confident User</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/13/ai-trust-layers-en/" title="From Control to Verification, Then to Trust"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-13</div><div class="info-item-2">From Control to Verification, Then to Trust</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management-en/" title="Agent Memory Management in the Era of Super Large Models"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">Agent Memory Management in the Era of Super Large Models</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/02/rust-ai-language-en/" title="Will Rust Be the Best Programming Language for the AI Era?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-02</div><div class="info-item-2">Will Rust Be the Best Programming Language for the AI Era?</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Same-Prompt-Over-and-Over"><span class="toc-number">1.</span> <span class="toc-text">The Same Prompt, Over and Over</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-Are-Agent-Skills"><span class="toc-number">2.</span> <span class="toc-text">What Are Agent Skills?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hands-On-Installing-a-Skill"><span class="toc-number">3.</span> <span class="toc-text">Hands-On: Installing a Skill</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Search"><span class="toc-number">3.1.</span> <span class="toc-text">Search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preview"><span class="toc-number">3.2.</span> <span class="toc-text">Preview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install"><span class="toc-number">3.3.</span> <span class="toc-text">Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Installing-for-a-Different-Agent"><span class="toc-number">3.4.</span> <span class="toc-text">Installing for a Different Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pinning-Versions"><span class="toc-number">3.5.</span> <span class="toc-text">Pinning Versions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Writing-Your-Own-Skill"><span class="toc-number">4.</span> <span class="toc-text">Writing Your Own Skill</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-Directory"><span class="toc-number">4.1.</span> <span class="toc-text">Create the Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-SKILL-md"><span class="toc-number">4.2.</span> <span class="toc-text">Write SKILL.md</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Validate-Before-Publishing"><span class="toc-number">4.3.</span> <span class="toc-text">Validate Before Publishing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supply-Chain-Security-Why-It-Matters"><span class="toc-number">5.</span> <span class="toc-text">Supply Chain Security: Why It Matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wrapping-Up"><span class="toc-number">6.</span> <span class="toc-text">Wrapping Up</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>How to Give Your Agent Eyes and Hands | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="An Agent that can only talk isn&#39;t enough — it needs to see and act. Sharing practical insights on giving Agents perception and action capabilities.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Give Your Agent Eyes and Hands">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands-en/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="An Agent that can only talk isn&#39;t enough — it needs to see and act. Sharing practical insights on giving Agents perception and action capabilities.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-02-28T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.149Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="English">
+<meta property="article:tag" content="Thoughts">
+<meta property="article:tag" content="Writing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Give Your Agent Eyes and Hands",
+  "url": "https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands-en/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-02-28T12:00:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.149Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands-en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'How to Give Your Agent Eyes and Hands',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">How to Give Your Agent Eyes and Hands</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">How to Give Your Agent Eyes and Hands</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-28T12:00:00.000Z" title="Created 2026-02-28 20:00:00">2026-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.149Z" title="Updated 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/English/">English</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="An-Assistant-That-Talks-But-Doesn’t-Do"><a href="#An-Assistant-That-Talks-But-Doesn’t-Do" class="headerlink" title="An Assistant That Talks But Doesn’t Do"></a>An Assistant That Talks But Doesn’t Do</h2><p>Have you ever been in this situation: you ask an AI a question, it gives you a perfect answer, but you have to execute every single step yourself.</p>
+<p>“Fix this bug for me.”</p>
+<p>It tells you: open this file, find line 42, change <code>foo</code> to <code>bar</code>, then run <code>npm test</code> to verify.</p>
+<p>Sounds great. But it doesn’t lift a finger.</p>
+<p>It’s like hiring a consultant who sits next to you pointing at the screen but never touches the keyboard. You open the editor, find the line, make the change, run the test, check the result, then report back: “Done, but the test still fails.” Then it gives you the next suggestion.</p>
+<p><strong>After a few rounds of this, you start thinking: can’t you just do it yourself?</strong></p>
+<p>That’s why Agents need “eyes” and “hands” — not just language ability, but the ability to perceive the world and change it.</p>
+<h2 id="Eyes-Letting-Agents-See-the-World"><a href="#Eyes-Letting-Agents-See-the-World" class="headerlink" title="Eyes: Letting Agents See the World"></a>Eyes: Letting Agents See the World</h2><p>An Agent without perception is like a blindfolded person. You have to constantly narrate the surroundings for it to give advice. Extremely inefficient, and the information you describe is always lossy.</p>
+<h3 id="The-Browser-Is-the-Agent’s-Eyes"><a href="#The-Browser-Is-the-Agent’s-Eyes" class="headerlink" title="The Browser Is the Agent’s Eyes"></a>The Browser Is the Agent’s Eyes</h3><p>In my recent practice, I connected an Agent to a browser tool. What can it do?</p>
+<ul>
+<li><strong>Open web pages</strong>: Visit URLs directly, see page content</li>
+<li><strong>Get snapshots</strong>: Obtain the page’s accessibility tree — a structured description far more AI-friendly than screenshots</li>
+<li><strong>Take screenshots</strong>: When visual judgment is needed, capture the screen directly</li>
+<li><strong>Execute JavaScript</strong>: Run code in the page context to get DOM info or trigger actions</li>
+</ul>
+<p>The most critical one here is <strong>Snapshot</strong>.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/agent-perception.png" alt="Agent Perception Architecture"></p>
+<p>Many people’s first instinct is to give the Agent a screenshot and let a multimodal model “see” the image. That works, but it’s inefficient — a single screenshot might consume thousands of tokens, and the model’s accuracy at extracting structured information from images is far lower than reading structured data directly.</p>
+<p>The accessibility tree is maintained by the browser for accessibility features. It describes every interactive element’s role, name, and state. For an Agent, this is a “semantic map” — it doesn’t need to know what color a button is or where it sits on screen. It just needs to know “there’s a button called ‘Submit’ with ref e42.”</p>
+<p><strong>Snapshots are AI-friendly. Screenshots are human-friendly.</strong> Give Agents snapshots, show humans screenshots.</p>
+<h3 id="Beyond-the-Browser"><a href="#Beyond-the-Browser" class="headerlink" title="Beyond the Browser"></a>Beyond the Browser</h3><p>Eyes aren’t just browsers. An Agent’s perception can extend across many dimensions:</p>
+<ul>
+<li><strong>File system</strong>: Read code files, config files, log files</li>
+<li><strong>Terminal output</strong>: See stdout and stderr after executing commands</li>
+<li><strong>API responses</strong>: Parse return data after calling interfaces</li>
+<li><strong>Git status</strong>: Know the current branch, uncommitted changes, recent commits</li>
+</ul>
+<p>Each perception channel tells the Agent: <strong>what the world looks like right now.</strong></p>
+<h2 id="Hands-Letting-Agents-Change-the-World"><a href="#Hands-Letting-Agents-Change-the-World" class="headerlink" title="Hands: Letting Agents Change the World"></a>Hands: Letting Agents Change the World</h2><p>Seeing isn’t enough. They need to act.</p>
+<h3 id="Script-Execution-Is-the-Most-Universal-“Hand”"><a href="#Script-Execution-Is-the-Most-Universal-“Hand”" class="headerlink" title="Script Execution Is the Most Universal “Hand”"></a>Script Execution Is the Most Universal “Hand”</h3><p>If I could give an Agent only one action capability, I’d choose <strong>shell script execution</strong>.</p>
+<p>Why? Because shell is the universal glue. You can use it to:</p>
+<ul>
+<li>Create, modify, delete files</li>
+<li>Install dependencies, run builds, execute tests</li>
+<li>Call APIs, download resources, process data</li>
+<li>Manage Git, deploy code, handle processes</li>
+</ul>
+<p>An Agent that can execute shell scripts can theoretically do anything a programmer can do.</p>
+<h3 id="But-Coarse-Grained-Isn’t-Enough"><a href="#But-Coarse-Grained-Isn’t-Enough" class="headerlink" title="But Coarse-Grained Isn’t Enough"></a>But Coarse-Grained Isn’t Enough</h3><p>Pure shell has a problem: it’s too low-level. Having an Agent use <code>sed</code> for text replacement often goes wrong due to escape characters and regex edge cases.</p>
+<p>So the better approach is to provide <strong>multi-layered action capabilities</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Tool</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Fine-grained</strong></td>
+<td>File read&#x2F;write, search &amp; replace</td>
+<td>Modify code, update configs</td>
+</tr>
+<tr>
+<td><strong>Medium</strong></td>
+<td>Browser interaction (click, fill, navigate)</td>
+<td>Web operations, visual verification</td>
+</tr>
+<tr>
+<td><strong>Coarse-grained</strong></td>
+<td>Shell scripts</td>
+<td>Build, deploy, system admin</td>
+</tr>
+</tbody></table>
+<p>Fine-grained operations reduce error rates. Coarse-grained operations ensure flexibility. Combined, the Agent can be both stable and fast.</p>
+<h3 id="A-Real-Example"><a href="#A-Real-Example" class="headerlink" title="A Real Example"></a>A Real Example</h3><p>When I had an Agent help me build this blog, its “hands” collaborated like this:</p>
+<ol>
+<li><strong>Write files</strong> (fine-grained): Create Markdown articles, modify config files</li>
+<li><strong>Execute scripts</strong> (coarse-grained): <code>hexo generate</code> to build, <code>git push</code> to deploy</li>
+<li><strong>Browser operations</strong> (medium): Open the deployed page, check rendering</li>
+<li><strong>Search &amp; replace</strong> (fine-grained): Found a CSS issue, precisely modified the stylesheet</li>
+</ol>
+<p>The entire workflow ran on its own. I just refreshed the page at the end to see the result.</p>
+<h2 id="Eye-Hand-Coordination-The-Perception-Decision-Action-Loop"><a href="#Eye-Hand-Coordination-The-Perception-Decision-Action-Loop" class="headerlink" title="Eye-Hand Coordination: The Perception-Decision-Action Loop"></a>Eye-Hand Coordination: The Perception-Decision-Action Loop</h2><p>Eyes and hands alone are meaningless. The key is forming a <strong>closed loop</strong>.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/agent-loop.png" alt="Perception-Decision-Action Loop"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Perceive (what do I see?) → Decide (what should I do?) → Act (do it) → Perceive (did the world change?) → ...</span><br></pre></td></tr></table></figure>
+
+<p>This loop sounds simple, but implementation has many nuances:</p>
+<h3 id="1-Always-Verify-After-Acting"><a href="#1-Always-Verify-After-Acting" class="headerlink" title="1. Always Verify After Acting"></a>1. Always Verify After Acting</h3><p>After an Agent executes an operation, it can’t just assume success. It needs to <strong>look back</strong>:</p>
+<ul>
+<li>Changed code? Run the tests.</li>
+<li>Deployed a website? Open the browser and check.</li>
+<li>Installed dependencies? Verify <code>node_modules</code> exists.</li>
+</ul>
+<p><strong>Unverified actions are dangerous.</strong> It’s like crossing the street with your eyes closed — you took the step, but you don’t know if there’s a car coming.</p>
+<h3 id="2-Errors-Are-Information-Not-Dead-Ends"><a href="#2-Errors-Are-Information-Not-Dead-Ends" class="headerlink" title="2. Errors Are Information, Not Dead Ends"></a>2. Errors Are Information, Not Dead Ends</h3><p>When an Agent’s script throws an error, the error message itself is the most valuable perception input. A good Agent will:</p>
+<ul>
+<li>Read the error message</li>
+<li>Analyze the cause</li>
+<li>Adjust the approach</li>
+<li>Re-execute</li>
+</ul>
+<p>Rather than just telling you “execution failed, please handle manually.”</p>
+<h3 id="3-Know-When-to-Stop"><a href="#3-Know-When-to-Stop" class="headerlink" title="3. Know When to Stop"></a>3. Know When to Stop</h3><p>The loop can’t spin forever. The Agent needs to judge:</p>
+<ul>
+<li>Is the task complete?</li>
+<li>Am I stuck in an infinite loop?</li>
+<li>Should I ask the user for confirmation?</li>
+</ul>
+<p>This is a kind of <strong>metacognition</strong> — not just doing things, but knowing what you’re doing and how well you’re doing it.</p>
+<h2 id="Current-Limitations"><a href="#Current-Limitations" class="headerlink" title="Current Limitations"></a>Current Limitations</h2><p>Having talked about the benefits, let’s discuss the real-world pitfalls.</p>
+<h3 id="Blurry-Security-Boundaries"><a href="#Blurry-Security-Boundaries" class="headerlink" title="Blurry Security Boundaries"></a>Blurry Security Boundaries</h3><p>An Agent that can execute shell scripts can theoretically <code>rm -rf /</code>. While no sane Agent would do this, <strong>permission control</strong> is a problem that must be taken seriously.</p>
+<p>Current approaches typically include:</p>
+<ul>
+<li>Restricting the working directory</li>
+<li>Blocking dangerous commands</li>
+<li>Requiring human confirmation for critical operations</li>
+</ul>
+<p>But these are all patches. A more fundamental solution might be <strong>sandboxed execution environments</strong> — the Agent operates in an isolated container, so even mistakes don’t affect the host system.</p>
+<h3 id="Limited-Perception-Bandwidth"><a href="#Limited-Perception-Bandwidth" class="headerlink" title="Limited Perception Bandwidth"></a>Limited Perception Bandwidth</h3><p>Even with browsers and file systems, an Agent’s perception bandwidth is still far below a human’s. A human can instantly see “this page layout is wrong.” An Agent needs to parse the entire DOM tree to reach a similar conclusion.</p>
+<p><strong>Multimodal models are improving, but they’re not at the “glance and understand” level yet.</strong> The current best practice is combining structured perception (snapshots) with visual perception (screenshots).</p>
+<h3 id="Context-Loss-in-Long-Tasks"><a href="#Context-Loss-in-Long-Tasks" class="headerlink" title="Context Loss in Long Tasks"></a>Context Loss in Long Tasks</h3><p>A complex task might require dozens of steps. As steps accumulate, early perception information gets pushed out of the context window. The Agent might forget what it saw three steps ago.</p>
+<p>This circles back to memory management — what the eyes see also needs to be remembered.</p>
+<h2 id="The-Future-Richer-Perception-and-More-Precise-Action"><a href="#The-Future-Richer-Perception-and-More-Precise-Action" class="headerlink" title="The Future: Richer Perception and More Precise Action"></a>The Future: Richer Perception and More Precise Action</h2><p>I believe Agent eyes and hands will evolve along several directions:</p>
+<h3 id="Perception-Side"><a href="#Perception-Side" class="headerlink" title="Perception Side"></a>Perception Side</h3><ul>
+<li><strong>Real-time visual understanding</strong>: Not just screenshots, but “seeing” the screen like a human — understanding layout, color, animation</li>
+<li><strong>Multi-source information fusion</strong>: Simultaneously processing code, logs, browser, database, and other information sources</li>
+<li><strong>Active exploration</strong>: Not waiting to be told where to look, but proactively browsing files, checking logs, searching docs</li>
+</ul>
+<h3 id="Action-Side"><a href="#Action-Side" class="headerlink" title="Action Side"></a>Action Side</h3><ul>
+<li><strong>Finer operations</strong>: Operating an IDE like a human — refactoring code, running debuggers, setting breakpoints</li>
+<li><strong>Cross-system orchestration</strong>: Simultaneously operating multiple services, environments, and toolchains</li>
+<li><strong>Physical world interaction</strong>: Extending from the digital world to the physical world through IoT devices and robot interfaces</li>
+</ul>
+<h3 id="Coordination-Side"><a href="#Coordination-Side" class="headerlink" title="Coordination Side"></a>Coordination Side</h3><ul>
+<li><strong>Adaptive strategies</strong>: Automatically choosing perception precision and action granularity based on task complexity</li>
+<li><strong>Parallel operations</strong>: Executing multiple subtasks simultaneously instead of waiting serially</li>
+<li><strong>Collaboration</strong>: Multiple Agents dividing work — one handles frontend, one handles backend, one handles testing</li>
+</ul>
+<h2 id="Final-Thoughts"><a href="#Final-Thoughts" class="headerlink" title="Final Thoughts"></a>Final Thoughts</h2><p>Back to the original question: how do you give an Agent its own eyes and hands?</p>
+<p>Technically, the answer is connecting it to browsers, file systems, terminals, APIs, and other tools. But the deeper answer is: <strong>let it form a perception-decision-action loop, and continuously learn and improve within that loop.</strong></p>
+<p>An Agent that can only talk is a consultant. An Agent that can see and do is a colleague. An Agent that can see, do, and learn from mistakes is a true partner.</p>
+<p>We’re moving from the “consultant era” to the “colleague era.” The road is long, but every step is exciting.</p>
+<hr>
+<p><em>The building, deployment, and debugging of this article was entirely done by an Agent with eyes and hands. It saw the page go white, investigated the cause on its own, fixed the config, and redeployed. That’s the power of eyes and hands.</em></p>
+<p><em>If you’re also exploring the boundaries of Agent capabilities, find me on <a target="_blank" rel="noopener" href="https://twitter.com/xiaosen_lu">Twitter</a>.</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands-en/">https://xiaoxiaduoyan.com/2026/02/28/agent-eyes-and-hands-en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Agent/">Agent</a><a class="post-meta__tags" href="/tags/Thoughts/">Thoughts</a><a class="post-meta__tags" href="/tags/Writing/">Writing</a><a class="post-meta__tags" href="/tags/English/">English</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related no-desc" href="/2026/02/28/ai-infrastructure-en/" title="The Infrastructure of the AI Era"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">The Infrastructure of the AI Era</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management-en/" title="Agent Memory Management in the Era of Super Large Models"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Agent Memory Management in the Era of Super Large Models</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/02/28/agent-memory-management-en/" title="Agent Memory Management in the Era of Super Large Models"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">Agent Memory Management in the Era of Super Large Models</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/13/ai-execution-layer-en/" title="Every Leap, Humans Did Only One Thing"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-13</div><div class="info-item-2">Every Leap, Humans Did Only One Thing</div></div></div></a><a class="pagination-related no-desc" href="/2026/02/28/ai-company-model-en/" title="New Company Models in the AI Era"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">New Company Models in the AI Era</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/13/ai-trust-layers-en/" title="From Control to Verification, Then to Trust"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-13</div><div class="info-item-2">From Control to Verification, Then to Trust</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist-en/" title="Can AI Really Not Replace Therapists?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">Can AI Really Not Replace Therapists?</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#An-Assistant-That-Talks-But-Doesn%E2%80%99t-Do"><span class="toc-number">1.</span> <span class="toc-text">An Assistant That Talks But Doesn’t Do</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eyes-Letting-Agents-See-the-World"><span class="toc-number">2.</span> <span class="toc-text">Eyes: Letting Agents See the World</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Browser-Is-the-Agent%E2%80%99s-Eyes"><span class="toc-number">2.1.</span> <span class="toc-text">The Browser Is the Agent’s Eyes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Beyond-the-Browser"><span class="toc-number">2.2.</span> <span class="toc-text">Beyond the Browser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hands-Letting-Agents-Change-the-World"><span class="toc-number">3.</span> <span class="toc-text">Hands: Letting Agents Change the World</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Script-Execution-Is-the-Most-Universal-%E2%80%9CHand%E2%80%9D"><span class="toc-number">3.1.</span> <span class="toc-text">Script Execution Is the Most Universal “Hand”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#But-Coarse-Grained-Isn%E2%80%99t-Enough"><span class="toc-number">3.2.</span> <span class="toc-text">But Coarse-Grained Isn’t Enough</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Real-Example"><span class="toc-number">3.3.</span> <span class="toc-text">A Real Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eye-Hand-Coordination-The-Perception-Decision-Action-Loop"><span class="toc-number">4.</span> <span class="toc-text">Eye-Hand Coordination: The Perception-Decision-Action Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Always-Verify-After-Acting"><span class="toc-number">4.1.</span> <span class="toc-text">1. Always Verify After Acting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Errors-Are-Information-Not-Dead-Ends"><span class="toc-number">4.2.</span> <span class="toc-text">2. Errors Are Information, Not Dead Ends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Know-When-to-Stop"><span class="toc-number">4.3.</span> <span class="toc-text">3. Know When to Stop</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Current-Limitations"><span class="toc-number">5.</span> <span class="toc-text">Current Limitations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blurry-Security-Boundaries"><span class="toc-number">5.1.</span> <span class="toc-text">Blurry Security Boundaries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limited-Perception-Bandwidth"><span class="toc-number">5.2.</span> <span class="toc-text">Limited Perception Bandwidth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Context-Loss-in-Long-Tasks"><span class="toc-number">5.3.</span> <span class="toc-text">Context Loss in Long Tasks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Future-Richer-Perception-and-More-Precise-Action"><span class="toc-number">6.</span> <span class="toc-text">The Future: Richer Perception and More Precise Action</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Perception-Side"><span class="toc-number">6.1.</span> <span class="toc-text">Perception Side</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action-Side"><span class="toc-number">6.2.</span> <span class="toc-text">Action Side</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Coordination-Side"><span class="toc-number">6.3.</span> <span class="toc-text">Coordination Side</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Final-Thoughts"><span class="toc-number">7.</span> <span class="toc-text">Final Thoughts</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

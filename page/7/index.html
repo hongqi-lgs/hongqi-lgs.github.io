@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>森哥 Ideas - 未来已来，不问前程，顺势而为。</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="森哥的个人博客 — 记录想法、技术与生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="森哥 Ideas">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/page/7/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="森哥的个人博客 — 记录想法、技术与生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="blog, tech, ideas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/page/7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '森哥 Ideas',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">森哥 Ideas</h1></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item" data-lang="en"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/ai-opensource-security-en/" title="AI's Open Source Productivity Explosion: How Do We Keep It Secure?">AI's Open Source Productivity Explosion: How Do We Keep It Secure?</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T09:28:00.000Z" title="发表于 2026-03-02 17:28:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/English/">English</a></span></div><div class="content">AI’s Open Source Productivity Explosion: How Do We Keep It Secure?Last year, a developer bragged on Twitter: used Copilot to write a complete backend system, finished in three days. Hundreds of replies below, half marveling at the efficiency, half asking “did you review the code?” He never answered the second question. The Productivity Explosion is RealThe data doesn’t lie. GitHub statistics show that AI-generated code commits increased 300% year-over-year in 2024. This isn’t incremental impr...</div></div></div><div class="recent-post-item" data-lang="ja"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/ai-opensource-security-ja/" title="AIがオープンソースの生産性爆発を引き起こす中、セキュリティをどう保障するのか？">AIがオープンソースの生産性爆発を引き起こす中、セキュリティをどう保障するのか？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T09:28:00.000Z" title="发表于 2026-03-02 17:28:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Japanese/">Japanese</a></span></div><div class="content">AIがオープンソースの生産性爆発を引き起こす中、セキュリティをどう保障するのか？昨年、ある開発者がTwitterで自慢していました：Copilotを使って完全なバックエンドシステムを書き、3日で完成したと。下には数百のコメントがあり、半分は効率に驚嘆し、半分は「コードをレビューしたのか？」と尋ねていました。 彼は2番目の質問には答えませんでした。 生産性の爆発が起きているデータは嘘をつきません。GitHubの統計によると、2024年にAIが生成したコードのコミット量は前年比300%増加しました。これは漸進的な改善ではなく、桁違いの飛躍です。 最近、私はある現象を観察しました：多くのオープンソースプロジェクトのコミット履歴が奇妙になっています。以前は一つの機能に数日の反復が必要だったのが、今では一度に大量のコードを一括コミットすることが多くなっています。コミットメッセージを見れば明らかにわかります： 123feat: add complete authentication system with JWT, refresh tokens, rate limiting, and ema...</div></div></div><div class="recent-post-item" data-lang="zh-CN"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/ai-opensource-security/" title="AI导致开源生产率爆炸，安全如何保障？">AI导致开源生产率爆炸，安全如何保障？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T09:28:00.000Z" title="发表于 2026-03-02 17:28:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/">技术思考</a></span></div><div class="content">AI导致开源生产率爆炸，安全如何保障？去年有个开发者在Twitter上炫耀：用Copilot写了一个完整的后台系统，三天完工。底下几百条回复，一半在惊叹效率，一半在问”你审查代码了吗”。 他没有回答第二个问题。 生产力爆炸正在发生数据不会骗人。GitHub的统计显示，2024年AI生成的代码提交量同比增长了300%。这不是渐进式的改进，而是量级的跃迁。 我最近观察到一个现象：很多开源项目的提交历史变得很奇怪。以前一个功能可能需要几天的迭代，现在往往是一次性提交一大坨代码。看commit message能明显感觉出来： 123feat: add complete authentication system with JWT, refresh tokens, rate limiting, and email verification+2847 -0  这不是一个人三天能写完的东西，但AI可以在三个小时内生成初稿。 问题来了：谁在审查这2847行代码？ 安全审查的困境传统的代码审查假设是这样的：开发者写代码，审查者逐行检查逻辑、性能、安全问题。这个模式在代码量可控的时候还能运转。 但A...</div></div></div><div class="recent-post-item" data-lang="en"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/ai-coding-implicit-contracts-en/" title="One of AI Coding's Stumbling Blocks: The Problem of Implicit Contracts in Programs">One of AI Coding's Stumbling Blocks: The Problem of Implicit Contracts in Programs</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T06:00:00.000Z" title="发表于 2026-03-02 14:00:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/English/">English</a></span></div><div class="content">One of AI Coding’s Stumbling Blocks: The Problem of Implicit Contracts in Programs Introduction: When AI Meets “Unspoken” RulesRecently, while experimenting with AI assistants for code generation, I’ve noticed an interesting phenomenon: some code looks perfect—clear logic, correct syntax—but simply doesn’t work as expected. Upon deeper analysis, I found that the root cause often lies not in the code itself, but in those implicit contracts that are never explicitly written down yet are crucial...</div></div></div><div class="recent-post-item" data-lang="zh-CN"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/ai-coding-implicit-contracts/" title="AI Coding 的绊脚石之一：程序的隐式契约问题">AI Coding 的绊脚石之一：程序的隐式契约问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T06:00:00.000Z" title="发表于 2026-03-02 14:00:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/">技术思考</a></span></div><div class="content">AI Coding 的绊脚石之一：程序的隐式契约问题 引言：当AI遇到”不言而喻”的规则最近在尝试用AI助手编写代码时，我发现了一个有趣的现象：有些代码看起来完美无缺，逻辑清晰，语法正确，但就是无法正常工作。经过深入分析，我发现问题的根源往往不在于代码本身，而在于那些从未被明确写出，却对程序运行至关重要的隐式契约。 这些隐式契约就像是软件开发中的”潜规则”——人类开发者通过经验和上下文理解它们，但AI却常常在这些规则面前碰壁。 什么是隐式契约？隐式契约（Implicit Contract）指的是那些没有被明确写在代码或文档中，但对程序正确运行至关重要的假设、约定和期望。它们通常包括：  性能期望：函数应该在多长时间内完成 资源使用：函数会消耗多少内存、CPU或网络带宽 副作用：函数会修改哪些外部状态 错误处理：在什么情况下函数应该抛出异常，什么情况下应该静默处理 并发安全：函数是否可以在多线程环境下安全调用  实例分析：AI编程中的隐式契约陷阱案例一：文件读取的”合理”超时1234# AI生成的代码def read_large_file(file_path):    with o...</div></div></div><div class="recent-post-item" data-lang="ja"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/ai-coding-implicit-contracts-ja/" title="AI Codingの障害の一つ：プログラムの暗黙的契約問題">AI Codingの障害の一つ：プログラムの暗黙的契約問題</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T06:00:00.000Z" title="发表于 2026-03-02 14:00:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Japanese/">Japanese</a></span></div><div class="content">AI Codingの障害の一つ：プログラムの暗黙的契約問題序論：AIが「暗黙の了解」のルールに出会うとき最近AIアシスタントを使ってコードを書く際、興味深い現象を発見した：あるコードは完璧に見え、ロジックが明確で、構文も正しいのに、正常に動作しない。詳しく分析すると、問題の根源はコード自体ではなく、明確に書かれたことはないが、プログラムの実行に不可欠な暗黙的契約にあることが多い。 これらの暗黙的契約はソフトウェア開発の「暗黙のルール」のようなもの——人間の開発者は経験とコンテキストから理解するが、AIはしばしばこれらのルールの前で壁にぶつかる。 暗黙的契約とは？暗黙的契約（Implicit Contract）とは、コードやドキュメントに明示的に書かれていないが、プログラムの正常な実行に不可欠な仮定、約束、期待を指す。通常以下を含む：  パフォーマンス期待：関数はどれくらいの時間で完了すべきか リソース使用：関数はどれだけのメモリ、CPU、ネットワーク帯域幅を消費するか 副作用：関数はどの外部状態を変更するか エラー処理：どのような状況で関数は例外を投げるべきか、どのような状況で黙...</div></div></div><div class="recent-post-item" data-lang="en"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/rust-ai-language-en/" title="Will Rust Be the Best Programming Language for the AI Era?">Will Rust Be the Best Programming Language for the AI Era?</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T04:35:00.000Z" title="发表于 2026-03-02 12:35:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/English/">English</a></span></div><div class="content">When AI Meets Rust: A Fateful Encounter?In recent years, the pace of AI development has been dizzying. From large language models to generative AI, from autonomous driving to robotics, AI is permeating every aspect of our lives. Meanwhile, a programming language called Rust has been quietly rising—it has topped Stack Overflow’s “Most Loved Programming Language” survey for eight consecutive years. This raises an intriguing question: when the AI wave meets Rust’s rise, what kind of chemical rea...</div></div></div><div class="recent-post-item" data-lang="ja"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/rust-ai-language-ja/" title="RustはAI時代の最高のプログラミング言語になるのか？">RustはAI時代の最高のプログラミング言語になるのか？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T04:35:00.000Z" title="发表于 2026-03-02 12:35:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Japanese/">Japanese</a></span></div><div class="content">AI と Rust の出会い：運命的な邂逅？ここ数年、AI の発展スピードは目を見張るものがあります。大規模言語モデルから生成 AI、自動運転からロボットまで、AI は私たちの生活のあらゆる面に浸透しています。同時に、Rust というプログラミング言語も静かに台頭しています—Stack Overflow の「開発者が最も愛する言語」ランキングで8年連続トップを獲得しています。 これは自然と考えさせられます：AI の波と Rust の台頭が出会った時、どのような化学反応が生まれるのか？Rust は AI 時代の最高のプログラミング言語になるのか？ Rust の三つの切り札1. メモリ安全性、ガベージコレクション不要AI 分野では、メモリ管理は頭痛の種です。Python はシンプルで使いやすいですが、GC（ガベージコレクション）による停止はリアルタイムシステムでは致命的になりかねません。C++ はパフォーマンスは強力ですが、メモリ安全性の問題で開発者は夜も眠れません。 Rust のユニークな点は：コンパイル時にメモリ安全性を保証することです。所有権（ownership）、借用（bor...</div></div></div><div class="recent-post-item" data-lang="zh-CN"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/02/rust-ai-language/" title="Rust 会是 AI 时代的最好的编程语言吗？">Rust 会是 AI 时代的最好的编程语言吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-02T04:35:00.000Z" title="发表于 2026-03-02 12:35:00">2026-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="content">当 AI 遇上 Rust：一场命中注定的相遇？最近几年，AI 的发展速度让人眼花缭乱。从大语言模型到生成式 AI，从自动驾驶到机器人，AI 正在渗透到我们生活的方方面面。与此同时，一门名为 Rust 的编程语言也在悄然崛起——它连续八年蝉联 Stack Overflow “最受开发者喜爱语言”榜首。 这不禁让人思考：当 AI 的浪潮遇上 Rust 的崛起，会产生怎样的化学反应？Rust 会成为 AI 时代的最佳编程语言吗？ Rust 的三大王牌1. 内存安全，无需垃圾回收在 AI 领域，内存管理是个头疼的问题。Python 虽然简单易用，但 GC（垃圾回收）带来的停顿在实时系统中可能是致命的。C++ 性能强大，但内存安全问题让开发者夜不能寐。 Rust 的独特之处在于：它在编译期就保证了内存安全。通过所有权（ownership）、借用（borrowing）和生命周期（lifetime）系统，Rust 让你写出既安全又高效的代码，而无需运行时垃圾回收。 想象一下，在自动驾驶系统中，一个内存泄漏可能导致灾难性后果。Rust 的编译期检查，就像是为 AI 系统装上了一道安全门。 2. ...</div></div></div><div class="recent-post-item" data-lang="en"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/03/01/ai-social-revolution-en/" title="How AI Will Transform Society">How AI Will Transform Society</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-03-01T02:00:00.000Z" title="发表于 2026-03-01 10:00:00">2026-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/English/">English</a></span></div><div class="content">Standing at the CrossroadsEvery few decades, human society encounters a crossroads. When the steam engine arrived, some said it would liberate human hands. Others said it would reduce workers to slaves of machines. Both predictions came true — the Industrial Revolution created unprecedented prosperity and also produced sweatshops and child labor. When the internet arrived, some said it would enable free information flow and eliminate information asymmetry. Others said it would create filter b...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="View More">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/English/"><span class="card-category-list-name">English</span><span class="card-category-list-count">29</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Japanese/"><span class="card-category-list-name">Japanese</span><span class="card-category-list-count">29</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E6%80%9D%E8%80%83/"><span class="card-category-list-name">产品思考</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%86%9B%E4%BA%8B%E7%A7%91%E6%8A%80/"><span class="card-category-list-name">军事科技</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%80%9D%E8%80%83/"><span class="card-category-list-name">思考</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/"><span class="card-category-list-name">技术实践</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/"><span class="card-category-list-name">技术思考</span><span class="card-category-list-count">5</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/AI-Future/" style="font-size: 1.15em; color: rgb(80, 50, 52);">AI Future</a><a href="/tags/Tech-Prediction/" style="font-size: 1.15em; color: rgb(106, 144, 124);">Tech Prediction</a><a href="/tags/Social-Change/" style="font-size: 1.15em; color: rgb(116, 162, 101);">Social Change</a><a href="/tags/Crisis-Response/" style="font-size: 1.15em; color: rgb(50, 194, 88);">Crisis Response</a><a href="/tags/AI%E6%9C%AA%E6%9D%A5/" style="font-size: 1.19em; color: rgb(190, 73, 153);">AI未来</a><a href="/tags/%E6%8A%80%E8%A1%93%E4%BA%88%E6%B8%AC/" style="font-size: 1.15em; color: rgb(59, 136, 160);">技術予測</a><a href="/tags/%E7%A4%BE%E4%BC%9A%E5%A4%89%E9%9D%A9/" style="font-size: 1.15em; color: rgb(200, 50, 119);">社会変革</a><a href="/tags/%E5%8D%B1%E6%A9%9F%E5%AF%BE%E5%BF%9C/" style="font-size: 1.15em; color: rgb(50, 147, 200);">危機対応</a><a href="/tags/%E6%8A%80%E6%9C%AF%E9%A2%84%E6%B5%8B/" style="font-size: 1.15em; color: rgb(120, 128, 50);">技术预测</a><a href="/tags/%E7%A4%BE%E4%BC%9A%E5%8F%98%E9%9D%A9/" style="font-size: 1.15em; color: rgb(50, 143, 170);">社会变革</a><a href="/tags/%E5%8D%B1%E6%9C%BA%E5%BA%94%E5%AF%B9/" style="font-size: 1.15em; color: rgb(149, 50, 198);">危机应对</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(177, 134, 185);">AI</a><a href="/tags/Agent/" style="font-size: 1.3em; color: rgb(59, 50, 97);">Agent</a><a href="/tags/%E6%8A%80%E8%A1%93%E6%80%9D%E8%80%83/" style="font-size: 1.26em; color: rgb(59, 150, 60);">技術思考</a><a href="/tags/Thoughts/" style="font-size: 1.34em; color: rgb(149, 140, 50);">Thoughts</a><a href="/tags/Writing/" style="font-size: 1.22em; color: rgb(110, 68, 50);">Writing</a><a href="/tags/English/" style="font-size: 1.41em; color: rgb(50, 92, 90);">English</a><a href="/tags/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/" style="font-size: 1.26em; color: rgb(50, 75, 50);">技术思考</a><a href="/tags/Blockchain/" style="font-size: 1.15em; color: rgb(50, 50, 118);">Blockchain</a><a href="/tags/Web3/" style="font-size: 1.22em; color: rgb(137, 60, 50);">Web3</a><a href="/tags/Tech-Trends/" style="font-size: 1.22em; color: rgb(113, 50, 83);">Tech Trends</a><a href="/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3/" style="font-size: 1.15em; color: rgb(107, 113, 151);">ブロックチェーン</a><a href="/tags/%E3%83%86%E3%82%AF%E3%83%8E%E3%83%AD%E3%82%B8%E3%83%BC%E3%83%88%E3%83%AC%E3%83%B3%E3%83%89/" style="font-size: 1.22em; color: rgb(151, 117, 54);">テクノロジートレンド</a><a href="/tags/Japanese/" style="font-size: 1.38em; color: rgb(75, 50, 111);">Japanese</a><a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 1.15em; color: rgb(68, 182, 63);">区块链</a><a href="/tags/%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF/" style="font-size: 1.22em; color: rgb(50, 125, 87);">技术趋势</a><a href="/tags/AI-Programming/" style="font-size: 1.15em; color: rgb(188, 59, 184);">AI Programming</a><a href="/tags/Software-Development/" style="font-size: 1.15em; color: rgb(89, 104, 108);">Software Development</a><a href="/tags/Code-Quality/" style="font-size: 1.15em; color: rgb(169, 55, 50);">Code Quality</a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 1.15em; color: rgb(77, 191, 65);">AI编程</a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 1.15em; color: rgb(139, 199, 50);">软件开发</a><a href="/tags/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F/" style="font-size: 1.15em; color: rgb(101, 60, 75);">代码质量</a><a href="/tags/AI%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/" style="font-size: 1.15em; color: rgb(50, 98, 147);">AIプログラミング</a><a href="/tags/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA/" style="font-size: 1.15em; color: rgb(95, 117, 50);">ソフトウェア開発</a><a href="/tags/%E3%82%B3%E3%83%BC%E3%83%89%E5%93%81%E8%B3%AA/" style="font-size: 1.15em; color: rgb(96, 50, 151);">コード品質</a><a href="/tags/Programming/" style="font-size: 1.15em; color: rgb(172, 64, 50);">Programming</a><a href="/tags/Technology/" style="font-size: 1.19em; color: rgb(151, 84, 102);">Technology</a><a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 1.15em; color: rgb(160, 50, 50);">编程</a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.19em; color: rgb(53, 56, 50);">技术</a><a href="/tags/Business/" style="font-size: 1.15em; color: rgb(93, 50, 163);">Business</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              April 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              March 2026
+            </span>
+            <span class="card-archive-list-count">69</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              February 2026
+            </span>
+            <span class="card-archive-list-count">15</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">87</div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-21T03:09:45.283Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>

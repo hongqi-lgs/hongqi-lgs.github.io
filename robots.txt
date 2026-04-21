@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hongqi-lgs.github.io/ideas/sitemap.xml
+
+Host: https://hongqi-lgs.github.io
+

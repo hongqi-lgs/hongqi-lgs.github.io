@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Windows 电脑安装 OpenClaw 完整指南：从零到运行你的 AI 助手 | 森哥 Ideas</title><meta name="author" content="森哥"><meta name="copyright" content="森哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="手把手教你在 Windows 电脑上安装 OpenClaw AI 助手，包括 WSL2 配置、Node.js 环境准备、OpenClaw 安装和首次运行的完整流程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 电脑安装 OpenClaw 完整指南：从零到运行你的 AI 助手">
+<meta property="og:url" content="https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide/index.html">
+<meta property="og:site_name" content="森哥 Ideas">
+<meta property="og:description" content="手把手教你在 Windows 电脑上安装 OpenClaw AI 助手，包括 WSL2 配置、Node.js 环境准备、OpenClaw 安装和首次运行的完整流程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-03-03T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:09:30.154Z">
+<meta property="article:author" content="森哥">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="WSL2">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaduoyan.com/images/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Windows 电脑安装 OpenClaw 完整指南：从零到运行你的 AI 助手",
+  "url": "https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide/",
+  "image": "https://xiaoxiaduoyan.com/images/avatar.jpg",
+  "datePublished": "2026-03-03T02:30:00.000Z",
+  "dateModified": "2026-04-21T03:09:30.154Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "森哥",
+      "url": "https://xiaoxiaduoyan.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/avatar.jpg"><link rel="canonical" href="https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Windows 电脑安装 OpenClaw 完整指南：从零到运行你的 AI 助手',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?v=1776740981411"><script>(function(){var s=localStorage.getItem('ideas-lang');if(!s||['zh-CN','en','ja'].indexOf(s)<0){var b=(navigator.language||'').toLowerCase();s=b.startsWith('zh')?'zh-CN':b.startsWith('ja')?'ja':'en';}document.documentElement.setAttribute('data-lang',s);})();</script><script>if(window.location.pathname.startsWith('/ideas/')){var p=window.location.pathname.replace('/ideas/','/');window.location.replace(window.location.origin+p+window.location.search+window.location.hash);}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-5XSBKYB0GR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5XSBKYB0GR');</script><meta name="google-adsense-account" content="ca-pub-4079054696123142"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079054696123142" crossorigin="anonymous"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="森哥 Ideas" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" alt="Logo"><span class="site-name">森哥 Ideas</span></a><a class="nav-page-title" href="/"><span class="site-name">Windows 电脑安装 OpenClaw 完整指南：从零到运行你的 AI 助手</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0)"><i class="fa-fw fas fa-language"></i><span> 语言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Windows 电脑安装 OpenClaw 完整指南：从零到运行你的 AI 助手</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-03T02:30:00.000Z" title="发表于 2026-03-03 10:30:00">2026-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-21T03:09:30.154Z" title="更新于 2026-04-21 11:09:30">2026-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><h2 id="什么是-OpenClaw？"><a href="#什么是-OpenClaw？" class="headerlink" title="什么是 OpenClaw？"></a>什么是 OpenClaw？</h2><p>OpenClaw 是一个<strong>自托管的 AI 助手网关</strong>，可以将你常用的聊天应用（WhatsApp、Telegram、Discord、iMessage 等）与 AI 编程助手连接起来。你可以在自己的机器上运行，完全掌控数据，无需依赖任何托管服务。</p>
+<p><strong>核心特点：</strong></p>
+<ul>
+<li><strong>自托管</strong>：运行在你的硬件上，你的规则</li>
+<li><strong>多渠道支持</strong>：一个网关同时服务多个聊天平台</li>
+<li><strong>为 AI 代理而生</strong>：支持工具调用、会话管理、记忆系统和多代理路由</li>
+<li><strong>开源</strong>：MIT 许可证，社区驱动</li>
+</ul>
+<p>简单来说，你只需要 Node.js 22+、一个 API 密钥和 5 分钟时间，就能拥有一个随时可用的 AI 助手。</p>
+<span id="more"></span>
+
+<h2 id="Windows-用户的推荐方案：WSL2"><a href="#Windows-用户的推荐方案：WSL2" class="headerlink" title="Windows 用户的推荐方案：WSL2"></a>Windows 用户的推荐方案：WSL2</h2><p>OpenClaw 在 Windows 上推荐<strong>通过 WSL2（Windows Subsystem for Linux）运行</strong>，特别推荐使用 Ubuntu 发行版。</p>
+<p><strong>为什么选择 WSL2？</strong></p>
+<ol>
+<li><strong>运行时一致性</strong>：WSL2 提供完整的 Linux 环境，保证 OpenClaw 的运行时与 macOS&#x2F;Linux 版本完全一致</li>
+<li><strong>工具兼容性更好</strong>：Node.js、pnpm、技能脚本等工具在 Linux 环境下工作得更好</li>
+<li><strong>安装简单</strong>：只需一条命令 <code>wsl --install</code> 即可完成 WSL2 安装</li>
+</ol>
+<blockquote>
+<p><strong>注</strong>：原生 Windows 版本的伴侣应用正在计划中，但目前推荐使用 WSL2。</p>
+</blockquote>
+<h2 id="完整安装流程"><a href="#完整安装流程" class="headerlink" title="完整安装流程"></a>完整安装流程</h2><h3 id="第一步：安装-WSL2-和-Ubuntu"><a href="#第一步：安装-WSL2-和-Ubuntu" class="headerlink" title="第一步：安装 WSL2 和 Ubuntu"></a>第一步：安装 WSL2 和 Ubuntu</h3><ol>
+<li><p><strong>打开 PowerShell（管理员模式）</strong></p>
+<ul>
+<li>按 <code>Win + X</code>，选择”Windows PowerShell（管理员）”或”Windows 终端（管理员）”</li>
+</ul>
+</li>
+<li><p><strong>安装 WSL2</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--install</span></span><br></pre></td></tr></table></figure>
+
+<p>如果想明确指定 Ubuntu 24.04：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先查看可用的发行版</span></span><br><span class="line">wsl <span class="literal">--list</span> <span class="literal">--online</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Ubuntu 24.04</span></span><br><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu<span class="literal">-24</span>.<span class="number">04</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重启电脑</strong></p>
+<p>安装完成后，如果 Windows 提示需要重启，请重启电脑。</p>
+</li>
+<li><p><strong>首次启动 Ubuntu</strong></p>
+<p>重启后，打开”开始菜单”，搜索”Ubuntu”并启动。首次启动会要求你：</p>
+<ul>
+<li>设置 Linux 用户名（建议使用小写字母）</li>
+<li>设置密码（输入时不显示，这是正常的）</li>
+</ul>
+</li>
+</ol>
+<h3 id="第二步：启用-systemd（必需）"><a href="#第二步：启用-systemd（必需）" class="headerlink" title="第二步：启用 systemd（必需）"></a>第二步：启用 systemd（必需）</h3><p>OpenClaw 的 Gateway 服务需要 systemd 支持。</p>
+<ol>
+<li><p><strong>在 Ubuntu 终端中运行以下命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/wsl.conf &gt;/dev/null &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">[boot]</span><br><span class="line">systemd=<span class="literal">true</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>关闭 WSL2</strong></p>
+<p>回到 PowerShell（管理员），执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--shutdown</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重新打开 Ubuntu</strong></p>
+<p>从开始菜单再次启动 Ubuntu。</p>
+</li>
+<li><p><strong>验证 systemd 是否启用</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl --user status</span><br></pre></td></tr></table></figure>
+
+<p>如果看到 systemd 的状态输出（即使是错误也没关系，只要不是”command not found”），说明启用成功。</p>
+</li>
+</ol>
+<h3 id="第三步：安装-OpenClaw"><a href="#第三步：安装-OpenClaw" class="headerlink" title="第三步：安装 OpenClaw"></a>第三步：安装 OpenClaw</h3><p>现在我们在 WSL2 的 Ubuntu 环境中安装 OpenClaw。</p>
+<ol>
+<li><p><strong>运行安装脚本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://openclaw.ai/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>这个脚本会自动：</p>
+<ul>
+<li>检测并安装 Node.js 22+（如果缺失）</li>
+<li>安装 Git（如果缺失）</li>
+<li>通过 npm 全局安装 OpenClaw</li>
+<li>运行引导向导（如果是交互式终端）</li>
+</ul>
+</li>
+<li><p><strong>等待安装完成</strong></p>
+<p>安装过程可能需要几分钟，取决于网络速度。</p>
+</li>
+<li><p><strong>验证安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw --version</span><br></pre></td></tr></table></figure>
+
+<p>如果显示版本号（例如 <code>0.x.x</code>），说明安装成功。</p>
+</li>
+</ol>
+<h3 id="第四步：运行引导向导"><a href="#第四步：运行引导向导" class="headerlink" title="第四步：运行引导向导"></a>第四步：运行引导向导</h3><p>OpenClaw 提供了一个友好的引导向导，帮助你完成初始配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw onboard --install-daemon</span><br></pre></td></tr></table></figure>
+
+<p><strong>引导向导会引导你完成：</strong></p>
+<ol>
+<li><strong>认证配置</strong>：设置 API 密钥（OpenAI、Anthropic 等）</li>
+<li><strong>Gateway 设置</strong>：配置网关的基本参数</li>
+<li><strong>可选渠道</strong>：配置 WhatsApp、Telegram、Discord 等聊天渠道（可以先跳过）</li>
+<li><strong>安装系统服务</strong>：将 Gateway 安装为后台服务</li>
+</ol>
+<blockquote>
+<p><strong>提示</strong>：如果你只是想快速试用，可以暂时跳过聊天渠道的配置，直接使用浏览器的 Control UI。</p>
+</blockquote>
+<h3 id="第五步：检查-Gateway-状态"><a href="#第五步：检查-Gateway-状态" class="headerlink" title="第五步：检查 Gateway 状态"></a>第五步：检查 Gateway 状态</h3><p>如果安装了 Gateway 服务，它应该已经在后台运行了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway status</span><br></pre></td></tr></table></figure>
+
+<p>你应该看到类似这样的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">✔ Gateway is running (PID: xxxxx)</span><br></pre></td></tr></table></figure>
+
+<p>如果没有运行，可以手动启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway start</span><br></pre></td></tr></table></figure>
+
+<h3 id="第六步：打开-Control-UI"><a href="#第六步：打开-Control-UI" class="headerlink" title="第六步：打开 Control UI"></a>第六步：打开 Control UI</h3><p>OpenClaw 提供了一个基于浏览器的控制界面（Control UI），你可以直接在浏览器中与 AI 助手对话。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw dashboard</span><br></pre></td></tr></table></figure>
+
+<p>这会自动在你的默认浏览器中打开 <code>http://127.0.0.1:18789/</code>。</p>
+<p><strong>如果浏览器没有自动打开</strong>，你也可以手动访问：</p>
+<ul>
+<li>本地访问：<code>http://127.0.0.1:18789/</code></li>
+<li>或使用 WSL2 的 IP 地址（见进阶技巧）</li>
+</ul>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><h3 id="方式一：在-Control-UI-中对话"><a href="#方式一：在-Control-UI-中对话" class="headerlink" title="方式一：在 Control UI 中对话"></a>方式一：在 Control UI 中对话</h3><p>在浏览器的 Control UI 中，你可以直接输入消息与 AI 助手对话。试试问它：</p>
+<ul>
+<li>“你好，请介绍一下你自己”</li>
+<li>“帮我总结一下今天的待办事项”</li>
+<li>“搜索一下最新的 AI 新闻”</li>
+</ul>
+<h3 id="方式二：配置聊天渠道"><a href="#方式二：配置聊天渠道" class="headerlink" title="方式二：配置聊天渠道"></a>方式二：配置聊天渠道</h3><p>如果你想在 WhatsApp、Telegram 等应用中使用 OpenClaw，需要配置相应的渠道。</p>
+<p>查看具体渠道的配置文档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw <span class="built_in">help</span> channels</span><br></pre></td></tr></table></figure>
+
+<p>或访问官方文档：<a target="_blank" rel="noopener" href="https://docs.openclaw.ai/channels">https://docs.openclaw.ai/channels</a></p>
+<h2 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h2><h3 id="Q1-安装完成后找不到-openclaw-命令？"><a href="#Q1-安装完成后找不到-openclaw-命令？" class="headerlink" title="Q1: 安装完成后找不到 openclaw 命令？"></a>Q1: 安装完成后找不到 <code>openclaw</code> 命令？</h3><p><strong>原因</strong>：通常是 PATH 环境变量问题。</p>
+<p><strong>解决方法</strong>：</p>
+<ol>
+<li>关闭当前的 Ubuntu 终端，重新打开一个新的终端</li>
+<li>如果仍然找不到，检查 Node.js 的全局安装路径：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get prefix</span><br></pre></td></tr></table></figure></li>
+<li>确保该路径已添加到 <code>~/.bashrc</code> 或 <code>~/.zshrc</code> 中：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$HOME/.npm-global/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Q2-如何从-Windows-主机访问-WSL2-中的-Gateway？"><a href="#Q2-如何从-Windows-主机访问-WSL2-中的-Gateway？" class="headerlink" title="Q2: 如何从 Windows 主机访问 WSL2 中的 Gateway？"></a>Q2: 如何从 Windows 主机访问 WSL2 中的 Gateway？</h3><p><strong>问题</strong>：WSL2 有自己的虚拟网络，Windows 主机上的浏览器默认无法访问 <code>127.0.0.1:18789</code>。</p>
+<p><strong>解决方法</strong>：使用端口转发（需要管理员权限）。</p>
+<p>在 PowerShell（管理员）中运行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取 WSL2 的 IP 地址</span></span><br><span class="line"><span class="variable">$WslIp</span> = (wsl <span class="literal">--</span> hostname <span class="literal">-I</span>).Trim().Split(<span class="string">&quot; &quot;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加端口转发规则</span></span><br><span class="line">netsh interface portproxy add v4tov4 listenaddress=<span class="number">0.0</span>.<span class="number">0.0</span> listenport=<span class="number">18789</span> connectaddress=<span class="variable">$WslIp</span> connectport=<span class="number">18789</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加防火墙规则（一次性）</span></span><br><span class="line"><span class="built_in">New-NetFirewallRule</span> <span class="literal">-DisplayName</span> <span class="string">&quot;OpenClaw Gateway&quot;</span> <span class="literal">-Direction</span> Inbound <span class="literal">-Protocol</span> TCP <span class="literal">-LocalPort</span> <span class="number">18789</span> <span class="literal">-Action</span> Allow</span><br></pre></td></tr></table></figure>
+
+<p>然后在 Windows 主机上访问 <code>http://localhost:18789/</code> 即可。</p>
+<blockquote>
+<p><strong>注意</strong>：WSL2 的 IP 地址会在重启后变化，需要重新运行端口转发规则。</p>
+</blockquote>
+<h3 id="Q3-Gateway-无法启动，提示端口占用？"><a href="#Q3-Gateway-无法启动，提示端口占用？" class="headerlink" title="Q3: Gateway 无法启动，提示端口占用？"></a>Q3: Gateway 无法启动，提示端口占用？</h3><p><strong>解决方法</strong>：更改 Gateway 端口。</p>
+<p>编辑配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.openclaw/openclaw.json</span><br></pre></td></tr></table></figure>
+
+<p>添加或修改：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;gateway&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">18790</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>保存后重启 Gateway：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="Q4-如何更新-OpenClaw？"><a href="#Q4-如何更新-OpenClaw？" class="headerlink" title="Q4: 如何更新 OpenClaw？"></a>Q4: 如何更新 OpenClaw？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm 安装方式</span></span><br><span class="line">npm update -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># git 安装方式（如果你用的是源码安装）</span></span><br><span class="line"><span class="built_in">cd</span> ~/openclaw</span><br><span class="line">git pull</span><br><span class="line">pnpm install</span><br><span class="line">pnpm build</span><br></pre></td></tr></table></figure>
+
+<h3 id="Q5-如何卸载-OpenClaw？"><a href="#Q5-如何卸载-OpenClaw？" class="headerlink" title="Q5: 如何卸载 OpenClaw？"></a>Q5: 如何卸载 OpenClaw？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止并删除服务</span></span><br><span class="line">openclaw gateway uninstall</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载 npm 包</span></span><br><span class="line">npm uninstall -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除配置和数据（可选）</span></span><br><span class="line"><span class="built_in">rm</span> -rf ~/.openclaw</span><br></pre></td></tr></table></figure>
+
+<h2 id="进阶技巧"><a href="#进阶技巧" class="headerlink" title="进阶技巧"></a>进阶技巧</h2><h3 id="1-前台运行-Gateway（调试时使用）"><a href="#1-前台运行-Gateway（调试时使用）" class="headerlink" title="1. 前台运行 Gateway（调试时使用）"></a>1. 前台运行 Gateway（调试时使用）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway --port 18789</span><br></pre></td></tr></table></figure>
+
+<p>按 <code>Ctrl+C</code> 停止。</p>
+<h3 id="2-发送测试消息（需要先配置渠道）"><a href="#2-发送测试消息（需要先配置渠道）" class="headerlink" title="2. 发送测试消息（需要先配置渠道）"></a>2. 发送测试消息（需要先配置渠道）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw message send --target +15555550123 --message <span class="string">&quot;Hello from OpenClaw&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-自定义配置和数据目录"><a href="#3-自定义配置和数据目录" class="headerlink" title="3. 自定义配置和数据目录"></a>3. 自定义配置和数据目录</h3><p>通过环境变量指定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> OPENCLAW_HOME=~/my-openclaw</span><br><span class="line"><span class="built_in">export</span> OPENCLAW_STATE_DIR=~/openclaw-data</span><br><span class="line"><span class="built_in">export</span> OPENCLAW_CONFIG_PATH=~/openclaw-config.json</span><br></pre></td></tr></table></figure>
+
+<p>完整环境变量参考：<a target="_blank" rel="noopener" href="https://docs.openclaw.ai/help/environment">https://docs.openclaw.ai/help/environment</a></p>
+<h3 id="4-查看-Gateway-日志"><a href="#4-查看-Gateway-日志" class="headerlink" title="4. 查看 Gateway 日志"></a>4. 查看 Gateway 日志</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway logs</span><br></pre></td></tr></table></figure>
+
+<p>或使用 systemd（如果安装了服务）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl --user -u openclaw-gateway -f</span><br></pre></td></tr></table></figure>
+
+<h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><p>恭喜！你已经成功在 Windows 电脑上安装并运行了 OpenClaw。</p>
+<p><strong>推荐的下一步：</strong></p>
+<ol>
+<li><strong>探索 Control UI</strong>：熟悉 AI 助手的基本功能</li>
+<li><strong>连接聊天渠道</strong>：配置 Telegram、Discord 等，让 AI 助手随时待命</li>
+<li><strong>自定义配置</strong>：调整 OpenClaw 的行为，添加工作区文件（<code>SOUL.md</code>、<code>AGENTS.md</code> 等）</li>
+<li><strong>探索技能系统</strong>：为你的 AI 助手添加新技能</li>
+</ol>
+<p><strong>有用的资源：</strong></p>
+<ul>
+<li>官方文档：<a target="_blank" rel="noopener" href="https://docs.openclaw.ai/">https://docs.openclaw.ai/</a></li>
+<li>GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw">https://github.com/openclaw/openclaw</a></li>
+<li>社区讨论：<a target="_blank" rel="noopener" href="https://discord.com/invite/clawd">https://discord.com/invite/clawd</a></li>
+<li>技能市场：<a target="_blank" rel="noopener" href="https://clawhub.com/">https://clawhub.com</a></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 WSL2，Windows 用户可以轻松运行 OpenClaw，享受与 Linux&#x2F;macOS 用户一致的体验。整个安装过程只需要：</p>
+<ol>
+<li>✅ 安装 WSL2 和 Ubuntu</li>
+<li>✅ 启用 systemd</li>
+<li>✅ 运行安装脚本</li>
+<li>✅ 完成引导向导</li>
+<li>✅ 打开 Control UI，开始对话</li>
+</ol>
+<p>整个流程不超过 15 分钟，即使是完全没有 Linux 经验的用户也能轻松完成。</p>
+<p>现在，你的个人 AI 助手已经准备就绪了！🎉</p>
+<hr>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="/2026/03/02/ai-first-money/">如何用 AI 赚取第一桶金：普通人切实可行的 7 个路径</a></li>
+<li><a href="/2026/03/02/rust-ai-language/">Rust 会是 AI 时代的最好的编程语言吗？</a></li>
+<li><a href="/2026/03/02/ai-coding-implicit-contracts/">AI Coding 的绊脚石之一：程序的隐式契约问题</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com">森哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide/">https://xiaoxiaduoyan.com/2026/03/03/openclaw-windows-installation-guide/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xiaoxiaduoyan.com" target="_blank">森哥 Ideas</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/OpenClaw/">OpenClaw</a><a class="post-meta__tags" href="/tags/Windows/">Windows</a><a class="post-meta__tags" href="/tags/WSL2/">WSL2</a><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/">教程</a></div><div class="post-share"><div class="social-share" data-image="/images/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>觉得有帮助？请我喝杯咖啡 ☕</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/03/us-iran-military-ai-capabilities/" title="美国对伊朗军事行动中可能运用的 AI 能力：从情报分析到精确打击"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">美国对伊朗军事行动中可能运用的 AI 能力：从情报分析到精确打击</div></div><div class="info-2"><div class="info-item-1">引言：AI 改变战争形态现代战争已经不再是单纯的武器对抗，而是信息、技术和算法的较量。美国作为全球军事科技的领先者，在对伊朗等地区的军事行动中，AI 技术已经成为不可或缺的”隐形战力”。
+从 2020 年精准击杀伊朗革命卫队圣城旅指挥官苏莱曼尼，到近年来对伊朗核设施和导弹基地的精确打击，背后都离不开先进的 AI 能力支撑。本文将结合公开报道和技术推演，探讨美国在对伊军事行动中可能运用的 AI 能力</div></div></div></a><a class="pagination-related" href="/2026/03/02/2028-global-intelligence-crisis/" title="2028全球智能危机"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">2028全球智能危机</div></div><div class="info-2"><div class="info-item-1">如果AI在2028年突然停止进步，会发生什么？这不是科幻，而是一个值得认真思考的问题。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/03/us-iran-military-ai-capabilities/" title="美国对伊朗军事行动中可能运用的 AI 能力：从情报分析到精确打击"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">美国对伊朗军事行动中可能运用的 AI 能力：从情报分析到精确打击</div></div><div class="info-2"><div class="info-item-1">引言：AI 改变战争形态现代战争已经不再是单纯的武器对抗，而是信息、技术和算法的较量。美国作为全球军事科技的领先者，在对伊朗等地区的军事行动中，AI 技术已经成为不可或缺的”隐形战力”。
+从 2020 年精准击杀伊朗革命卫队圣城旅指挥官苏莱曼尼，到近年来对伊朗核设施和导弹基地的精确打击，背后都离不开先进的 AI 能力支撑。本文将结合公开报道和技术推演，探讨美国在对伊军事行动中可能运用的 AI 能力</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/03/ai-restaurant-future/" title="AI 时代餐饮行业的未来"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">AI 时代餐饮行业的未来</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/31/ai-payment-future/" title="AI支付的未来：从可编程账户到Agent自主支付"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">AI支付的未来：从可编程账户到Agent自主支付</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/ai-engineer-concepts-guide/" title="AI 工程师必须掌握的 30 个核心概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AI 工程师必须掌握的 30 个核心概念</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/19/ai-revolution-roles/" title="AI 时代的岗位革命：耕地的牛，还是无牛的田？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-19</div><div class="info-item-2">AI 时代的岗位革命：耕地的牛，还是无牛的田？</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/05/can-ai-replace-therapist/" title="AI 真的不能替代心理咨询师吗？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">AI 真的不能替代心理咨询师吗？</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">森哥</div><div class="author-info-description">未来已来，不问前程，顺势而为。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">186</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hongqi-lgs"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hongqi-lgs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/xiaosen_lu" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="/about/" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4079054696123142"
+     data-ad-slot="9951901466"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到森哥 Ideas！未来已来，不问前程，顺势而为。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-OpenClaw%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是 OpenClaw？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88%EF%BC%9AWSL2"><span class="toc-number">2.</span> <span class="toc-text">Windows 用户的推荐方案：WSL2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">完整安装流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85-WSL2-%E5%92%8C-Ubuntu"><span class="toc-number">3.1.</span> <span class="toc-text">第一步：安装 WSL2 和 Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%90%AF%E7%94%A8-systemd%EF%BC%88%E5%BF%85%E9%9C%80%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">第二步：启用 systemd（必需）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85-OpenClaw"><span class="toc-number">3.3.</span> <span class="toc-text">第三步：安装 OpenClaw</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%BF%90%E8%A1%8C%E5%BC%95%E5%AF%BC%E5%90%91%E5%AF%BC"><span class="toc-number">3.4.</span> <span class="toc-text">第四步：运行引导向导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E6%A3%80%E6%9F%A5-Gateway-%E7%8A%B6%E6%80%81"><span class="toc-number">3.5.</span> <span class="toc-text">第五步：检查 Gateway 状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E6%89%93%E5%BC%80-Control-UI"><span class="toc-number">3.6.</span> <span class="toc-text">第六步：打开 Control UI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">开始使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E5%9C%A8-Control-UI-%E4%B8%AD%E5%AF%B9%E8%AF%9D"><span class="toc-number">4.1.</span> <span class="toc-text">方式一：在 Control UI 中对话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E9%85%8D%E7%BD%AE%E8%81%8A%E5%A4%A9%E6%B8%A0%E9%81%93"><span class="toc-number">4.2.</span> <span class="toc-text">方式二：配置聊天渠道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">5.</span> <span class="toc-text">常见问题与解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Q1-%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0-openclaw-%E5%91%BD%E4%BB%A4%EF%BC%9F"><span class="toc-number">5.1.</span> <span class="toc-text">Q1: 安装完成后找不到 openclaw 命令？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q2-%E5%A6%82%E4%BD%95%E4%BB%8E-Windows-%E4%B8%BB%E6%9C%BA%E8%AE%BF%E9%97%AE-WSL2-%E4%B8%AD%E7%9A%84-Gateway%EF%BC%9F"><span class="toc-number">5.2.</span> <span class="toc-text">Q2: 如何从 Windows 主机访问 WSL2 中的 Gateway？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q3-Gateway-%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%EF%BC%8C%E6%8F%90%E7%A4%BA%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%EF%BC%9F"><span class="toc-number">5.3.</span> <span class="toc-text">Q3: Gateway 无法启动，提示端口占用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q4-%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0-OpenClaw%EF%BC%9F"><span class="toc-number">5.4.</span> <span class="toc-text">Q4: 如何更新 OpenClaw？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q5-%E5%A6%82%E4%BD%95%E5%8D%B8%E8%BD%BD-OpenClaw%EF%BC%9F"><span class="toc-number">5.5.</span> <span class="toc-text">Q5: 如何卸载 OpenClaw？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7"><span class="toc-number">6.</span> <span class="toc-text">进阶技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%89%8D%E5%8F%B0%E8%BF%90%E8%A1%8C-Gateway%EF%BC%88%E8%B0%83%E8%AF%95%E6%97%B6%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">1. 前台运行 Gateway（调试时使用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%91%E9%80%81%E6%B5%8B%E8%AF%95%E6%B6%88%E6%81%AF%EF%BC%88%E9%9C%80%E8%A6%81%E5%85%88%E9%85%8D%E7%BD%AE%E6%B8%A0%E9%81%93%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">2. 发送测试消息（需要先配置渠道）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">6.3.</span> <span class="toc-text">3. 自定义配置和数据目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9F%A5%E7%9C%8B-Gateway-%E6%97%A5%E5%BF%97"><span class="toc-number">6.4.</span> <span class="toc-text">4. 查看 Gateway 日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-number">7.</span> <span class="toc-text">下一步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-en/" title="Teaching Your AI Agent New Tricks: A Complete Guide to gh skill">Teaching Your AI Agent New Tricks: A Complete Guide to gh skill</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide-ja/" title="gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド">gh skill で AI エージェントにスキルを追加する：インストールから公開まで完全ガイド</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="zh-CN"><div class="content"><a class="title" href="/2026/04/18/gh-skill-guide/" title="用 gh skill 给 AI 装技能包：从安装到发布完整指南">用 gh skill 给 AI 装技能包：从安装到发布完整指南</a><time datetime="2026-04-18T08:30:00.000Z" title="Created 2026-04-18 16:30:00">2026-04-18</time></div></div><div class="aside-list-item no-cover" data-lang="en"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-en/" title="The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions">The Future of AI Payments: From Programmable Accounts to Autonomous Agent Transactions</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div><div class="aside-list-item no-cover" data-lang="ja"><div class="content"><a class="title" href="/2026/03/31/ai-payment-future-ja/" title="AI決済の未来：プログラマブル口座からエージェント自律決済へ">AI決済の未来：プログラマブル口座からエージェント自律決済へ</a><time datetime="2026-03-31T02:40:00.000Z" title="Created 2026-03-31 10:40:00">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 森哥</span></div><div class="footer_custom_text"><a href="/privacy-policy/">隐私政策</a> | <a href="/privacy-policy/">Privacy Policy</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/i18n.js?v=1776740981411"></script><script src="/js/reward-kofi.js"></script><script src="/js/buttondown.js"></script><script src="/js/lang-switcher.js"></script></div></body></html>
